@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark-theme');
+    }
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Create — Модпак</title>
+  <meta name="description" content="Скачай модпак Cloud Create та приєднуйся до сервера. Покрокова інструкція встановлення та список модів.">
+  <link rel="icon" type="image/png" href="logo_s.png">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .mod-tag {
+      display: inline-block;
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--radius-full);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .tag-core     { background: rgba(14,165,233,0.12); color: var(--sky-600); }
+    .tag-addon    { background: rgba(202,138,4,0.12);  color: var(--gold-600); }
+    .tag-utility  { background: rgba(71,85,105,0.10);  color: var(--slate-600); }
+    .tag-storage  { background: rgba(168,85,247,0.10); color: #9333ea; }
+    .tag-fps      { background: rgba(34,197,94,0.12);  color: #16a34a; }
+    .tag-deco     { background: rgba(236,72,153,0.12); color: #db2777; }
+
+    .mods-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      justify-content: center;
+    }
+    .mods-grid > .card {
+      flex: 1 1 270px;
+      max-width: 350px;
+    }
+
+    .step-card {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding: 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      backdrop-filter: blur(20px) saturate(175%);
+      -webkit-backdrop-filter: blur(20px) saturate(175%);
+      transition: transform 300ms var(--ease-out-expo), box-shadow 300ms var(--ease-out-expo), background-color 300ms var(--ease-out-expo);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step-card::after {
+      content: '';
+      position: absolute;
+      top: -50%; left: -60%;
+      width: 200%; height: 200%;
+      background: linear-gradient(
+        115deg,
+        transparent 25%,
+        rgba(255, 255, 255, 0.10) 36%,
+        rgba(255, 255, 255, 0.22) 40%,
+        rgba(255, 255, 255, 0.10) 44%,
+        transparent 55%
+      );
+      transition: transform 1.2s var(--ease-out-expo);
+      transform: translate(-15%, -15%) rotate(-10deg);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .step-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+        background-color: var(--bg-card-hover);
+      }
+      .step-card:hover::after {
+        transform: translate(25%, 25%) rotate(-10deg);
+      }
+    }
+
+    .mod-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(14,165,233,0.08);
+    }
+    .mod-item:last-child { border-bottom: none; }
+  </style>
+</head>
+<body>
+
+  <div class="sky-bg"></div>
+
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html" aria-label="Cloud Create — Головна">
+          <img src="logo.png" alt="Cloud Create" class="logo-icon">
+        </a>
+      </div>
+      <button class="menu-toggle" id="mobile-menu-btn" aria-label="Меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="nav-menu" role="list">
+        <li><a href="index.html"><svg class="icon" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Головна</a></li>
+        <li><a href="modpack.html"><svg class="icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/><line x1="12" y1="12" x2="3.27" y2="6.96"/><line x1="12" y1="12" x2="20.73" y2="6.96"/></svg> Модпак</a></li>
+        <li><a href="rules.html"><svg class="icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Правила</a></li>
+        <li><a href="shop.html"><svg class="icon" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg> Магазин</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- Unavailable Announcement Banner -->
+      <div class="unavailable-banner">
+        <div class="unavailable-banner-inner">
+          <div class="unavailable-banner-message">
+            <span class="unavailable-banner-badge">Увага</span>
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Модпак наразі в розробці та тимчасово недоступний для завантаження.</span>
+          </div>
+          <a href="#" data-discord-url target="_blank" class="unavailable-banner-link">
+            <span>Наш Discord</span>
+            <svg class="icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Page Hero -->
+      <div class="page-hero">
+        <h1 class="section-title" style="font-size:2.5rem;">Завантажити модпак</h1>
+        <p class="section-subtitle" style="max-width:520px; margin:0.5rem auto 0;">
+          Покрокова інструкція встановлення модпаку Cloud Create. Займе не більше 10 хвилин.
+        </p>
+      </div>
+
+      <!-- Download Options Section -->
+      <div class="grid grid-2" style="max-width:880px; margin:0 auto 4rem;">
+        
+        <!-- License Card (.mrpack) -->
+        <div class="card card-gold" style="text-align:center; padding:2.5rem 1.8rem; border-top:3px solid var(--gold-600); display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
+          <div style="width:100%; display:flex; flex-direction:column; align-items:center;">
+            <div class="badge badge-gold" style="margin-bottom:1.2rem;">Для Ліцензії</div>
+            <svg class="icon" viewBox="0 0 24 24" style="width: 2.2rem; height: 2.2rem; color:var(--gold-600); margin-bottom:1rem; opacity:0.9;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            <h2 style="font-family:var(--font-display); font-weight:800; font-size:1.35rem; margin-bottom:0.4rem;">.mrpack-файл</h2>
+            <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:1.5rem; line-height:1.5; max-width:280px;">Офіційний збірник для ліцензійних лаунчерів (Modrinth, Prism, CurseForge).</p>
+          </div>
+          <div style="width:100%; display:flex; flex-direction:column; align-items:center; margin-top:auto;">
+            <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:1rem; font-weight:600;">Версія 1.21.1 · NeoForge · ~150 модів</p>
+            <a href="#" id="download-mrpack" class="btn btn-gold" style="width:100%;" download>
+              <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Завантажити .mrpack
+            </a>
+          </div>
+        </div>
+
+        <!-- Cracked/Pirate Card (.zip) -->
+        <div class="card card-sky" style="text-align:center; padding:2.5rem 1.8rem; border-top:3px solid var(--sky-500); display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
+          <div style="width:100%; display:flex; flex-direction:column; align-items:center;">
+            <div class="badge badge-sky" style="margin-bottom:1.2rem;">Для Піраток</div>
+            <svg class="icon" viewBox="0 0 24 24" style="width: 2.2rem; height: 2.2rem; color:var(--sky-500); margin-bottom:1rem; opacity:0.9;"><path d="M12 2a7 7 0 0 0-7 7c0 3 2.5 5.5 3 7.5h8c.5-2 3-4.5 3-7.5a7 7 0 0 0-7-7z"/><path d="M5 17v2c0 .6.4 1 1 1h2a2 2 0 0 0 2-2v-1"/><path d="M19 17v2c0 .6-.4 1-1 1h-2a2 2 0 0 1-2-2v-1"/><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/><path d="M9 12h.01"/><path d="M15 12h.01"/></svg>
+            <h2 style="font-family:var(--font-display); font-weight:800; font-size:1.35rem; margin-bottom:0.4rem;">.zip-архів</h2>
+            <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:1.5rem; line-height:1.5; max-width:280px;">Повний набір модів та потрібних папок для альтернативних лаунчерів (TLauncher, Legacy Launcher).</p>
+          </div>
+          <div style="width:100%; display:flex; flex-direction:column; align-items:center; margin-top:auto;">
+            <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:1rem; font-weight:600;">Версія 1.21.1 · NeoForge · ~150 модів</p>
+            <a href="#" id="download-zip" class="btn btn-primary" style="width:100%;" download>
+              <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Завантажити .zip
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Installation Steps -->
+      <section class="section">
+        <div style="text-align:center; margin-bottom:2.5rem;">
+          <h2 class="section-title">Як встановити</h2>
+          <p class="section-subtitle">Обери свій тип гри, щоб переглянути відповідну інструкцію.</p>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div class="tabs-nav">
+          <button class="tab-btn active" data-tab="tab-license">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Ліцензія
+          </button>
+          <button class="tab-btn" data-tab="tab-cracked">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 3 2.5 5.5 3 7.5h8c.5-2 3-4.5 3-7.5a7 7 0 0 0-7-7z"/><path d="M5 17v2c0 .6.4 1 1 1h2a2 2 0 0 0 2-2v-1"/><path d="M19 17v2c0 .6-.4 1-1 1h-2a2 2 0 0 1-2-2v-1"/><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/><path d="M9 12h.01"/><path d="M15 12h.01"/></svg> Піратка
+          </button>
+        </div>
+
+        <!-- Tab Contents -->
+        <div class="tabs-content" style="max-width:720px; margin:0 auto;">
+          
+          <!-- License Tab -->
+          <div id="tab-license" class="tab-pane active">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <div>
+                <h3 style="font-family:var(--font-display); font-weight:700; margin-bottom:0.3rem;">Встанови лаунчер</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6;">
+                  Завантаж та встанови <a href="https://modrinth.com/app" target="_blank" rel="noopener" style="color:var(--accent); font-weight:600;">Modrinth App</a> або <a href="https://prismlauncher.org/" target="_blank" rel="noopener" style="color:var(--accent); font-weight:600;">Prism Launcher</a>. Вони чудово підтримують сучасний формат модпаків <code>.mrpack</code>. Також підійде офіційний лаунчер CurseForge.
+                </p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <div>
+                <h3 style="font-family:var(--font-display); font-weight:700; margin-bottom:0.3rem;">Скачай модпак</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6;">
+                  Натисни золотисту кнопку завантаження вище, щоб завантажити файл збірки <strong>.mrpack</strong> на свій комп'ютер.
+                </p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <div>
+                <h3 style="font-family:var(--font-display); font-weight:700; margin-bottom:0.3rem;">Імпортуй збірку</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6; margin-bottom:0.5rem;">
+                  У вашому лаунчері натисни кнопку <strong>Create Profile</strong> (або <em>Add Instance</em>) → вибери вкладку <strong>From File</strong> (З файлу) → вкажи завантажений файл <code>.mrpack</code> та зачекай закінчення імпорту.
+                </p>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6;">
+                  <strong>Порада (для Modrinth App):</strong> Якщо у вас вже встановлено цей лаунчер, ви можете просто двічі клікнути по завантаженому файлу <code>.mrpack</code> у вашому файловому менеджері — збірка автоматично імпортується та завантажиться.
+                </p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">4</div>
+              <div>
+                <h3 style="font-family:var(--font-display); font-weight:700; margin-bottom:0.3rem;">Виділи пам'ять та запусти</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6;">
+                  Бажано виділити <strong>4–6 ГБ</strong> оперативної пам'яті для стабільної роботи у налаштуваннях Java вашого лаунчера. Після цього запускай гру, переходь у Multiplayer та підключайся за IP: <strong data-server-ip></strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cracked Tab -->
+          <div id="tab-cracked" class="tab-pane" style="display:none;">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <div>
+                <h3 style="font-family:var(--font-display); font-weight:700; margin-bottom:0.3rem;">Встанови лаунчер</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6;">
+                  Скачай та встанови лаунчер, який підтримує автономний режим (офлайн акаунти), наприклад <a href="https://llaun.ch/" target="_blank" rel="noopener" style="color:var(--accent); font-weight:600;">Legacy Launcher</a> або <a href="https://tlauncher.org/" target="_blank" rel="noopener" style="color:var(--accent); font-weight:600;">TLauncher</a>.
+                </p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <div>
+                <h3 style="font-family:var(--font-display); font-weight:700; margin-bottom:0.3rem;">Скачай архів модпаку</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6;">
+                  Натисни синю кнопку завантаження вище, щоб завантажити <strong>.zip-архів</strong> зі збіркою на комп'ютер.
+                </p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <div>
+                <h3 style="font-family:var(--font-display); font-weight:700; margin-bottom:0.3rem;">Встановлення модпаку</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6; margin-bottom:0.5rem;">
+                  <strong>Автоматично (Legacy Launcher):</strong> Перейди у створення профілю → кнопка <em>Імпортувати з архіву</em> → вибери завантажений <code>.zip</code>.
+                </p>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6;">
+                  <strong>Вручну (TLauncher / інші):</strong> Встанови версію <strong>NeoForge 1.21.1</strong>, відкрий папку збірки у лаунчері та розпакуй архів. Тобі потрібно замінити або додати до папки збірки папки з .zip-архіву: <code>mods</code>, <code>config</code>, <code>resourcepacks</code> та <code>kubejs</code>.
+                </p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">4</div>
+              <div>
+                <h3 style="font-family:var(--font-display); font-weight:700; margin-bottom:0.3rem;">Виділи RAM та грай</h3>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6;">
+                  Перейди в налаштування лаунчера та виділи <strong>4–6 ГБ</strong> оперативної пам'яті для стабільної роботи. Запускай гру, заходь у гру по мережі та додавай сервер за IP: <strong data-server-ip></strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Key Mods -->
+      <section class="section">
+        <div style="text-align:center; margin-bottom:2.5rem;">
+          <h2 class="section-title">Ключові моди</h2>
+          <p class="section-subtitle">Найважливіші моди, навколо яких будується гральний процес.</p>
+        </div>
+
+        <div class="mods-grid">
+          
+          <!-- Card 1: Create & Mechanics -->
+          <div class="card">
+            <h3 style="font-family:var(--font-display); font-weight:700; margin-bottom:1rem; font-size:1.05rem; display:flex; align-items:center;">
+              <svg class="icon gear-deco" viewBox="0 0 24 24" style="color:var(--gold-600); margin-right:0.5rem;"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Create & Механізми
+            </h3>
+            <div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Create</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Базовий мод. Механізми, шестерні та конвеєри.</div>
+                </div>
+                <span class="mod-tag tag-core">Ядро</span>
+              </div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Create: Aeronautics</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Керування та побудова літаючих кораблів та дирижаблів.</div>
+                </div>
+                <span class="mod-tag tag-addon">Аддон</span>
+              </div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Create: Steam 'n' Rails</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Вдосконалена залізниця, нові типи колій та поїздів.</div>
+                </div>
+                <span class="mod-tag tag-addon">Аддон</span>
+              </div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Create: Big Cannons</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Артилерія великого калібру, гармати та снаряди.</div>
+                </div>
+                <span class="mod-tag tag-addon">Аддон</span>
+              </div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Create: Enchantment Industry</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Автоматизація чарування та рідкий досвід.</div>
+                </div>
+                <span class="mod-tag tag-addon">Аддон</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Optimization & FPS -->
+          <div class="card">
+            <h3 style="font-family:var(--font-display); font-weight:700; margin-bottom:1rem; font-size:1.05rem; display:flex; align-items:center;">
+              <svg class="icon" viewBox="0 0 24 24" style="color:#16a34a; margin-right:0.5rem;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Оптимізація та FPS
+            </h3>
+            <div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Sodium</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Сучасний двигун рендерингу для підвищення кадрів/сек.</div>
+                </div>
+                <span class="mod-tag tag-fps">FPS</span>
+              </div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Iris</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Оптимізований рендер шейдерів у грі.</div>
+                </div>
+                <span class="mod-tag tag-fps">FPS</span>
+              </div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Lithium</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Оптимізація фізики гри та поведінки мобів.</div>
+                </div>
+                <span class="mod-tag tag-fps">FPS</span>
+              </div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">ModernFix</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Значне зниження використання RAM та швидкості запуску.</div>
+                </div>
+                <span class="mod-tag tag-fps">FPS</span>
+              </div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">ImmediatelyFast</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Прискорення рендерингу тексту та шрифтів.</div>
+                </div>
+                <span class="mod-tag tag-fps">FPS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Utilities & UI -->
+          <div class="card">
+            <h3 style="font-family:var(--font-display); font-weight:700; margin-bottom:1rem; font-size:1.05rem; display:flex; align-items:center;">
+              <svg class="icon" viewBox="0 0 24 24" style="color:var(--sky-500); margin-right:0.5rem;"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Корисність та Інтерфейс
+            </h3>
+            <div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">JEI</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Зручний перегляд рецептів та крафтів предметів.</div>
+                </div>
+                <span class="mod-tag tag-utility">Утиліта</span>
+              </div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Xaero's Minimap & Map</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Інтерактивна карта світу та зручна міні-мапа.</div>
+                </div>
+                <span class="mod-tag tag-utility">Утиліта</span>
+              </div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Simple Voice Chat</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Локальний позиційний 3D голосовий чат.</div>
+                </div>
+                <span class="mod-tag tag-utility">Утиліта</span>
+              </div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Jade</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Показує інформацію про блок чи моба, на якого дивишся.</div>
+                </div>
+                <span class="mod-tag tag-utility">Утиліта</span>
+              </div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Open Parties & Claims</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Можливість створювати паті та заприватити чанки.</div>
+                </div>
+                <span class="mod-tag tag-utility">Утиліта</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Storage & Decoration -->
+          <div class="card">
+            <h3 style="font-family:var(--font-display); font-weight:700; margin-bottom:1rem; font-size:1.05rem; display:flex; align-items:center;">
+              <svg class="icon" viewBox="0 0 24 24" style="color:#db2777; margin-right:0.5rem;"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polygon points="2 17 12 22 22 17"/><polygon points="2 12 12 17 22 12"/></svg> Декор та Сховища
+            </h3>
+            <div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Sophisticated Storage</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Скрині, бочки та сейфи з можливістю покращень.</div>
+                </div>
+                <span class="mod-tag tag-storage">Сховище</span>
+              </div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Traveler's Backpack</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Функціональні рюкзаки мандрівника на спину.</div>
+                </div>
+                <span class="mod-tag tag-storage">Сховище</span>
+              </div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Farmer's Delight</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Велика кулінарія, нові страви та інструменти кухаря.</div>
+                </div>
+                <span class="mod-tag tag-deco">Декор</span>
+              </div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Create Deco</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Листи заліза, цегла та металеві блоки у стилі Create.</div>
+                </div>
+                <span class="mod-tag tag-deco">Декор</span>
+              </div>
+              <div class="mod-item">
+                <div style="flex:1;">
+                  <div style="font-weight:600; font-size:0.9rem;">Handcrafted / Furniture</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Красиві деталізовані меблі для облаштування інтер'єру.</div>
+                </div>
+                <span class="mod-tag tag-deco">Декор</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div><!-- /container -->
+  </main>
+
+  <footer>
+    <div class="footer-socials">
+      <a href="#" data-discord-url target="_blank" rel="noopener" aria-label="Discord">
+        <svg class="icon" viewBox="0 0 24 24" style="width:20px; height:20px; stroke:none; fill:currentColor;"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.094 13.094 0 0 1-1.873-.894.077.077 0 0 1-.008-.128c.126-.093.252-.19.372-.287a.075.075 0 0 1 .077-.011c3.92 1.793 8.18 1.793 12.061 0a.073.073 0 0 1 .078.009c.12.099.246.195.373.289a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.156 2.418z"/></svg>
+      </a>
+      <a href="#" data-tiktok-url target="_blank" rel="noopener" aria-label="TikTok">
+        <svg class="icon" viewBox="0 0 24 24" style="width:20px; height:20px; stroke:none; fill:currentColor;"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.09-1.47-.77-.56-1.44-1.27-1.9-2.1v9.99c-.06 2.05-.87 4.13-2.5 5.39-1.92 1.52-4.66 1.9-6.96 1.15-2.53-.79-4.51-2.96-5.06-5.56-.63-2.88.58-6.15 3-7.76 1.71-1.15 3.92-1.36 5.86-.78v4.2c-1.2-.44-2.6-.28-3.61.52-.98.74-1.35 2.1-1.04 3.29.32 1.34 1.62 2.29 2.99 2.23 1.52-.01 2.76-1.25 2.77-2.77V.02Z"/></svg>
+      </a>
+    </div>
+    <p style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; flex-wrap: wrap;">
+      © <span data-year></span> Cloud Create. Всі права захищені.
+      <img src="logo_s.png" alt="" style="width: 1.25rem; height: 1.25rem; object-fit: contain; opacity: 0.8; vertical-align: middle;">
+    </p>
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </footer>
+
+  <!-- Toast Notification for Unavailable Modpack -->
+  <div id="download-toast" class="download-toast">
+    <svg class="icon toast-icon" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="8" x2="12" y2="12"></line>
+      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg>
+    <span class="toast-message">Модпак ще не доступний для завантаження!</span>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
