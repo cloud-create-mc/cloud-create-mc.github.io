@@ -33,7 +33,7 @@
   --slate-900: #0f172a;
 
   /* Semantic tokens */
-  --bg-body:    linear-gradient(160deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+  --bg-body:    linear-gradient(160deg, #d4ecfc 0%, #b2daf7 50%, #8ac3f2 100%);
   --bg-card:    rgba(255, 255, 255, 0.25);
   --bg-card-hover: rgba(255, 255, 255, 0.40);
   --bg-nav:     rgba(255, 255, 255, 0.35);
