@@ -31,13 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --------------------------------------------------
-  // 1.2. Secret Dark Theme Toggle on Logo Click
+  // 1.2. Theme Toggle Button
   // --------------------------------------------------
-  const logoLink = document.querySelector('.logo a');
-  if (logoLink) {
-    logoLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      
+  const themeToggles = document.querySelectorAll('.theme-toggle');
+  themeToggles.forEach(toggleBtn => {
+    toggleBtn.addEventListener('click', () => {
       const toggleTheme = () => {
         const isDark = document.documentElement.classList.toggle('dark-theme');
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
@@ -48,6 +46,178 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         toggleTheme();
       }
+    });
+  });  // --------------------------------------------------
+  // 1.3. Flying Cloud Logo Easter Egg
+  // --------------------------------------------------
+  const logoLink = document.querySelector('.logo a');
+  let isFlying = false;
+  let isLanding = false;
+  let animFrameId = null;
+
+  if (logoLink) {
+    logoLink.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      if (isLanding) return; // Prevent clicks during landing transition
+
+      if (isFlying) {
+        // Boost velocity on subsequent clicks
+        logoLink.dataset.vx = parseFloat(logoLink.dataset.vx || 0) + (Math.random() - 0.5) * 15;
+        logoLink.dataset.vy = parseFloat(logoLink.dataset.vy || 0) + (Math.random() - 0.5) * 15;
+        
+        // Visual click feedback (scale bump)
+        const x = parseFloat(logoLink.dataset.x || 0);
+        const y = parseFloat(logoLink.dataset.y || 0);
+        const rot = parseFloat(logoLink.dataset.vx) * 2;
+        logoLink.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rot}deg) scale(1.15)`;
+        setTimeout(() => {
+          if (isFlying && !isLanding) {
+            const curX = parseFloat(logoLink.dataset.x || 0);
+            const curY = parseFloat(logoLink.dataset.y || 0);
+            const curRot = parseFloat(logoLink.dataset.vx) * 2;
+            logoLink.style.transform = `translate3d(${curX}px, ${curY}px, 0) rotate(${curRot}deg) scale(1)`;
+          }
+        }, 120);
+        return;
+      }
+
+      isFlying = true;
+      isLanding = false;
+      const rect = logoLink.getBoundingClientRect();
+
+      // Create hidden placeholder to preserve header layout
+      const placeholder = logoLink.cloneNode(true);
+      placeholder.style.visibility = 'hidden';
+      placeholder.style.pointerEvents = 'none';
+      placeholder.classList.add('logo-placeholder');
+      
+      // We append placeholder first so it immediately occupies the space
+      logoLink.parentNode.appendChild(placeholder);
+
+      // Move the original logo link to document.body to escape the sticky header and backdrop-filter container,
+      // avoiding positioning offset jumps during fixed positioning.
+      document.body.appendChild(logoLink);
+
+      // Align logo link to fixed 0, 0 viewport coordinates and use translate3d for hardware-accelerated movement
+      logoLink.style.position = 'fixed';
+      logoLink.style.left = '0px';
+      logoLink.style.top = '0px';
+      logoLink.style.width = rect.width + 'px';
+      logoLink.style.height = rect.height + 'px';
+      logoLink.style.zIndex = '99999';
+      logoLink.style.pointerEvents = 'auto';
+      logoLink.style.transition = 'none';
+      logoLink.style.transform = `translate3d(${rect.left}px, ${rect.top}px, 0) rotate(0deg)`;
+
+      let x = rect.left;
+      let y = rect.top;
+      let vx = (Math.random() - 0.5) * 6 + (Math.random() > 0.5 ? 3.5 : -3.5);
+      let vy = (Math.random() - 0.5) * 6 + (Math.random() > 0.5 ? 3.5 : -3.5);
+
+      logoLink.dataset.x = x;
+      logoLink.dataset.y = y;
+      logoLink.dataset.vx = vx;
+      logoLink.dataset.vy = vy;
+
+      const duration = 13000; // Fly for 13 seconds
+      let startTime = performance.now();
+
+      function updatePhysics(timestamp) {
+        if (!isFlying) return;
+
+        const elapsed = timestamp - startTime;
+        
+        vx = parseFloat(logoLink.dataset.vx);
+        vy = parseFloat(logoLink.dataset.vy);
+
+        // Apply friction to slow down boosts
+        vx *= 0.988;
+        vy *= 0.988;
+
+        // Maintain minimum speed
+        if (Math.abs(vx) < 1.8) vx = vx > 0 ? 1.8 : -1.8;
+        if (Math.abs(vy) < 1.8) vy = vy > 0 ? 1.8 : -1.8;
+
+        logoLink.dataset.vx = vx;
+        logoLink.dataset.vy = vy;
+
+        x += vx;
+        y += vy;
+
+        logoLink.dataset.x = x;
+        logoLink.dataset.y = y;
+
+        const w = rect.width;
+        const h = rect.height;
+
+        // Boundary collisions
+        if (x < 0) {
+          x = 0;
+          vx = -vx;
+          logoLink.dataset.vx = vx;
+        } else if (x > window.innerWidth - w) {
+          x = window.innerWidth - w;
+          vx = -vx;
+          logoLink.dataset.vx = vx;
+        }
+
+        if (y < 0) {
+          y = 0;
+          vy = -vy;
+          logoLink.dataset.vy = vy;
+        } else if (y > window.innerHeight - h) {
+          y = window.innerHeight - h;
+          vy = -vy;
+          logoLink.dataset.vy = vy;
+        }
+
+        const rot = vx * 2;
+        logoLink.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rot}deg)`;
+
+        if (elapsed < duration) {
+          animFrameId = requestAnimationFrame(updatePhysics);
+        } else {
+          landLogo();
+        }
+      }
+
+      function landLogo() {
+        cancelAnimationFrame(animFrameId);
+        isLanding = true;
+        
+        // Smooth return animation via CSS transition on transform
+        logoLink.style.transition = 'transform 1.4s cubic-bezier(0.25, 1, 0.3, 1)';
+        const targetRect = placeholder.getBoundingClientRect();
+        
+        logoLink.style.transform = `translate3d(${targetRect.left}px, ${targetRect.top}px, 0) rotate(0deg)`;
+
+        setTimeout(() => {
+          // Move back to header and remove placeholder
+          if (placeholder.parentNode) {
+            placeholder.parentNode.insertBefore(logoLink, placeholder);
+          }
+          
+          logoLink.style.position = '';
+          logoLink.style.left = '';
+          logoLink.style.top = '';
+          logoLink.style.width = '';
+          logoLink.style.height = '';
+          logoLink.style.zIndex = '';
+          logoLink.style.transition = '';
+          logoLink.style.transform = '';
+          
+          placeholder.remove();
+          isFlying = false;
+          isLanding = false;
+        }, 1400);
+      }
+
+      // Start physics loop in the next animation frame to avoid any jump
+      requestAnimationFrame((timestamp) => {
+        startTime = timestamp; // Reset start time to actual frame start
+        animFrameId = requestAnimationFrame(updatePhysics);
+      });
     });
   }
 
