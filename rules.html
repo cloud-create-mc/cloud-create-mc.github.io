@@ -44,8 +44,9 @@
       <ul class="nav-links" id="nav-menu" role="list">
         <li><a href="index.html"><svg class="icon" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Головна</a></li>
         <li><a href="modpack.html"><svg class="icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/><line x1="12" y1="12" x2="3.27" y2="6.96"/><line x1="12" y1="12" x2="20.73" y2="6.96"/></svg> Модпак</a></li>
-        <li><a href="rules.html"><svg class="icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Правила</a></li>
+        <li><a href="rules.html" class="active"><svg class="icon" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Правила</a></li>
         <li><a href="shop.html"><svg class="icon" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg> Магазин</a></li>
+        <li><a href="rp.html"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> РП</a></li>
       </ul>
     </nav>
   </header>
@@ -73,8 +74,8 @@
         </button>
         <div class="rules-mobile-dropdown" id="rules-mobile-menu" role="listbox">
           <div class="rules-mobile-group-title">Minecraft Правила</div>
-          <button class="rules-mobile-item active" data-section="mc-behavior" role="option" aria-selected="true">1. Поведінка та чесна гра</button>
-          <button class="rules-mobile-item" data-section="mc-territories" role="option">2. Території та будівництво</button>
+          <button class="rules-mobile-item active" data-section="mc-1" role="option" aria-selected="true">1. Поведінка та чесна гра</button>
+          <button class="rules-mobile-item" data-section="mc-2" role="option">2. Території та будівництво</button>
           
           <div class="rules-mobile-group-title">RP-Правила</div>
           <button class="rules-mobile-item" data-section="rp-1" role="option">1. Загальні принципи</button>
@@ -90,7 +91,7 @@
           <button class="rules-mobile-item" data-section="rp-11" role="option">11. Регламент облог</button>
           <button class="rules-mobile-item" data-section="rp-12" role="option">12. Військові табори</button>
           <button class="rules-mobile-item" data-section="rp-13" role="option">13. Військові організації та найманці</button>
-          <button class="rules-mobile-item" data-section="rp-14" role="option">14. Заборонені предмети під час боїв, облог та рейдів</button>
+          <button class="rules-mobile-item" data-section="rp-14" role="option">14. Заборонені предмети під час...</button>
           <button class="rules-mobile-item" data-section="rp-15" role="option">15. RP-адміністрація</button>
 
         </div>
@@ -105,14 +106,14 @@
           <div class="rules-group">
             <div class="rules-group-title">Minecraft Правила</div>
             <div class="rules-menu-list">
-              <button class="rules-menu-item active" data-section="mc-behavior">
+              <button class="rules-menu-item active" data-section="mc-1">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="currentColor" fill-opacity="0.16"/>
                   <path d="M9 11l2 2 4-4"/>
                 </svg>
                 1. Поведінка та чесна гра
               </button>
-              <button class="rules-menu-item" data-section="mc-territories">
+              <button class="rules-menu-item" data-section="mc-2">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M3 10V5a2 2 0 0 1 2-2h5" />
                   <path d="M14 3h5a2 2 0 0 1 2 2v5" />
@@ -245,7 +246,7 @@
                   <line x1="12" y1="9" x2="12" y2="13" />
                   <line x1="12" y1="17" x2="12.01" y2="17" />
                 </svg>
-                14. Заборонені предмети під час боїв, облог та рейдів
+                14. Заборонені предмети під час...
               </button>
               <button class="rules-menu-item" data-section="rp-15">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -265,7 +266,7 @@
 
           <!-- MINECRAFT RULES -->
           <!-- 1. Behavior and Fair Play -->
-          <div id="mc-behavior" class="rules-section active">
+          <div id="mc-1" class="rules-section active">
             <h2 class="rules-card-title">
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="currentColor" fill-opacity="0.16"/>
@@ -284,7 +285,7 @@
               </div>
               <div class="rule-item">
                 <span class="rule-num">1.3</span>
-                <div class="rule-text">Будь-яке покарання може бути 1 раз оскаржено через тикети на Discord сервері.</div>
+                <div class="rule-text">Будь-яке покарання може бути 1 раз оскаржено через тікети на Discord сервері.</div>
               </div>
               <div class="rule-item">
                 <span class="rule-num">1.4</span>
@@ -320,13 +321,20 @@
               </div>
               <div class="rule-item">
                 <span class="rule-num">1.9</span>
+                <div class="rule-text">
+                  Заборонено будувати/створювати, писати, надсилати у текстові канали або демонструвати в будь-якому іншому вигляді непристойні, образливі чи провокаційні символи, фігури та зображення (зокрема зетки, зображення/будови пенісів тощо).
+                  <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Покарання: за текстові повідомлення або публікацію фото/зображень — м'ют на 1 годину (при першому порушенні), при повторних — м'ют на кілька днів; за будівництво — бан від 5 до 15 днів або перманентний бан на розсуд адміністратора.</em>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">1.10</span>
                 <div class="rule-text">Усі правила категорії «Основні правила» розповсюджуються як на Discord, так і на Майнкрафт сервер, включаючи войс-чат.</div>
               </div>
             </div>
           </div>
 
           <!-- 2. Territories and Construction -->
-          <div id="mc-territories" class="rules-section">
+          <div id="mc-2" class="rules-section">
             <h2 class="rules-card-title">
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 10V5a2 2 0 0 1 2-2h5" />
@@ -392,14 +400,14 @@
               <div class="rule-item">
                 <span class="rule-num">2.9</span>
                 <div class="rule-text">
-                  Заборонено намір обманювати гравців з метою отримання ігрової чи реальної вигоди або крадіжки облікових записів.
+                  Заборонено обманювати гравців з метою отримання ігрової чи реальної вигоди або крадіжки облікових записів.
                   <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Покарання: перманентний бан.</em>
                 </div>
               </div>
               <div class="rule-item">
                 <span class="rule-num">2.10</span>
                 <div class="rule-text">
-                  Заборонено використовувати модифікації та програмне забезпечення, якого немає у збірці сервера, з метою отримання переваги над іншими гравцями.
+                  Заборонено використовувати модифікації та програмне забезпечення, якого немає у збірці сервера, з метою отримання переваги над іншими гравцями. Приклади: Freecam, X-Ray
                   <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Покарання: бан від 10 до 30 днів або перманентний бан на розсуд адміністратора.</em>
                 </div>
               </div>
@@ -550,12 +558,8 @@
                   <strong>Створення держави:</strong> Для офіційного визнання нової держави необхідно опублікувати окремий РП-пост.
                   <p style="margin-top: 0.5rem; font-weight: 600;">Держава вважається створеною лише за умови виконання таких вимог:</p>
                   <ul class="rule-sub-list">
-                    <li>У складі держави має бути не менше 6 гравців.</li>
-                    <li>В РП-пості обов'язково зазначаються гравці на таких ключових посадах:
-                      <ul style="list-style: circle; padding-left: 1.2rem; margin-top: 0.2rem;">
-                        <li>Лідер</li>
-                        <li>Заступник лідера</li>
-                        <li>Головнокомандувач армії</li>
+                    <li>У складі держави має бути не менше 3 гравців.</li>
+                    <li>В РП-пості обов'язково зазначається лідер.
                       </ul>
                     </li>
                   </ul>
@@ -640,7 +644,7 @@
             <div class="rules-list" style="margin-top: 1.25rem;">
               <div class="rule-item">
                 <span class="rule-num">Динаміка</span>
-                <div class="rule-text"><strong>Зміна політичних відносин</strong> не може быть різкою. За один RP-пост рівень відносин можна змінити максимум на 2 пункти в будь-який бік. Стрибки через кілька рівнів заборонені. Виняток: Різка зміна можлива лише за наявності вагомої RP-причини.</div>
+                <div class="rule-text"><strong>Зміна політичних відносин</strong> не може бути різкою. За один RP-пост рівень відносин можна змінити максимум на 2 пункти в будь-який бік. Стрибки через кілька рівнів заборонені. Виняток: Різка зміна можлива лише за наявності вагомої RP-причини.</div>
               </div>
             </div>
           </div>
@@ -874,10 +878,10 @@
                   <strong>Обмеження:</strong> Не є містом (немає економіки). Не для мирних цілей. Може бути знищений.
                   <p style="margin-top: 0.5rem;"><strong>Ліміти таборів:</strong></p>
                   <ul class="rule-sub-list">
-                    <li>до 8 гравців — 1 табір</li>
-                    <li>9+ гравців — 2 табори</li>
-                    <li>17+ гравців — 3 табори</li>
-                    <li>25+ гравців — 4 табори</li>
+                    <li>до 5 гравців — 1 табір</li>
+                    <li>10+ гравців — 2 табори</li>
+                    <li>15+ гравців — 3 табори</li>
+                    <li>20+ гравців — 4 табори</li>
                   </ul>
                   <p style="margin-top: 0.5rem;"><strong>Час побудови:</strong> 30 хвилин. Заборонено миттєве появлення в зоні ворога.</p>
                 </div>
@@ -946,7 +950,7 @@
               <span>15. RP-Адміністрація</span>
             </h2>
             <div class="rule-intro-card">
-              <p><strong>Вищий контрольний та апеляційний орган.</strong> Дії Гейм-майстрів (ГМ) спрямовані виключно на підтримку ігрового балансу та здорової атмосфери.</p>
+              <p><strong>Вищий контрольний та апеляційний орган.</strong> Дії РП-адміністрації спрямовані виключно на підтримку ігрового балансу та здорової атмосфери.</p>
             </div>
             <div class="rules-list">
               <div class="rule-item">
@@ -972,15 +976,27 @@
       <a href="#" data-tiktok-url target="_blank" rel="noopener" title="TikTok" aria-label="TikTok">
         <svg class="icon" viewBox="0 0 24 24" style="width:20px; height:20px; stroke:none; fill:currentColor;"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.09-1.47-.77-.56-1.44-1.27-1.9-2.1v9.99c-.06 2.05-.87 4.13-2.5 5.39-1.92 1.52-4.66 1.9-6.96 1.15-2.53-.79-4.51-2.96-5.06-5.56-.63-2.88.58-6.15 3-7.76 1.71-1.15 3.92-1.36 5.86-.78v4.2c-1.2-.44-2.6-.28-3.61.52-.98.74-1.35 2.1-1.04 3.29.32 1.34 1.62 2.29 2.99 2.23 1.52-.01 2.76-1.25 2.77-2.77V.02Z"/></svg>
       </a>
+      <a href="#" data-telegram-url target="_blank" rel="noopener" title="Telegram" aria-label="Telegram">
+        <svg class="icon" viewBox="0 0 24 24" style="width:20px; height:20px; stroke:none; fill:currentColor;"><path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701-.33 4.955c.485 0 .7-.223.971-.485l2.334-2.27 4.857 3.589c.895.493 1.538.239 1.761-.83l3.186-15.01c.326-1.309-.5-1.902-1.357-1.42z"/></svg>
+      </a>
     </div>
     <p style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; flex-wrap: wrap;">
       © <span data-year></span> Cloud Create. Всі права захищені.
       <img src="logo_s.png" alt="" style="width: 1.25rem; height: 1.25rem; object-fit: contain; opacity: 0.8; vertical-align: middle;">
     </p>
     <div class="footer-links">
+      <a href="updates.html" class="footer-update-link">
+        <svg class="icon update-btn-icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+        Оновлення
+      </a>
       <a href="privacy-policy.html">Privacy Policy</a>
     </div>
   </footer>
+
+  <div class="rules-toast" id="rules-toast">
+    <svg class="icon toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--sky-400); width: 1.2rem; height: 1.2rem; flex-shrink: 0;"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+    <span>Посилання на правило скопійовано!</span>
+  </div>
 
   <script src="main.js"></script>
 </body>
