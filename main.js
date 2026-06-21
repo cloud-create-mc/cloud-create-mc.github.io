@@ -8,6 +8,7 @@ const CONFIG = {
   IS_IP_PLACEHOLDER: true,
   DISCORD_URL: 'https://discord.gg/N54MhNbZEM',
   TIKTOK_URL:  'https://www.tiktok.com/@cloudcreatemc',
+  TELEGRAM_URL: 'https://t.me/CloudCreatee',
   MRPACK_URL:  '#', // Google Drive link for .mrpack
   ZIP_URL:     '#', // Google Drive link for .zip
 };
@@ -25,6 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.querySelectorAll('[data-tiktok-url]').forEach(el => {
     el.href = CONFIG.TIKTOK_URL;
+  });
+  document.querySelectorAll('[data-telegram-url]').forEach(el => {
+    el.href = CONFIG.TELEGRAM_URL;
   });
   document.querySelectorAll('[data-year]').forEach(el => {
     el.textContent = new Date().getFullYear();
@@ -629,5 +633,168 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Dynamically assign IDs to rule items based on their category prefix and rule number
+  // e.g. rp-7 and number 7.4 -> id="rp-7.4"
+  const rulesToast = document.getElementById('rules-toast');
+  let rulesToastTimer;
+
+  function showRulesToast() {
+    if (!rulesToast) return;
+    clearTimeout(rulesToastTimer);
+    rulesToast.classList.add('show');
+    rulesToastTimer = setTimeout(() => rulesToast.classList.remove('show'), 2800);
+  }
+
+  if (rulesSections && rulesSections.length > 0) {
+    rulesSections.forEach(section => {
+      const sectionId = section.id; // e.g. "mc-1" or "rp-7"
+      const prefix = sectionId.split('-')[0]; // "mc" or "rp"
+      
+      // Standard rule items
+      section.querySelectorAll('.rule-item').forEach(item => {
+        const numEl = item.querySelector('.rule-num');
+        if (numEl) {
+          const numText = numEl.textContent.trim(); // e.g. "7.4"
+          item.id = `${prefix}-${numText}`;
+
+          item.addEventListener('click', async (e) => {
+            if (e.target.closest('a') || e.target.closest('button')) return;
+
+            const ruleUrl = `https://cloud-create-mc.github.io/rules.html#${item.id}`;
+
+            try {
+              await navigator.clipboard.writeText(ruleUrl);
+              showRulesToast();
+            } catch (err) {
+              const ta = document.createElement('textarea');
+              ta.value = ruleUrl;
+              ta.style.position = 'fixed';
+              ta.style.opacity = '0';
+              document.body.appendChild(ta);
+              ta.focus(); ta.select();
+              document.execCommand('copy');
+              document.body.removeChild(ta);
+              showRulesToast();
+            }
+
+            // Brief highlight visual feedback
+            item.classList.remove('highlight-pulse');
+            void item.offsetWidth; // trigger reflow
+            item.classList.add('highlight-pulse');
+          });
+        }
+      });
+
+      // Forbidden rule items
+      section.querySelectorAll('.rule-forbidden-item').forEach((item, idx) => {
+        item.id = `${sectionId}-forbidden-${idx + 1}`;
+
+        item.addEventListener('click', async (e) => {
+          if (e.target.closest('a') || e.target.closest('button')) return;
+
+          const ruleUrl = `https://cloud-create-mc.github.io/rules.html#${item.id}`;
+
+          try {
+            await navigator.clipboard.writeText(ruleUrl);
+            showRulesToast();
+          } catch (err) {
+            const ta = document.createElement('textarea');
+            ta.value = ruleUrl;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.focus(); ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showRulesToast();
+          }
+
+          // Brief highlight visual feedback
+          item.classList.remove('highlight-pulse');
+          void item.offsetWidth; // trigger reflow
+          item.classList.add('highlight-pulse');
+        });
+      });
+    });
+  }
+
+  // Hash-routing for rules page
+  function handleUrlHash() {
+    const hash = window.location.hash.substring(1);
+    if (!hash) return;
+
+    let targetSectionId = '';
+    let targetElementId = '';
+
+    // Check if the hash matches a specific rule (e.g., mc-1.9 or rp-7.4)
+    if (hash.includes('.')) {
+      const parts = hash.split('.');
+      const sectionExists = document.getElementById(parts[0]);
+      if (sectionExists && sectionExists.classList.contains('rules-section')) {
+        targetSectionId = parts[0];
+        targetElementId = hash;
+      }
+    } else if (hash === 'mc') {
+      targetSectionId = 'mc-1';
+    } else if (hash === 'rp') {
+      targetSectionId = 'rp-1';
+    } else {
+      const exists = document.getElementById(hash);
+      if (exists && exists.classList.contains('rules-section')) {
+        targetSectionId = hash;
+      } else {
+        // Check if it matches a dynamically generated rule item ID (e.g. rp-Основи or mc-2.4)
+        const el = document.getElementById(hash);
+        if (el && el.closest('.rules-section')) {
+          targetSectionId = el.closest('.rules-section').id;
+          targetElementId = hash;
+        }
+      }
+    }
+
+    if (targetSectionId) {
+      const desktopItem = document.querySelector(`.rules-menu-item[data-section="${targetSectionId}"]`);
+      if (desktopItem) {
+        const categoryText = desktopItem.textContent.trim();
+        const iconSvg = desktopItem.querySelector('svg');
+        const iconHtml = iconSvg ? iconSvg.outerHTML : '';
+        switchRulesSection(targetSectionId, categoryText, iconHtml);
+        
+        // Scroll to target element or content card
+        const scrollTarget = targetElementId ? document.getElementById(targetElementId) : rulesContentCard;
+        if (scrollTarget) {
+          // Use setTimeout to ensure section is fully displayed before measuring scroll offset
+          setTimeout(() => {
+            const offset = 120; // top offset for header
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = scrollTarget.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+
+            // Add highlight-pulse animation to the target rule item
+            if (targetElementId) {
+              const ruleItem = document.getElementById(targetElementId);
+              if (ruleItem) {
+                ruleItem.classList.remove('highlight-pulse');
+                void ruleItem.offsetWidth; // trigger reflow
+                ruleItem.classList.add('highlight-pulse');
+              }
+            }
+          }, 60);
+        }
+      }
+    }
+  }
+
+  // Handle hash on initial load
+  handleUrlHash();
+  // Handle hash when it changes dynamically
+  window.addEventListener('hashchange', handleUrlHash);
 
 });
