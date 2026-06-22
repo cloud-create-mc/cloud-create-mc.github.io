@@ -7,10 +7,10 @@ const CONFIG = {
   SERVER_IP:   'play.cloudcreate.net',
   IS_IP_PLACEHOLDER: true,
   DISCORD_URL: 'https://discord.gg/N54MhNbZEM',
-  TIKTOK_URL:  'https://www.tiktok.com/@cloudcreatemc',
+  TIKTOK_URL:  'https://www.tiktok.com/@cloudcreatee',
   TELEGRAM_URL: 'https://t.me/CloudCreatee',
-  MRPACK_URL:  'https://drive.google.com/uc?export=download&id=1r1w-3CE55RzQ-d_GsRpj5gcrKFFogP8k', // Google Drive link for .mrpack
-  ZIP_URL:     'https://drive.google.com/uc?export=download&id=12cRFttTKKedQ4JHQ58iR8WK-FXdm9eBS', // Google Drive link for .zip
+  MRPACK_URL:  'https://drive.google.com/uc?export=download&id=1kCMBf8wDW_yVB9smWhdoBdYcFGx8KUM7', // Google Drive link for .mrpack
+  ZIP_URL:     'https://drive.google.com/uc?export=download&id=1C1yMv7MNEhzBqF-_LtfMCeiwEQeT8Evk', // Google Drive link for .zip
 };
 
 document.addEventListener('DOMContentLoaded', () => {
