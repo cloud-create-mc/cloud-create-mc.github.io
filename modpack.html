@@ -135,18 +135,15 @@
   <main>
     <div class="container">
 
-      <!-- Unavailable Announcement Banner -->
-      <div class="unavailable-banner">
-        <div class="unavailable-banner-inner">
-          <div class="unavailable-banner-message">
-            <span class="unavailable-banner-badge">Увага</span>
-            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <span>Модпак наразі в розробці та тимчасово недоступний для завантаження.</span>
+
+      <!-- Modpack Available Announcement Banner -->
+      <div class="modpack-banner">
+        <div class="modpack-banner-inner">
+          <div class="modpack-banner-message">
+            <span class="modpack-banner-badge">Реліз</span>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>Версія модпаку v1.0 доступна для завантаження!</span>
           </div>
-          <a href="#" data-discord-url target="_blank" class="unavailable-banner-link">
-            <span>Наш Discord</span>
-            <svg class="icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-          </a>
         </div>
       </div>
 
@@ -159,7 +156,7 @@
       </div>
 
       <!-- Download Options Section -->
-      <div class="grid grid-2" style="max-width:880px; margin:0 auto 4rem;">
+      <div id="download-options" class="grid grid-2" style="max-width:880px; margin:0 auto 4rem;">
         
         <!-- License Card (.mrpack) -->
         <div class="card card-gold" style="text-align:center; padding:2.5rem 1.8rem; border-top:3px solid var(--gold-600); display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
@@ -170,7 +167,7 @@
             <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:1.5rem; line-height:1.5; max-width:280px;">Офіційний збірник для ліцензійних лаунчерів (Modrinth, Prism, CurseForge).</p>
           </div>
           <div style="width:100%; display:flex; flex-direction:column; align-items:center; margin-top:auto;">
-            <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:1rem; font-weight:600;">Версія 1.21.1 · NeoForge · ~150 модів</p>
+            <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:1rem; font-weight:600;">Версія 1.21.1 · NeoForge · 100+ модів</p>
             <a href="#" id="download-mrpack" class="btn btn-gold" style="width:100%;" download>
               <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Завантажити .mrpack
             </a>
@@ -186,7 +183,7 @@
             <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:1.5rem; line-height:1.5; max-width:280px;">Повний набір модів та потрібних папок для альтернативних лаунчерів (TLauncher, Legacy Launcher).</p>
           </div>
           <div style="width:100%; display:flex; flex-direction:column; align-items:center; margin-top:auto;">
-            <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:1rem; font-weight:600;">Версія 1.21.1 · NeoForge · ~150 модів</p>
+            <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:1rem; font-weight:600;">Версія 1.21.1 · NeoForge · 100+ модів</p>
             <a href="#" id="download-zip" class="btn btn-primary" style="width:100%;" download>
               <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Завантажити .zip
             </a>
@@ -291,7 +288,7 @@
                   <strong>Автоматично (Legacy Launcher):</strong> Перейди у створення профілю → кнопка <em>Імпортувати з архіву</em> → вибери завантажений <code>.zip</code>.
                 </p>
                 <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.6;">
-                  <strong>Вручну (TLauncher / інші):</strong> Встанови версію <strong>NeoForge 1.21.1</strong>, відкрий папку збірки у лаунчері та розпакуй архів. Тобі потрібно замінити або додати до папки збірки папки з .zip-архіву: <code>mods</code>, <code>config</code>, <code>resourcepacks</code> та <code>kubejs</code>.
+                  <strong>Вручну (TLauncher / інші):</strong> Встанови версію <strong>NeoForge 1.21.1</strong>, відкрий папку збірки у лаунчері та розпакуй архів. Тобі потрібно замінити або додати до папки збірки папки з .zip-архіву: <code>mods</code>, <code>resourcepacks</code> та <code>kubejs</code>.
                 </p>
               </div>
             </div>
@@ -525,17 +522,6 @@
       <a href="privacy-policy.html">Privacy Policy</a>
     </div>
   </footer>
-
-  <!-- Toast Notification for Unavailable Modpack -->
-  <div id="download-toast" class="download-toast">
-    <svg class="icon toast-icon" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10"></circle>
-      <line x1="12" y1="8" x2="12" y2="12"></line>
-      <line x1="12" y1="16" x2="12.01" y2="16"></line>
-    </svg>
-    <span class="toast-message">Модпак ще не доступний для завантаження!</span>
-  </div>
-
   <script src="main.js"></script>
 </body>
 </html>
