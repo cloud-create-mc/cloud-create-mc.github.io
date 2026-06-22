@@ -9,8 +9,8 @@ const CONFIG = {
   DISCORD_URL: 'https://discord.gg/N54MhNbZEM',
   TIKTOK_URL:  'https://www.tiktok.com/@cloudcreatemc',
   TELEGRAM_URL: 'https://t.me/CloudCreatee',
-  MRPACK_URL:  '#', // Google Drive link for .mrpack
-  ZIP_URL:     '#', // Google Drive link for .zip
+  MRPACK_URL:  'https://drive.google.com/uc?export=download&id=1r1w-3CE55RzQ-d_GsRpj5gcrKFFogP8k', // Google Drive link for .mrpack
+  ZIP_URL:     'https://drive.google.com/uc?export=download&id=12cRFttTKKedQ4JHQ58iR8WK-FXdm9eBS', // Google Drive link for .zip
 };
 
 document.addEventListener('DOMContentLoaded', () => {
