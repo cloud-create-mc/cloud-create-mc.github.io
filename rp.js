@@ -23,9 +23,17 @@ const DEFAULT_MOCK_RELATIONS = [];
 // App State
 let states = [];
 let relations = [];
+let relationsMap = {}; // O(1) relationships lookup map
 let selectedNode = null;
 let hoveredNode = null;
 let draggedNode = null;
+
+// Cache theme state to avoid querying the DOM classList every frame
+let isDarkTheme = document.documentElement.classList.contains('dark-theme');
+const themeObserver = new MutationObserver(() => {
+  isDarkTheme = document.documentElement.classList.contains('dark-theme');
+});
+themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
 // Canvas & Physics Variables
 let canvas, ctx;
@@ -120,13 +128,19 @@ function getRelationDetails(level) {
   }
 }
 
-// Get relationship level between two states
+// Build relationship hash map for fast constant time O(1) retrieval
+function updateRelationsMap() {
+  relationsMap = {};
+  relations.forEach(r => {
+    const key = [r.state1, r.state2].sort().join('||');
+    relationsMap[key] = r.level;
+  });
+}
+
+// Get relationship level between two states (O(1) lookup)
 function getRelationLevel(stateA, stateB) {
-  const rel = relations.find(r => 
-    (r.state1 === stateA && r.state2 === stateB) || 
-    (r.state1 === stateB && r.state2 === stateA)
-  );
-  return rel ? rel.level : 0;
+  const key = [stateA, stateB].sort().join('||');
+  return relationsMap[key] !== undefined ? relationsMap[key] : 0;
 }
 
 // Fetch and Parse Data
@@ -138,6 +152,7 @@ async function loadData() {
     console.log('No Google Sheets URL configured. Using default mock data (neutral 0 levels).');
     states = [...DEFAULT_MOCK_STATES];
     relations = [...DEFAULT_MOCK_RELATIONS];
+    updateRelationsMap();
     positionNodes();
     updateSidebar();
     return;
@@ -162,6 +177,7 @@ async function loadData() {
     
     states = [...DEFAULT_MOCK_STATES];
     relations = [...DEFAULT_MOCK_RELATIONS];
+    updateRelationsMap();
   }
   
   positionNodes();
@@ -229,6 +245,7 @@ function parseCSV(text) {
 
   states = parsedStates.length > 0 ? parsedStates : [...DEFAULT_MOCK_STATES];
   relations = parsedRelations;
+  updateRelationsMap();
 }
 
 // Position nodes randomly and initialize drift variables, preserving them across resizes
@@ -459,9 +476,8 @@ function tick() {
   const height = canvas.height;
   
   // Dynamic theme colors
-  const isDark = document.documentElement.classList.contains('dark-theme');
-  const neutralLineColor = isDark ? 'rgba(255, 255, 255, 0.07)' : 'rgba(15, 23, 42, 0.07)';
-  const innerBorderColor = isDark ? 'rgba(255, 255, 255, 0.75)' : 'rgba(15, 23, 42, 0.75)';
+  const neutralLineColor = isDarkTheme ? 'rgba(255, 255, 255, 0.07)' : 'rgba(15, 23, 42, 0.07)';
+  const innerBorderColor = isDarkTheme ? 'rgba(255, 255, 255, 0.75)' : 'rgba(15, 23, 42, 0.75)';
   
   // 1. Update positions for gentle drift/float and smooth hover/select progress
   let anyFocus = 0;
@@ -560,18 +576,27 @@ function tick() {
     // Determine fill color: dominant flag color if available, else default
     const fillColor = isImgLoaded && flagColorCache[node.flag] ? flagColorCache[node.flag] : node.color;
     
-    // Draw outer glow shadow
-    ctx.shadowColor = fillColor;
-    ctx.shadowBlur = 4 + (node.hoverProgress * 8) + (node.selectProgress * 14);
+    // Draw outer soft glow layers (extremely fast, hardware-accelerated vectors instead of software Gaussian blur)
+    const glowRadius1 = size + 3 + (node.hoverProgress * 5) + (node.selectProgress * 9);
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, glowRadius1, 0, Math.PI * 2);
+    ctx.fillStyle = fillColor;
+    ctx.globalAlpha = 0.15 + (node.hoverProgress * 0.10) + (node.selectProgress * 0.15);
+    ctx.fill();
+
+    const glowRadius2 = size + 1.5 + (node.hoverProgress * 2.5) + (node.selectProgress * 4.5);
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, glowRadius2, 0, Math.PI * 2);
+    ctx.fillStyle = fillColor;
+    ctx.globalAlpha = 0.25 + (node.hoverProgress * 0.15) + (node.selectProgress * 0.25);
+    ctx.fill();
+    ctx.globalAlpha = 1.0; // reset
     
-    // Draw base circle to cast the shadow and provide background
+    // Draw base circle to provide background
     ctx.beginPath();
     ctx.arc(node.x, node.y, size, 0, Math.PI * 2);
     ctx.fillStyle = isImgLoaded ? '#1e293b' : fillColor;
     ctx.fill();
-    
-    // Reset shadow immediately
-    ctx.shadowBlur = 0;
     
     // Draw flag image (clipped to circle)
     if (isImgLoaded) {
