@@ -11,6 +11,7 @@ const CONFIG = {
   TELEGRAM_URL: 'https://t.me/CloudCreatee',
   MRPACK_URL:  './CC%20Modpack%20v1.2.mrpack',
   ZIP_URL:     './CC%20Modpack%20v1.2.zip',
+  DONATE_URL:  'https://donatello.to/cloudcreate',
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,6 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.querySelectorAll('[data-telegram-url]').forEach(el => {
     el.href = CONFIG.TELEGRAM_URL;
+  });
+  document.querySelectorAll('[data-donate-url]').forEach(el => {
+    el.href = CONFIG.DONATE_URL;
   });
   document.querySelectorAll('[data-year]').forEach(el => {
     el.textContent = new Date().getFullYear();
