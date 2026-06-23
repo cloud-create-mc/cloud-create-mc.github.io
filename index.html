@@ -11,7 +11,7 @@
   <title>Cloud Create — Головна</title>
   <meta name="description" content="Cloud Create — Minecraft сервер з модом Create. Будуй автоматизовані заводи, дирижаблі та машини разом з друзями.">
   <link rel="icon" type="image/png" href="logo_s.png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=1.2.0">
 </head>
 <body>
 
@@ -72,7 +72,7 @@
           </p>
 
           <!-- IP Box -->
-          <div class="hero-ip-wrapper" style="position: relative; display: inline-block;">
+          <div class="hero-ip-wrapper">
             <div class="ip-box" id="ip-box" role="button" tabindex="0" aria-label="Натисни, щоб скопіювати IP сервера">
               <svg class="icon" viewBox="0 0 24 24" style="color:var(--accent); font-size:0.9rem; margin-right:0.3rem;"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
               <span id="server-ip" data-server-ip></span>
@@ -115,12 +115,12 @@
 
         <div class="grid grid-auto stagger">
           <!-- T1dy_ (Owner-Tech Admin) -->
-          <div class="card card-sky">
+          <div class="card card-red">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.3rem;">
               <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800;">T1dy_</h3>
-              <svg class="icon" viewBox="0 0 24 24" style="color:var(--sky-500); width:1.2rem; height:1.2rem;"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"/><path d="M3 20h18"/></svg>
+              <svg class="icon" viewBox="0 0 24 24" style="color:#ef4444; width:1.2rem; height:1.2rem;"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"/><path d="M3 20h18"/></svg>
             </div>
-            <div class="team-role role-sky">Власник-Тех. Адмін</div>
+            <div class="team-role role-red">Власник-Тех. Адмін</div>
             <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.5;">
               Відповідає за хостинг сервера та збірку.
             </p>
@@ -130,7 +130,7 @@
           <div class="card card-sky">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.3rem;">
               <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800;">Yurk0</h3>
-              <svg class="icon" viewBox="0 0 24 24" style="color:var(--sky-500); width:1.2rem; height:1.2rem;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <svg class="icon" viewBox="0 0 24 24" style="color:var(--sky-500); width:1.2rem; height:1.2rem;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
             <div class="team-role role-sky">Адмін-куратор</div>
             <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.5;">
@@ -138,25 +138,25 @@
             </p>
           </div>
 
-          <!-- ElShardoo (Tech Admin) -->
+          <!-- ElShardoo (Game Designer) -->
           <div class="card card-gold">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.3rem;">
               <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800;">ElShardoo</h3>
               <svg class="icon" viewBox="0 0 24 24" style="color:var(--gold-600); width:1.2rem; height:1.2rem;"><circle cx="12" cy="12" r="10"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.92 0 1.63-.77 1.63-1.7 0-.42-.16-.82-.42-1.14-.26-.32-.42-.74-.42-1.2 0-.92.77-1.63 1.7-1.63h1.76c3.15 0 5.75-2.6 5.75-5.75C22 6.5 17.5 2 12 2z"/></svg>
             </div>
-            <div class="team-role role-gold">Тех Адмін</div>
+            <div class="team-role role-gold">Гейм Дизайнер</div>
             <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.5;">
               Відповідає за дизайн проекту.
             </p>
           </div>
 
           <!-- vskiy (Discord Admin) -->
-          <div class="card card-slate">
+          <div class="card card-purple">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.3rem;">
               <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800;">vskiy</h3>
-              <svg class="icon" viewBox="0 0 127.14 96.36" style="color:var(--slate-600); width:1.2rem; height:1rem; stroke:none; fill:currentColor;"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.4-5c.87-.64,1.72-1.32,2.53-2a75.76,75.76,0,0,0,72.7,0c.81.69,1.66,1.37,2.53,2a68.43,68.43,0,0,1-10.4,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31-18.83C129.07,48.81,123.05,25.86,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.69,65.69Z"/></svg>
+              <svg class="icon" viewBox="0 0 127.14 96.36" style="color:#a855f7; width:1.2rem; height:1rem; stroke:none; fill:currentColor;"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.4-5c.87-.64,1.72-1.32,2.53-2a75.76,75.76,0,0,0,72.7,0c.81.69,1.66,1.37,2.53,2a68.43,68.43,0,0,1-10.4,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31-18.83C129.07,48.81,123.05,25.86,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.88,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.12,46,96.12,53,91,65.69,84.69,65.69Z"/></svg>
             </div>
-            <div class="team-role" style="color:var(--slate-600);">Discord адміністратор</div>
+            <div class="team-role role-purple">Discord адміністратор</div>
             <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.5;">
               Відповідає за Discord-сервер та прийняття анкет.
             </p>
@@ -168,7 +168,7 @@
               <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800;">Ziahar</h3>
               <svg class="icon" viewBox="0 0 24 24" style="color:var(--slate-600); width:1.2rem; height:1.2rem;"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
             </div>
-            <div class="team-role" style="color:var(--slate-600);">Тех Адмін</div>
+            <div class="team-role role-slate">Тех Адмін</div>
             <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.5;">
               Відповідає за пропозиції та налаштування серверу.
             </p>
@@ -178,7 +178,7 @@
           <div class="card card-green">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.3rem;">
               <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:800;">rodyaa</h3>
-              <svg class="icon" viewBox="0 0 24 24" style="color:#22c55e; width:1.2rem; height:1.2rem;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <svg class="icon" viewBox="0 0 24 24" style="color:#22c55e; width:1.2rem; height:1.2rem;"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/><line x1="13" x2="19" y1="19" y2="13"/><line x1="16" x2="20" y1="16" y2="20"/><line x1="19" x2="21" y1="21" y2="19"/><polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5"/><line x1="5" x2="9" y1="14" y2="18"/><line x1="7" x2="4" y1="17" y2="20"/><line x1="3" x2="5" y1="19" y2="21"/></svg>
             </div>
             <div class="team-role role-green">РП Адміністратор</div>
             <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.5;">
@@ -216,6 +216,6 @@
     </div>
   </footer>
 
-  <script src="main.js"></script>
+  <script src="main.js?v=1.2.0"></script>
 </body>
 </html>
