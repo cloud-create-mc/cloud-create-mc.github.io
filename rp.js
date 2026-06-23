@@ -53,9 +53,10 @@ function getFlagImage(flagPath) {
   return img;
 }
 
-const nodeRadius = 26;
 const targetLinkDist = 180;
 const repulsionDist = 120;
+let nodeRadius = window.innerWidth <= 768 ? 16 : 26;
+
 
 // Helper to generate dynamic deterministic colors for states if not provided
 function getColorForName(name) {
@@ -761,6 +762,7 @@ function setupInteractivity() {
 
   // Resize handler
   function handleResize() {
+    nodeRadius = window.innerWidth <= 768 ? 16 : 26;
     const rect = canvas.parentElement.getBoundingClientRect();
     canvas.width = rect.width * window.devicePixelRatio;
     canvas.height = rect.height * window.devicePixelRatio;
