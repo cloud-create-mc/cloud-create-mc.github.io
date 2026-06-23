@@ -14,7 +14,9 @@ const DEFAULT_MOCK_STATES = [
   { name: 'Ронкова Народна Республіка (РНР)', leader: 'ronki', color: '#10b981', flag: null },
   { name: 'Республіка Голта', leader: 'ElShardoo', color: '#a855f7', flag: 'golta.svg' },
   { name: 'Республіка Сходу', leader: 'vskiy', color: '#f97316', flag: 'r_shodu.jpg' },
-  { name: 'Саншайн', leader: 'Cloudysunny35', color: '#facc15', flag: 'sunshine.svg' }
+  { name: 'Саншайн', leader: 'Cloudysunny35', color: '#facc15', flag: 'sunshine.svg' },
+  { name: 'Камчатська Автономна Республіка (КАР)', leader: 'Невідомо', color: '#6366f1', flag: 'kar.jpg' },
+  { name: 'Махісо', leader: 'Невідомо', color: '#ec4899', flag: 'maxico.jpg' }
 ];
 
 // All relations are 0 (Neutral) initially as requested
@@ -39,7 +41,6 @@ themeObserver.observe(document.documentElement, { attributes: true, attributeFil
 let canvas, ctx;
 let nodes = [];
 const flagImageCache = {};
-const flagColorCache = {};
 
 function getFlagImage(flagPath) {
   if (!flagPath) return null;
@@ -48,33 +49,6 @@ function getFlagImage(flagPath) {
   }
   const img = new Image();
   img.src = flagPath;
-  // When the image loads, compute its dominant color and cache it
-  img.onload = () => {
-    // Create a temporary canvas to sample the image pixels
-    const tempCanvas = document.createElement('canvas');
-    tempCanvas.width = img.naturalWidth;
-    tempCanvas.height = img.naturalHeight;
-    const tempCtx = tempCanvas.getContext('2d');
-    try {
-      tempCtx.drawImage(img, 0, 0);
-      const imgData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height).data;
-      let r = 0, g = 0, b = 0, count = 0;
-      for (let i = 0; i < imgData.length; i += 4) {
-        r += imgData[i];
-        g += imgData[i + 1];
-        b += imgData[i + 2];
-        count++;
-      }
-      r = Math.round(r / count);
-      g = Math.round(g / count);
-      b = Math.round(b / count);
-      // Store as an rgb string for later use
-      flagColorCache[flagPath] = `rgb(${r},${g},${b})`;
-    } catch (e) {
-      // In case of CORS or other errors, fall back to original state color
-      console.warn('Could not compute dominant color for', flagPath, e);
-    }
-  };
   flagImageCache[flagPath] = img;
   return img;
 }
@@ -501,6 +475,43 @@ function tick() {
     if (f > anyFocus) anyFocus = f;
   });
 
+  // 1.2. Resolve collisions (push nodes apart if they overlap or touch screen edges)
+  const dpr = window.devicePixelRatio || 1;
+  const cssWidth = width / dpr;
+  const cssHeight = height / dpr;
+  
+  for (let pass = 0; pass < 3; pass++) {
+    for (let i = 0; i < nodes.length; i++) {
+      const n1 = nodes[i];
+      const r1 = nodeRadius + (n1.hoverProgress * 3) + 6; // node radius + hover expansion + visual spacing padding
+      
+      // Enforce boundary collision
+      n1.x = Math.max(r1, Math.min(cssWidth - r1, n1.x));
+      n1.y = Math.max(r1, Math.min(cssHeight - r1, n1.y));
+      
+      for (let j = i + 1; j < nodes.length; j++) {
+        const n2 = nodes[j];
+        const r2 = nodeRadius + (n2.hoverProgress * 3) + 6;
+        
+        const dx = n2.x - n1.x;
+        const dy = n2.y - n1.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const minDist = r1 + r2;
+        
+        if (dist < minDist) {
+          const overlap = minDist - dist;
+          const forceX = (dist > 0.01 ? (dx / dist) : 1) * overlap * 0.5;
+          const forceY = (dist > 0.01 ? (dy / dist) : 0) * overlap * 0.5;
+          
+          n1.x -= forceX;
+          n1.y -= forceY;
+          n2.x += forceX;
+          n2.y += forceY;
+        }
+      }
+    }
+  }
+
   // 2. Draw Clear
   ctx.clearRect(0, 0, width, height);
   
@@ -569,12 +580,36 @@ function tick() {
       ctx.globalAlpha = 1.0;
     }
 
-    // Check if flag image is loaded
+    // Check and lazy pre-render flag to offscreen canvas once loaded
     const flagImg = node.flag ? getFlagImage(node.flag) : null;
-    const isImgLoaded = flagImg && flagImg.complete && flagImg.naturalWidth !== 0;
+    const isImgLoaded = flagImg && flagImg.complete;
     
-    // Determine fill color: dominant flag color if available, else default
-    const fillColor = isImgLoaded && flagColorCache[node.flag] ? flagColorCache[node.flag] : node.color;
+    if (isImgLoaded && !node.flagCanvas) {
+      try {
+        const dpr = window.devicePixelRatio || 1;
+        const maxRadius = nodeRadius + 3;
+        const canvasSize = Math.ceil(maxRadius * 2 * dpr);
+        
+        const offCanvas = document.createElement('canvas');
+        offCanvas.width = canvasSize;
+        offCanvas.height = canvasSize;
+        const offCtx = offCanvas.getContext('2d');
+        
+        if (offCtx) {
+          offCtx.scale(dpr, dpr);
+          offCtx.beginPath();
+          offCtx.arc(maxRadius, maxRadius, maxRadius, 0, Math.PI * 2);
+          offCtx.clip();
+          offCtx.drawImage(flagImg, 0, 0, maxRadius * 2, maxRadius * 2);
+          node.flagCanvas = offCanvas;
+        }
+      } catch (e) {
+        console.warn('Failed to pre-render flag for', node.name, e);
+      }
+    }
+
+    const fillColor = node.color;
+    const hasFlagCanvas = !!node.flagCanvas;
     
     // Draw outer soft glow layers (extremely fast, hardware-accelerated vectors instead of software Gaussian blur)
     const glowRadius1 = size + 3 + (node.hoverProgress * 5) + (node.selectProgress * 9);
@@ -595,17 +630,24 @@ function tick() {
     // Draw base circle to provide background
     ctx.beginPath();
     ctx.arc(node.x, node.y, size, 0, Math.PI * 2);
-    ctx.fillStyle = isImgLoaded ? '#1e293b' : fillColor;
+    ctx.fillStyle = hasFlagCanvas ? '#1e293b' : fillColor;
     ctx.fill();
     
-    // Draw flag image (clipped to circle)
-    if (isImgLoaded) {
-      ctx.save();
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, size, 0, Math.PI * 2);
-      ctx.clip();
-      ctx.drawImage(flagImg, node.x - size, node.y - size, size * 2, size * 2);
-      ctx.restore();
+    // Draw flag image using pre-rendered offscreen canvas
+    let drawFlagSuccess = false;
+    if (hasFlagCanvas) {
+      try {
+        ctx.drawImage(
+          node.flagCanvas, 
+          node.x - size, 
+          node.y - size, 
+          size * 2, 
+          size * 2
+        );
+        drawFlagSuccess = true;
+      } catch (e) {
+        console.warn('Failed to draw pre-rendered flag canvas for', node.name, e);
+      }
     }
     
     // Smooth translucent selection overlay
@@ -632,8 +674,8 @@ function tick() {
       ctx.globalAlpha = 1.0; // reset
     }
     
-    // Fallback: Text drawing inside node if flag is not loaded
-    if (!isImgLoaded) {
+    // Fallback: Text drawing inside node if flag is not loaded or failed to render
+    if (!drawFlagSuccess) {
       ctx.font = 'bold 12px sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
