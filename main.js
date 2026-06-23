@@ -4,13 +4,13 @@
 // =====================================================
 
 const CONFIG = {
-  SERVER_IP:   'play.cloudcreate.net',
-  IS_IP_PLACEHOLDER: true,
+  SERVER_IP:   'play.cloudcreate.org',
+  IS_IP_PLACEHOLDER: false,
   DISCORD_URL: 'https://discord.gg/N54MhNbZEM',
   TIKTOK_URL:  'https://www.tiktok.com/@cloudcreatee',
   TELEGRAM_URL: 'https://t.me/CloudCreatee',
-  MRPACK_URL:  'https://drive.google.com/uc?export=download&id=1kCMBf8wDW_yVB9smWhdoBdYcFGx8KUM7', // Google Drive link for .mrpack
-  ZIP_URL:     'https://drive.google.com/uc?export=download&id=1C1yMv7MNEhzBqF-_LtfMCeiwEQeT8Evk', // Google Drive link for .zip
+  MRPACK_URL:  './CC%20Modpack%20v1.2.mrpack',
+  ZIP_URL:     './CC%20Modpack%20v1.2.zip',
 };
 
 document.addEventListener('DOMContentLoaded', () => {
