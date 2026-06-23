@@ -304,11 +304,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // --------------------------------------------------
   // 2. Active nav link highlight
   // --------------------------------------------------
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const pathParts = window.location.pathname.split('/');
+  let currentPage = pathParts.pop() || '';
+  currentPage = currentPage.replace(/\.html$/, '');
+  
+  if (currentPage === '' || currentPage === 'index') {
+    currentPage = 'home';
+  }
+
   document.querySelectorAll('.nav-links a').forEach(link => {
     const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-      link.classList.add('active');
+    if (href) {
+      const cleanHref = href.split('/').pop().replace(/\.html$/, '');
+      if (cleanHref === currentPage) {
+        link.classList.add('active');
+      }
     }
   });
 
@@ -665,7 +675,7 @@ document.addEventListener('DOMContentLoaded', () => {
           item.addEventListener('click', async (e) => {
             if (e.target.closest('a') || e.target.closest('button')) return;
 
-            const ruleUrl = `https://cloud-create-mc.github.io/rules.html#${item.id}`;
+            const ruleUrl = `${window.location.origin}/rules#${item.id}`;
 
             try {
               await navigator.clipboard.writeText(ruleUrl);
@@ -697,7 +707,7 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', async (e) => {
           if (e.target.closest('a') || e.target.closest('button')) return;
 
-          const ruleUrl = `https://cloud-create-mc.github.io/rules.html#${item.id}`;
+          const ruleUrl = `${window.location.origin}/rules#${item.id}`;
 
           try {
             await navigator.clipboard.writeText(ruleUrl);
