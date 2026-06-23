@@ -130,6 +130,7 @@ async function loadData() {
     updateRelationsMap();
     positionNodes();
     updateSidebar();
+    renderMobileStatesList();
     return;
   }
 
@@ -157,6 +158,7 @@ async function loadData() {
   
   positionNodes();
   updateSidebar();
+  renderMobileStatesList();
 }
 
 // CSV Parser supporting:
@@ -320,6 +322,41 @@ function positionNodes() {
   });
   
   nodes = newNodes;
+}
+
+// Render dynamic country list for mobile devices instead of canvas
+function renderMobileStatesList() {
+  const container = document.getElementById('rp-mobile-states-list');
+  if (!container) return;
+  container.innerHTML = '';
+  
+  states.forEach(state => {
+    const card = document.createElement('div');
+    card.className = 'mobile-state-card';
+    
+    const avatarStyle = state.flag 
+      ? `background: url('${state.flag}') center/cover no-repeat; border: 1px solid var(--border-item);`
+      : `background: linear-gradient(135deg, ${state.color}, rgba(0,0,0,0.4)); box-shadow: 0 4px 12px ${state.color}40;`;
+      
+    card.innerHTML = `
+      <div class="mobile-state-avatar" style="${avatarStyle}"></div>
+      <div class="mobile-state-meta">
+        <div class="mobile-state-title">${state.name}</div>
+        <div class="mobile-state-leader">Лідер: <strong>${state.leader}</strong></div>
+      </div>
+      <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.5;"><polyline points="9 18 15 12 9 6"/></svg>
+    `;
+    
+    card.addEventListener('click', () => {
+      const node = nodes.find(n => n.name === state.name);
+      if (node) {
+        selectedNode = node;
+        updateSidebar();
+      }
+    });
+    
+    container.appendChild(card);
+  });
 }
 
 // Update Sidebar info
@@ -764,6 +801,7 @@ function setupInteractivity() {
   function handleResize() {
     nodeRadius = window.innerWidth <= 768 ? 16 : 26;
     const rect = canvas.parentElement.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
     canvas.width = rect.width * window.devicePixelRatio;
     canvas.height = rect.height * window.devicePixelRatio;
     ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
