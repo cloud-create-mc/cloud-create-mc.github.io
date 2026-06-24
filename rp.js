@@ -12,11 +12,11 @@ const DEFAULT_MOCK_STATES = [
   { name: 'Федеративна Республіка Меркантія (ФРМ)', leader: 'vert0s', color: '#eab308', flag: 'frm.svg' },
   { name: 'Верховенськ', leader: 'InvisibleFear', color: '#38bdf8', flag: 'verchovensk.svg' },
   { name: 'Ронкова Народна Республіка (РНР)', leader: 'ronki', color: '#10b981', flag: null },
-  { name: 'Республіка Голта', leader: 'ElShardoo', color: '#a855f7', flag: 'golta.svg' },
+  { name: 'ВЛНР', leader: 'GnoynyyFollikul', color: '#ffd2d2', flag: 'vlnr.jpg' },
   { name: 'Республіка Сходу', leader: 'vskiy', color: '#f97316', flag: 'r_shodu.jpg' },
   { name: 'Саншайн', leader: 'Cloudysunny35', color: '#facc15', flag: 'sunshine.svg' },
-  { name: 'Камчатська Автономна Республіка (КАР)', leader: 'Невідомо', color: '#6366f1', flag: 'kar.jpg' },
-  { name: 'Махісо', leader: 'Невідомо', color: '#ec4899', flag: 'maxico.jpg' }
+  { name: 'Камчатська Автономна Республіка (КАР)', leader: 'MrKurzik', color: '#6366f1', flag: 'kar_new.jpg' },
+  { name: 'Махісо', leader: '_Mourang_ та Kra1zz3r', color: '#ec4899', flag: 'maxico.jpg' }
 ];
 
 // All relations are 0 (Neutral) initially as requested
