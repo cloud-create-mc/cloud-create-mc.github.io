@@ -1457,6 +1457,77 @@ html.dark-theme .shop-card.featured {
   height: 24px;
 }
 
+/* Shop Promo Box (3 months VIP callout) */
+.shop-promo-box {
+  background: rgba(202, 138, 4, 0.06);
+  border: 1px dashed rgba(202, 138, 4, 0.25);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  margin-top: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: 100%;
+  box-sizing: border-box;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background-color 200ms var(--ease-out-expo), border-color 200ms var(--ease-out-expo), transform 200ms var(--ease-out-expo);
+}
+
+.shop-promo-box:hover {
+  background: rgba(202, 138, 4, 0.1);
+  border-color: rgba(202, 138, 4, 0.45);
+  transform: translateY(-1px);
+}
+
+.shop-promo-box:active {
+  transform: scale(0.985);
+}
+
+.shop-promo-box .promo-label {
+  font-size: 0.85rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.shop-promo-box .promo-price {
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 1.05rem;
+  line-height: 1;
+  transition: transform 200ms var(--ease-out-expo);
+}
+
+.shop-promo-box:hover .promo-price {
+  transform: scale(1.05);
+}
+
+.shop-promo-box .promo-period {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.shop-promo-box .promo-badge {
+  background: var(--gold);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.18rem 0.45rem;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-left: auto;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(202, 138, 4, 0.25);
+  transition: transform 200ms var(--ease-out-expo), box-shadow 200ms var(--ease-out-expo);
+}
+
+.shop-promo-box:hover .promo-badge {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(202, 138, 4, 0.4);
+}
+
 /* Support Benefits Section */
 .support-benefit {
   background: var(--bg-card);
@@ -3932,4 +4003,212 @@ html.dark-theme .update-date-badge {
 .update-feature-text strong {
   color: var(--text-main);
   font-weight: 700;
+}
+
+/* =====================================================
+   29. PARLIAMENT PAGE STYLES
+   ===================================================== */
+.parliament-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  align-items: start;
+}
+
+.seating-chart-container {
+  position: relative;
+  width: 100%;
+  border: 1px solid var(--border-item);
+  border-radius: var(--radius-lg);
+  background: rgba(0, 0, 0, 0.08);
+  padding: 3rem 2rem 2rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  box-shadow: inset 0 4px 20px rgba(0,0,0,0.15);
+}
+
+html.dark-theme .seating-chart-container {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.speaker-seat {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  border: 2px dashed rgba(255, 255, 255, 0.15);
+  background: var(--bg-item);
+  cursor: pointer;
+  transition: all 0.25s var(--ease-out-expo);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+html:not(.dark-theme) .speaker-seat {
+  border: 2px dashed rgba(0, 0, 0, 0.12);
+}
+
+.parliament-seat {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  border: 2px solid var(--border-item);
+  background: var(--bg-item);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.22s var(--ease-out-expo);
+  outline: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.parliament-seat:hover {
+  transform: scale(1.12);
+  border-color: var(--party-color);
+  box-shadow: 0 0 16px var(--party-color);
+  z-index: 10;
+}
+
+.parliament-seat.active {
+  transform: scale(1.15);
+  border-color: var(--party-color) !important;
+  box-shadow: 0 0 24px var(--party-color);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+html.dark-theme .parliament-seat.active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.parliament-seat.vacant-seat {
+  border: 2px dashed rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.12);
+}
+
+html:not(.dark-theme) .parliament-seat.vacant-seat {
+  border: 2px dashed rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.parliament-seat.vacant-seat:hover {
+  border-color: var(--text-muted);
+  box-shadow: none;
+  transform: scale(1.05);
+}
+
+.parliament-seat.vacant-seat.active {
+  border-color: var(--text-main);
+  box-shadow: none;
+  transform: scale(1.08);
+}
+
+.seat-tooltip {
+  position: absolute;
+  bottom: 115%;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: rgba(15, 23, 42, 0.95);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  transition: opacity 0.2s var(--ease-out-expo), transform 0.2s var(--ease-out-expo);
+  z-index: 100;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.parliament-seat:hover .seat-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Faction highlight animations */
+.parliament-seat.highlighted-party {
+  transform: scale(1.12);
+  border-color: var(--party-color) !important;
+  box-shadow: 0 0 16px var(--party-color);
+  z-index: 5;
+}
+
+.parliament-seat.dimmed-party {
+  opacity: 0.22;
+  filter: grayscale(40%) blur(0.5px);
+}
+
+/* Laws list styles */
+.law-item-card {
+  border: 1px solid var(--border-item);
+  background: rgba(255, 255, 255, 0.01);
+  border-radius: var(--radius-md);
+  transition: all 0.25s var(--ease-out-expo);
+}
+
+.law-item-card:hover {
+  transform: translateY(-2.5px);
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(251, 191, 36, 0.35) !important;
+  box-shadow: var(--shadow-md);
+}
+
+.law-pulse {
+  animation: law-pulse-anim 0.5s ease-out;
+}
+
+@keyframes law-pulse-anim {
+  0% { border-color: var(--border-item); }
+  50% { border-color: #fbbf24; box-shadow: 0 0 12px rgba(251, 191, 36, 0.25); }
+  100% { border-color: var(--border-item); }
+}
+
+/* Faction Cards */
+.party-card {
+  transition: transform 0.3s var(--ease-out-expo), border-color 0.3s var(--ease-out-expo), box-shadow 0.3s var(--ease-out-expo) !important;
+}
+
+.party-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* Accordion open state styling */
+.protocols-section .accordion-item.open .accordion-chevron {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+
+.protocols-section .accordion-item.open {
+  border-color: rgba(14, 165, 233, 0.3) !important;
+  box-shadow: var(--shadow-sm);
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+/* Responsive grid layout */
+@media (max-width: 900px) {
+  .parliament-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .seating-chart-container {
+    padding: 2.5rem 1rem 1.5rem !important;
+  }
+  .laws-protocols-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
