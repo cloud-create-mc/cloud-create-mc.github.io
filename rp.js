@@ -13,7 +13,7 @@ const DEFAULT_MOCK_STATES = [
   { name: 'Верховенськ', leader: 'InvisibleFear', color: '#38bdf8', flag: 'verchovensk.svg' },
   { name: 'Ронкова Народна Республіка (РНР)', leader: 'ronki', color: '#10b981', flag: null },
   { name: 'ВЛНР', leader: 'GnoynyyFollikul', color: '#ffd2d2', flag: 'vlnr.jpg' },
-  { name: 'Республіка Сходу', leader: 'vskiy', color: '#f97316', flag: 'r_shodu.jpg' },
+  { name: 'Республіка Сходу', leader: 'brunoLOVE2727', color: '#f97316', flag: 'r_shodu.jpg' },
   { name: 'Саншайн', leader: 'Cloudysunny35', color: '#facc15', flag: 'sunshine.svg' },
   { name: 'Камчатська Автономна Республіка (КАР)', leader: 'MrKurzik', color: '#6366f1', flag: 'kar_new.jpg' },
   { name: 'Махісо', leader: '_Mourang_ та Kra1zz3r', color: '#ec4899', flag: 'maxico.jpg' }
