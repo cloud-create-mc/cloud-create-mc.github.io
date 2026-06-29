@@ -25,7 +25,8 @@ const STATES = {
   r_shodu: { name: 'Республіка Сходу', flag: 'r_shodu.jpg' },
   sunshine: { name: 'Саншайн', flag: 'sunshine.svg' },
   kar: { name: 'Камчатська Автономна Республіка (КАР)', flag: 'kar_new.jpg' },
-  maxico: { name: 'Махісо', flag: 'maxico.jpg' }
+  maxico: { name: 'Махісо', flag: 'maxico.jpg' },
+  tech_empire: { name: 'Технократична Імперія', flag: 'tech_empire.jpg' }
 };
 
 const DEPUTIES = [];
