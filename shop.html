@@ -56,7 +56,7 @@
       </div>
 
       <!-- Pricing Cards Grid -->
-      <div class="grid grid-2 stagger" style="max-width:640px; margin:0 auto 4rem; align-items:stretch;">
+      <div class="grid grid-2 stagger" style="max-width:640px; margin:0 auto 4rem; align-items:start;">
 
         <!-- Entry Ticket (Whitelist) -->
         <div class="shop-card">
@@ -65,36 +65,85 @@
           </div>
           <div>
             <div class="badge badge-sky" style="margin-bottom:0.5rem;">Прохідка</div>
-            <div class="shop-price">Безкоштовно</div>
+            <div class="shop-price">50 ₴</div>
           </div>
           <ul class="shop-features" style="margin-top: 1rem;">
             <li><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Доступ до білого списку (whitelist)</li>
-            <li><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Подання заявки через Discord-анкету</li>
-            <li><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Стандартний розгляд адміністрацією</li>
+            <li><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Підтвердження оплати в тікеті в діскорді</li>
           </ul>
-          <a href="#" class="btn btn-primary" data-discord-url target="_blank" style="width:100%; justify-content:center; margin-top: auto;">
+          <a href="#" class="btn btn-primary" data-discord-url target="_blank" style="width:100%; justify-content:center; margin-top: 1.5rem;">
             Подати анкету
           </a>
         </div>
 
         <!-- VIP Subscription -->
-        <div class="shop-card">
+        <div class="shop-card featured">
           <div class="card-icon-wrapper gold">
             <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
           </div>
           <div>
-            <div class="badge badge-gold" style="margin-bottom:0.5rem;">VIP підписка</div>
-            <div class="shop-price">99 ₴ <span style="font-size: 0.9rem; font-weight: 500;">/ міс.</span></div>
-            <div class="shop-promo-box">
-              <span class="promo-label">або</span>
-              <span class="promo-price">199 ₴</span>
-              <span class="promo-period">/ 3 міс.</span>
-              <span class="promo-badge">Вигідно</span>
+            <div class="badge badge-gold" style="margin-bottom:0.25rem;">VIP підписка</div>
+            
+            <!-- VIP Pricing Switcher Controls -->
+            <div class="vip-pricing-tabs" style="display: flex; background: rgba(0, 0, 0, 0.04); padding: 4px; border-radius: 10px; margin: 0.75rem 0 1rem; border: 1px solid var(--border-item);">
+              <button class="vip-price-tab active" data-months="1" style="flex: 1; padding: 6px 4px; display: inline-flex; align-items: center; justify-content: center; gap: 4px; white-space: nowrap;">1 міс.</button>
+              <button class="vip-price-tab" data-months="2" style="flex: 1; padding: 6px 4px; display: inline-flex; align-items: center; justify-content: center; gap: 4px; white-space: nowrap;">
+                2 міс.
+                <span class="tab-saving-badge" style="font-size: 0.6rem; padding: 1px 4px; border-radius: 4px; background: rgba(34, 197, 94, 0.1); color: #22c55e; font-weight: 800; transition: all 200ms var(--ease-out-expo); white-space: nowrap;">-50 ₴</span>
+              </button>
+              <button class="vip-price-tab" data-months="3" style="flex: 1; padding: 6px 4px; display: inline-flex; align-items: center; justify-content: center; gap: 4px; white-space: nowrap;">
+                3 міс.
+                <span class="tab-saving-badge" style="font-size: 0.6rem; padding: 1px 4px; border-radius: 4px; background: rgba(168, 85, 247, 0.1); color: #a855f7; font-weight: 800; transition: all 200ms var(--ease-out-expo); white-space: nowrap;">-80 ₴</span>
+              </button>
             </div>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.75rem; line-height: 1.4;">
-              Дає переваги на нашому Minecraft та Discord серверах.
-            </p>
+
+            <!-- Price Display with Animation Wrapper -->
+            <div class="vip-price-display" id="vip-price-display" style="display: flex; align-items: baseline; gap: 0.5rem; transition: filter 160ms ease, opacity 160ms ease;">
+              <span class="vip-display-price" id="vip-display-price" style="font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em;">125 ₴</span>
+              <span class="vip-display-period" id="vip-display-period" style="font-size: 0.95rem; font-weight: 600; color: var(--text-muted);">/ міс.</span>
+              <span class="vip-display-saving badge badge-gold" id="vip-display-saving" style="display: none; margin-left: auto; background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.3); color: var(--gold); box-shadow: none; white-space: nowrap;">Економія 50 ₴</span>
+            </div>
           </div>
+          
+          <div class="vip-features-title" style="margin-top: 1.25rem;">Привілеї:</div>
+          <ul class="shop-features" style="margin-top: 0.5rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.65rem;">
+            <li>
+              <span class="feature-check" style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.18); color: var(--gold); flex-shrink: 0;">
+                <svg class="icon" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke-width: 4px; color: inherit; fill: none; stroke: currentColor;"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              Доступ до команди /tps
+            </li>
+            <li>
+              <span class="feature-check" style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.18); color: var(--gold); flex-shrink: 0;">
+                <svg class="icon" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke-width: 4px; color: inherit; fill: none; stroke: currentColor;"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              Доступ до команди /co i
+            </li>
+            <li>
+              <span class="feature-check" style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.18); color: var(--gold); flex-shrink: 0;">
+                <svg class="icon" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke-width: 4px; color: inherit; fill: none; stroke: currentColor;"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              Доступ до VIP збірки сервера
+            </li>
+            <li>
+              <span class="feature-check" style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.18); color: var(--gold); flex-shrink: 0;">
+                <svg class="icon" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke-width: 4px; color: inherit; fill: none; stroke: currentColor;"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              Додаткові права на Discord-сервері
+            </li>
+            <li>
+              <span class="feature-check" style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.18); color: var(--gold); flex-shrink: 0;">
+                <svg class="icon" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke-width: 4px; color: inherit; fill: none; stroke: currentColor;"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              Кастомна роль в Discord-сервері
+            </li>
+            <li>
+              <span class="feature-check" style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.18); color: var(--gold); flex-shrink: 0;">
+                <svg class="icon" viewBox="0 0 24 24" style="width: 11px; height: 11px; stroke-width: 4px; color: inherit; fill: none; stroke: currentColor;"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              Кастомний префікс на Minecraft-сервері
+            </li>
+          </ul>
           <a href="#" data-donate-url target="_blank" rel="noopener" class="btn btn-gold" style="width:100%; justify-content:center; margin-top: auto;">
             Придбати VIP
           </a>
@@ -136,5 +185,53 @@
   </footer>
 
   <script src="main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const priceTabs = document.querySelectorAll('.vip-price-tab');
+      const priceDisplay = document.getElementById('vip-price-display');
+      const displayPrice = document.getElementById('vip-display-price');
+      const displayPeriod = document.getElementById('vip-display-period');
+      const displaySaving = document.getElementById('vip-display-saving');
+
+      const prices = {
+        '1': { price: '125 ₴', period: '/ міс.', saving: '' },
+        '2': { price: '199 ₴', period: '/ 2 міс.', saving: 'Економія 50 ₴' },
+        '3': { price: '319 ₴', period: '/ 3 міс.', saving: 'Економія 80 ₴' }
+      };
+
+      priceTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          if (tab.classList.contains('active')) return;
+
+          // Update active state in tabs
+          priceTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+
+          const months = tab.getAttribute('data-months');
+          const data = prices[months];
+
+          // Emil's Blur Transition Mask
+          priceDisplay.style.filter = 'blur(2px)';
+          priceDisplay.style.opacity = '0.6';
+
+          setTimeout(() => {
+            displayPrice.textContent = data.price;
+            displayPeriod.textContent = data.period;
+            
+            if (data.saving) {
+              displaySaving.textContent = data.saving;
+              displaySaving.style.display = 'inline-flex';
+            } else {
+              displaySaving.style.display = 'none';
+            }
+
+            // Remove Blur Transition Mask
+            priceDisplay.style.filter = 'none';
+            priceDisplay.style.opacity = '1';
+          }, 120);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
