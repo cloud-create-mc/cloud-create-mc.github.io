@@ -16,7 +16,8 @@ const DEFAULT_MOCK_STATES = [
   { name: 'Республіка Сходу', leader: 'brunoLOVE2727', color: '#f97316', flag: 'r_shodu.jpg' },
   { name: 'Саншайн', leader: 'Cloudysunny35', color: '#facc15', flag: 'sunshine.svg' },
   { name: 'Камчатська Автономна Республіка (КАР)', leader: 'MrKurzik', color: '#6366f1', flag: 'kar_new.jpg' },
-  { name: 'Махісо', leader: '_Mourang_ та Kra1zz3r', color: '#ec4899', flag: 'maxico.jpg' }
+  { name: 'Махісо', leader: '_Mourang_ та Kra1zz3r', color: '#ec4899', flag: 'maxico.jpg' },
+  { name: 'Технократична Імперія', leader: 'epsteinenko', color: '#0d9488', flag: 'tech_empire.jpg' }
 ];
 
 // All relations are 0 (Neutral) initially as requested
