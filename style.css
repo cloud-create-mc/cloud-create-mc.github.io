@@ -2,7 +2,7 @@
    Cloud Create — Global Design System
    ===================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=Syne:wght@700;800&family=Unbounded:wght@700;900&display=swap');
 @import url('https://fonts.cdnfonts.com/css/minecraft-4');
 
 /* =====================================================
@@ -449,15 +449,15 @@ html.dark-theme .theme-toggle .moon-icon {
   cursor: pointer;
   border: none;
   text-decoration: none;
-  transition: transform 300ms var(--ease-out-expo),
-              box-shadow 300ms var(--ease-out-expo),
-              background-color 300ms var(--ease-out-expo),
-              filter 300ms var(--ease-out-expo);
+  transition: transform 160ms var(--ease-out-expo),
+              box-shadow 250ms var(--ease-out-expo),
+              background-color 250ms var(--ease-out-expo),
+              filter 250ms var(--ease-out-expo);
   position: relative;
   overflow: hidden;
 }
 
-.btn:active { transform: translateY(1px) scale(0.97); }
+.btn:active { transform: scale(0.97); }
 
 .btn-primary {
   background: linear-gradient(135deg, var(--sky-500), var(--sky-600));
@@ -1301,12 +1301,22 @@ html.dark-theme .footer-update-link:hover {
   overflow: hidden;
 }
 
+.shop-card .card-icon-wrapper {
+  transition: transform 250ms var(--ease-out-expo), background-color 250ms var(--ease-out-expo);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .shop-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
     background-color: var(--bg-card-hover);
     border-color: rgba(14, 165, 233, 0.3);
+  }
+  .shop-card:hover .card-icon-wrapper {
+    transform: scale(1.08) rotate(4deg);
+  }
+  .shop-card:hover .shop-features li .icon {
+    transform: scale(1.15);
   }
 }
 
@@ -1345,6 +1355,7 @@ html.dark-theme .footer-update-link:hover {
   color: var(--sky-500);
   font-size: 0.8rem;
   flex-shrink: 0;
+  transition: transform 250ms var(--ease-out-expo), color 250ms var(--ease-out-expo);
 }
 
 /* Shop Alert Banner */
@@ -1407,6 +1418,106 @@ html:not(.dark-theme) .shop-alert-banner {
 
 html.dark-theme .shop-card.featured {
   background-color: rgba(245, 158, 11, 0.01);
+}
+
+/* Premium Gold Shine Sweep animation */
+.shop-card.featured::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -150%;
+  width: 100%; height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(245, 158, 11, 0.05),
+    rgba(255, 255, 255, 0.20),
+    rgba(245, 158, 11, 0.05),
+    transparent
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .shop-card.featured:hover::after {
+    left: 200%;
+    transition: left 1.2s var(--ease-out-expo);
+  }
+}
+
+/* Premium Segmented Controls for Pricing */
+.vip-price-tab {
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 8px;
+  color: var(--text-muted);
+  transition: background-color 200ms var(--ease-out-expo), color 200ms var(--ease-out-expo), transform 160ms var(--ease-out-expo), box-shadow 200ms var(--ease-out-expo);
+}
+.vip-price-tab:hover {
+  color: var(--text-main);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+.vip-price-tab:active {
+  transform: scale(0.97);
+}
+.vip-price-tab.active {
+  background: linear-gradient(135deg, var(--amber-500), var(--gold-600)) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 14px rgba(202, 138, 4, 0.25);
+}
+html.dark-theme .vip-price-tab.active {
+  box-shadow: 0 4px 18px rgba(202, 138, 4, 0.45);
+}
+.vip-price-tab.active .tab-saving-badge {
+  background: rgba(255, 255, 255, 0.25) !important;
+  color: #fff !important;
+}
+
+/* Premium Privilege Icons */
+.feature-check {
+  transition: transform 250ms var(--ease-out-expo), background-color 250ms var(--ease-out-expo), border-color 250ms var(--ease-out-expo), box-shadow 250ms var(--ease-out-expo);
+}
+.shop-card:hover .feature-check {
+  transform: scale(1.1);
+  background-color: rgba(245, 158, 11, 0.18);
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.12);
+}
+/* Premium VIP Typography (Google Fonts) */
+.shop-card.featured .badge-gold {
+  font-family: 'Unbounded', sans-serif !important;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.vip-price-tab {
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-weight: 700;
+}
+.vip-display-price {
+  font-family: 'Unbounded', sans-serif !important;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, #fbbf24 30%, #ca8a04 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.vip-display-period {
+  font-family: 'Space Grotesk', sans-serif !important;
+}
+.vip-features-title {
+  font-family: 'Syne', sans-serif !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem !important;
+  color: var(--gold) !important;
 }
 
 .shop-card.featured::before {
