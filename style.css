@@ -1483,11 +1483,29 @@ html.dark-theme .vip-price-tab.active {
 .feature-check {
   transition: transform 250ms var(--ease-out-expo), background-color 250ms var(--ease-out-expo), border-color 250ms var(--ease-out-expo), box-shadow 250ms var(--ease-out-expo);
 }
-.shop-card:hover .feature-check {
+.shop-card.featured:hover .feature-check:not(.feature-check-sky):not(.feature-check-danger):not(.feature-check-purple) {
   transform: scale(1.1);
   background-color: rgba(245, 158, 11, 0.18);
   border-color: rgba(245, 158, 11, 0.4);
   box-shadow: 0 0 10px rgba(245, 158, 11, 0.12);
+}
+.shop-card:hover .feature-check-sky {
+  transform: scale(1.1);
+  background-color: rgba(14, 165, 233, 0.18) !important;
+  border-color: rgba(14, 165, 233, 0.4) !important;
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.12);
+}
+.shop-card:hover .feature-check-danger {
+  transform: scale(1.1);
+  background-color: rgba(239, 68, 68, 0.18) !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.12);
+}
+.shop-card:hover .feature-check-purple {
+  transform: scale(1.1);
+  background-color: rgba(168, 85, 247, 0.18) !important;
+  border-color: rgba(168, 85, 247, 0.4) !important;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.12);
 }
 /* Premium VIP Typography (Google Fonts) */
 .shop-card.featured .badge-gold {
@@ -4321,5 +4339,25 @@ html:not(.dark-theme) .parliament-seat.vacant-seat {
   }
   .laws-protocols-grid {
     grid-template-columns: 1fr !important;
+  }
+}
+
+/* Responsive Masonry Columns for Shop Page */
+.shop-columns-wrapper {
+  display: flex;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+}
+.shop-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+@media (max-width: 768px) {
+  .shop-columns-wrapper {
+    flex-direction: column;
+    gap: 2rem;
   }
 }
