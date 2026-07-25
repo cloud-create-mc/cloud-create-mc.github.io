@@ -4,14 +4,14 @@
 // =====================================================
 
 const CONFIG = {
-  SERVER_IP:   'play.cloudcreate.org',
+  SERVER_IP: 'play.cloudcreate.org',
   IS_IP_PLACEHOLDER: false,
   DISCORD_URL: 'https://discord.gg/N54MhNbZEM',
-  TIKTOK_URL:  'https://www.tiktok.com/@cloudcreatee',
+  TIKTOK_URL: 'https://www.tiktok.com/@cloudcreatee',
   TELEGRAM_URL: 'https://t.me/CloudCreatee',
-  MRPACK_URL:  './CC%20Modpack%20v1.6.mrpack',
-  ZIP_URL:     'https://github.com/cloud-create-mc/cloud-create-mc.github.io/releases/download/Modpack/CC.Modpack.v1.6.zip',
-  DONATE_URL:  'https://donatello.to/cloudcreate',
+  MRPACK_URL: './CC%20Modpack%20v1.7.mrpack',
+  ZIP_URL: 'https://github.com/cloud-create-mc/cloud-create-mc.github.io/releases/download/Modpack/CC.Modpack.v1.7.zip',
+  DONATE_URL: 'https://donatello.to/cloudcreate',
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isDark = document.documentElement.classList.toggle('dark-theme');
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
       };
-      
+
       if (document.startViewTransition) {
         document.startViewTransition(toggleTheme);
       } else {
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Boost velocity on subsequent clicks
         logoLink.dataset.vx = parseFloat(logoLink.dataset.vx || 0) + (Math.random() - 0.5) * 15;
         logoLink.dataset.vy = parseFloat(logoLink.dataset.vy || 0) + (Math.random() - 0.5) * 15;
-        
+
         // Visual click feedback (scale bump)
         const x = parseFloat(logoLink.dataset.x || 0);
         const y = parseFloat(logoLink.dataset.y || 0);
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
       placeholder.style.visibility = 'hidden';
       placeholder.style.pointerEvents = 'none';
       placeholder.classList.add('logo-placeholder');
-      
+
       // We append placeholder first so it immediately occupies the space
       logoLink.parentNode.appendChild(placeholder);
 
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isFlying) return;
 
         const elapsed = timestamp - startTime;
-        
+
         vx = parseFloat(logoLink.dataset.vx);
         vy = parseFloat(logoLink.dataset.vy);
 
@@ -193,11 +193,11 @@ document.addEventListener('DOMContentLoaded', () => {
       function landLogo() {
         cancelAnimationFrame(animFrameId);
         isLanding = true;
-        
+
         // Smooth return animation via CSS transition on transform
         logoLink.style.transition = 'transform 1.4s cubic-bezier(0.25, 1, 0.3, 1)';
         const targetRect = placeholder.getBoundingClientRect();
-        
+
         logoLink.style.transform = `translate3d(${targetRect.left}px, ${targetRect.top}px, 0) rotate(0deg)`;
 
         setTimeout(() => {
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (placeholder.parentNode) {
             placeholder.parentNode.insertBefore(logoLink, placeholder);
           }
-          
+
           logoLink.style.position = '';
           logoLink.style.left = '';
           logoLink.style.top = '';
@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
           logoLink.style.zIndex = '';
           logoLink.style.transition = '';
           logoLink.style.transform = '';
-          
+
           placeholder.remove();
           isFlying = false;
           isLanding = false;
@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const pathParts = window.location.pathname.split('/');
   let currentPage = pathParts.pop() || '';
   currentPage = currentPage.replace(/\.html$/, '');
-  
+
   if (currentPage === '' || currentPage === 'index') {
     currentPage = 'home';
   }
@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --------------------------------------------------
   // 4. Copy IP to clipboard
   // --------------------------------------------------
-  const ipBox   = document.getElementById('ip-box');
+  const ipBox = document.getElementById('ip-box');
   const ipToast = document.getElementById('ip-toast');
 
   let ipTimeout;
@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const ta = document.createElement('textarea');
         ta.value = CONFIG.SERVER_IP;
         ta.style.position = 'fixed';
-        ta.style.opacity  = '0';
+        ta.style.opacity = '0';
         document.body.appendChild(ta);
         ta.focus(); ta.select();
         document.execCommand('copy');
@@ -410,32 +410,32 @@ document.addEventListener('DOMContentLoaded', () => {
   // --------------------------------------------------
   // 5. Server status monitoring
   // --------------------------------------------------
-  const statusDot  = document.getElementById('server-status-dot');
+  const statusDot = document.getElementById('server-status-dot');
   const statusText = document.getElementById('server-status-text');
 
   async function checkServerStatus() {
     if (!statusDot || !statusText) return;
 
-    statusDot.className  = 'status-dot checking';
+    statusDot.className = 'status-dot checking';
     statusText.textContent = 'Перевірка статусу...';
 
     try {
-      const res  = await fetch(
+      const res = await fetch(
         `https://api.mcsrvstat.us/3/${encodeURIComponent(CONFIG.SERVER_IP)}`,
         { cache: 'no-store' }
       );
       const data = await res.json();
 
       if (data.online) {
-        statusDot.className   = 'status-dot online';
+        statusDot.className = 'status-dot online';
         const players = data.players ? `${data.players.online}/${data.players.max} гравців` : 'Онлайн';
         statusText.textContent = players;
       } else {
-        statusDot.className   = 'status-dot offline';
+        statusDot.className = 'status-dot offline';
         statusText.textContent = 'Сервер офлайн';
       }
     } catch {
-      statusDot.className   = 'status-dot offline';
+      statusDot.className = 'status-dot offline';
       statusText.textContent = 'Статус недоступний';
     }
   }
@@ -449,9 +449,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // --------------------------------------------------
   document.querySelectorAll('.accordion-trigger').forEach(trigger => {
     trigger.addEventListener('click', () => {
-      const item    = trigger.closest('.accordion-item');
+      const item = trigger.closest('.accordion-item');
       const content = item.querySelector('.accordion-content');
-      const isOpen  = item.classList.contains('open');
+      const isOpen = item.classList.contains('open');
 
       // Close all open items first (single-open accordion)
       document.querySelectorAll('.accordion-item.open').forEach(open => {
@@ -617,7 +617,7 @@ document.addEventListener('DOMContentLoaded', () => {
     item.addEventListener('click', () => {
       const sectionId = item.getAttribute('data-section');
       const categoryText = item.textContent.trim();
-      
+
       // Find matching icon from desktop menu
       const desktopItem = document.querySelector(`.rules-menu-item[data-section="${sectionId}"]`);
       const iconSvg = desktopItem ? desktopItem.querySelector('svg') : null;
@@ -664,7 +664,7 @@ document.addEventListener('DOMContentLoaded', () => {
     rulesSections.forEach(section => {
       const sectionId = section.id; // e.g. "mc-1" or "rp-7"
       const prefix = sectionId.split('-')[0]; // "mc" or "rp"
-      
+
       // Standard rule items
       section.querySelectorAll('.rule-item').forEach(item => {
         const numEl = item.querySelector('.rule-num');
@@ -753,6 +753,8 @@ document.addEventListener('DOMContentLoaded', () => {
       targetSectionId = 'mc-1';
     } else if (hash === 'rp') {
       targetSectionId = 'rp-1';
+    } else if (hash === 'adm') {
+      targetSectionId = 'adm-1';
     } else {
       const exists = document.getElementById(hash);
       if (exists && exists.classList.contains('rules-section')) {
@@ -774,7 +776,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const iconSvg = desktopItem.querySelector('svg');
         const iconHtml = iconSvg ? iconSvg.outerHTML : '';
         switchRulesSection(targetSectionId, categoryText, iconHtml);
-        
+
         // Scroll to target element or content card
         const scrollTarget = targetElementId ? document.getElementById(targetElementId) : rulesContentCard;
         if (scrollTarget) {
