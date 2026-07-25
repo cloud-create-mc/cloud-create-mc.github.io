@@ -4,20 +4,18 @@
 
 // CONFIG: Paste your published Google Sheets CSV URL here.
 // To get this URL: In Google Sheets -> File -> Share -> Publish to web -> Select "Entire Document" or "Sheet1" -> Select "CSV" -> Click Publish.
-const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1lI2u0Kl4NsXo60jLD4PE1XILlwgcL0rKOJTmVDod9eM/export?format=csv'; 
+const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1lI2u0Kl4NsXo60jLD4PE1XILlwgcL0rKOJTmVDod9eM/export?format=csv';
 
 // Fallback Mock Data (Everyone is 0/Neutral by default as requested, but can be updated via Sheet)
 const DEFAULT_MOCK_STATES = [
-  { name: 'Федерація Китайських Народів (ФКН)', leader: 'Yurk0', color: '#ef4444', flag: 'fkn.svg' },
-  { name: 'Федеративна Республіка Меркантія (ФРМ)', leader: 'vert0s', color: '#eab308', flag: 'frm.svg' },
+  { name: 'Федерація Китайських Народів', leader: 'Yurk0', color: '#ef4444', flag: 'fkn.svg' },
+  { name: 'Федеративна Республіка Меркантія', leader: 'vert0s', color: '#eab308', flag: 'frm.svg' },
   { name: 'Верховенськ', leader: 'InvisibleFear', color: '#38bdf8', flag: 'verchovensk.svg' },
-  { name: 'Ронкова Народна Республіка (РНР)', leader: 'ronki', color: '#10b981', flag: null },
-  { name: 'ВЛНР', leader: 'GnoynyyFollikul', color: '#ffd2d2', flag: 'vlnr.jpg' },
-  { name: 'Республіка Сходу', leader: 'brunoLOVE2727', color: '#f97316', flag: 'r_shodu.jpg' },
-  { name: 'Саншайн', leader: 'Cloudysunny35', color: '#facc15', flag: 'sunshine.svg' },
-  { name: 'Камчатська Автономна Республіка (КАР)', leader: 'MrKurzik', color: '#6366f1', flag: 'kar_new.jpg' },
+  { name: 'Камчатська Автономна Республіка', leader: 'MrKurzik', color: '#6366f1', flag: 'kar_new.jpg' },
   { name: 'Махісо', leader: '_Mourang_ та Kra1zz3r', color: '#ec4899', flag: 'maxico.jpg' },
-  { name: 'Технократична Імперія', leader: 'epsteinenko', color: '#0d9488', flag: 'tech_empire.jpg' }
+  { name: 'Технократична Імперія', leader: 'epsteinenko', color: '#0d9488', flag: 'tech_empire.jpg' },
+  { name: 'Вінланд', leader: 'ProstoRoma', color: '#10b981', flag: 'vinland.jpg' },
+  { name: 'Ядерний Гетьманат', leader: 'Skoropadskyi', color: '#84cc16', flag: 'yad_getman.jpg' }
 ];
 
 // All relations are 0 (Neutral) initially as requested
@@ -75,12 +73,12 @@ function getAbbreviation(name) {
   if (parenMatch && parenMatch[1]) {
     return parenMatch[1].toUpperCase();
   }
-  
+
   const words = name.split(/[\s-]+/).filter(w => w.length > 0);
   if (words.length >= 2) {
     return (words[0].charAt(0) + words[1].charAt(0)).toUpperCase();
   }
-  
+
   return name.substring(0, 2).toUpperCase();
 }
 
@@ -141,7 +139,7 @@ async function loadData() {
 
     const response = await fetch(GOOGLE_SHEET_CSV_URL);
     if (!response.ok) throw new Error('Network error fetching CSV');
-    
+
     const csvText = await response.text();
     parseCSV(csvText);
 
@@ -151,12 +149,12 @@ async function loadData() {
     console.error('Failed to load Google Sheets data:', error);
     if (statusDot) statusDot.className = 'status-dot';
     if (statusText) statusText.textContent = 'Помилка оновлення (локальні дані)';
-    
+
     states = [...DEFAULT_MOCK_STATES];
     relations = [...DEFAULT_MOCK_RELATIONS];
     updateRelationsMap();
   }
-  
+
   positionNodes();
   updateSidebar();
   renderMobileStatesList();
@@ -221,6 +219,13 @@ function parseCSV(text) {
     }
   });
 
+  // Ensure default mock states are also present if not specified in CSV
+  DEFAULT_MOCK_STATES.forEach(defState => {
+    if (!parsedStates.some(s => s.name === defState.name)) {
+      parsedStates.push({ ...defState });
+    }
+  });
+
   states = parsedStates.length > 0 ? parsedStates : [...DEFAULT_MOCK_STATES];
   relations = parsedRelations;
   updateRelationsMap();
@@ -229,25 +234,25 @@ function parseCSV(text) {
 // Position nodes randomly and initialize drift variables, preserving them across resizes
 function positionNodes() {
   if (!canvas) return;
-  
+
   const width = canvas.width / window.devicePixelRatio;
   const height = canvas.height / window.devicePixelRatio;
-  
+
   const oldNodesMap = new Map();
   nodes.forEach(n => {
     oldNodesMap.set(n.name, n);
   });
-  
+
   const newNodes = [];
-  
+
   states.forEach((state, idx) => {
     const oldNode = oldNodesMap.get(state.name);
-    
+
     let normX, normY;
     let angleX, angleY, speedX, speedY, ampX, ampY;
     let hoverProgress = 0;
     let selectProgress = 0;
-    
+
     if (oldNode) {
       normX = oldNode.normX;
       normY = oldNode.normY;
@@ -268,13 +273,13 @@ function positionNodes() {
         // Keep them away from margins (between 0.15 and 0.85)
         normX = 0.15 + Math.random() * 0.7;
         normY = 0.15 + Math.random() * 0.7;
-        
+
         let tooClose = false;
         for (let i = 0; i < newNodes.length; i++) {
           const other = newNodes[i];
           const dx = normX - other.normX;
           const dy = normY - other.normY;
-          const dist = Math.sqrt(dx*dx + dy*dy);
+          const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < minDistance) {
             tooClose = true;
             break;
@@ -283,14 +288,14 @@ function positionNodes() {
         if (!tooClose) {
           found = true;
         }
-        
+
         attempts++;
         if (attempts > 40) {
           minDistance -= 0.02; // reduce constraint slightly to prevent hang
           attempts = 0;
         }
       }
-      
+
       // Initialize drifting parameters (very gentle floating)
       angleX = Math.random() * Math.PI * 2;
       angleY = Math.random() * Math.PI * 2;
@@ -299,7 +304,7 @@ function positionNodes() {
       ampX = 10 + Math.random() * 12; // 10-22px drift amplitude
       ampY = 10 + Math.random() * 12;
     }
-    
+
     newNodes.push({
       name: state.name,
       leader: state.leader,
@@ -321,7 +326,7 @@ function positionNodes() {
       selectProgress
     });
   });
-  
+
   nodes = newNodes;
 }
 
@@ -330,24 +335,27 @@ function renderMobileStatesList() {
   const container = document.getElementById('rp-mobile-states-list');
   if (!container) return;
   container.innerHTML = '';
-  
+
   states.forEach(state => {
     const card = document.createElement('div');
     card.className = 'mobile-state-card';
-    
-    const avatarStyle = state.flag 
+
+    const avatarStyle = state.flag
       ? `background: url('${state.flag}') center/cover no-repeat; border: 1px solid var(--border-item);`
       : `background: linear-gradient(135deg, ${state.color}, rgba(0,0,0,0.4)); box-shadow: 0 4px 12px ${state.color}40;`;
-      
+
+    const isMaxicoState = state.name === 'Махісо' || state.name.toLowerCase().includes('махісо') || state.name.toLowerCase().includes('maxico');
+    const leaderPrefix = isMaxicoState ? 'Лідери:' : 'Лідер:';
+
     card.innerHTML = `
       <div class="mobile-state-avatar" style="${avatarStyle}"></div>
       <div class="mobile-state-meta">
         <div class="mobile-state-title">${state.name}</div>
-        <div class="mobile-state-leader">Лідер: <strong>${state.leader}</strong></div>
+        <div class="mobile-state-leader">${leaderPrefix} <strong>${state.leader}</strong></div>
       </div>
       <svg class="icon" viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.5;"><polyline points="9 18 15 12 9 6"/></svg>
     `;
-    
+
     card.addEventListener('click', () => {
       const node = nodes.find(n => n.name === state.name);
       if (node) {
@@ -355,7 +363,7 @@ function renderMobileStatesList() {
         updateSidebar();
       }
     });
-    
+
     container.appendChild(card);
   });
 }
@@ -366,7 +374,7 @@ function updateSidebar() {
   const emptyPanel = document.getElementById('diplomatic-profile-empty');
   const contentPanel = document.getElementById('diplomatic-profile-content');
   const backdrop = document.getElementById('sidebar-backdrop');
-  
+
   if (!selectedNode) {
     if (sidebar) {
       sidebar.classList.remove('active');
@@ -376,7 +384,7 @@ function updateSidebar() {
     }
     return;
   }
-  
+
   if (sidebar) {
     sidebar.classList.add('active');
   }
@@ -385,11 +393,17 @@ function updateSidebar() {
   }
   if (emptyPanel) emptyPanel.style.display = 'none';
   if (contentPanel) contentPanel.style.display = 'flex';
-  
+
   // Fill State Profile
   document.getElementById('profile-name').textContent = selectedNode.name;
   document.getElementById('profile-leader').textContent = selectedNode.leader;
-  
+
+  const isMaxicoNode = selectedNode.name === 'Махісо' || selectedNode.name.toLowerCase().includes('махісо') || selectedNode.name.toLowerCase().includes('maxico');
+  const leaderTitleEl = document.getElementById('profile-leader-title');
+  if (leaderTitleEl) {
+    leaderTitleEl.textContent = isMaxicoNode ? 'Лідери:' : 'Лідер:';
+  }
+
   const avatar = document.getElementById('profile-avatar-char');
   if (avatar) {
     if (selectedNode.flag) {
@@ -402,48 +416,48 @@ function updateSidebar() {
       avatar.style.boxShadow = `0 4px 12px ${selectedNode.color}40`;
     }
   }
-  
+
   // Fill Relations list
   const listEl = document.getElementById('profile-relations-list');
-  
+
   // Calculate stats for dashboard
   let alliesCount = 0;
   let neutralsCount = 0;
   let enemiesCount = 0;
-  
+
   const otherStates = states.filter(s => s.name !== selectedNode.name);
-  
+
   otherStates.forEach(other => {
     const lvl = getRelationLevel(selectedNode.name, other.name);
     if (lvl > 0) alliesCount++;
     else if (lvl < 0) enemiesCount++;
     else neutralsCount++;
   });
-  
+
   const statAllies = document.getElementById('stat-allies');
   const statNeutrals = document.getElementById('stat-neutrals');
   const statEnemies = document.getElementById('stat-enemies');
-  
+
   if (statAllies) statAllies.textContent = alliesCount;
   if (statNeutrals) statNeutrals.textContent = neutralsCount;
   if (statEnemies) statEnemies.textContent = enemiesCount;
-  
+
   if (listEl) {
     listEl.innerHTML = '';
-    
+
     otherStates.forEach(other => {
       const level = getRelationLevel(selectedNode.name, other.name);
       const rel = getRelationDetails(level);
-      
+
       const card = document.createElement('div');
       card.className = 'relation-mini-card';
       card.style.cursor = 'pointer';
-      
+
       const otherFlag = other.flag;
-      const avatarHtml = otherFlag 
+      const avatarHtml = otherFlag
         ? `<span style="width: 18px; height: 18px; border-radius:50%; background: url('${otherFlag}') center/cover no-repeat; border: 1px solid var(--border-item); display: inline-block; flex-shrink: 0;"></span>`
         : `<span style="width: 18px; height: 18px; border-radius:50%; background-color:${other.color}; border: 1px solid rgba(255,255,255,0.1); display: inline-block; box-shadow:0 0 6px ${other.color}60; flex-shrink: 0;"></span>`;
-      
+
       card.innerHTML = `
         <div class="relation-mini-state-info" style="display:flex; align-items:center; gap: 0.6rem; min-width: 0; flex: 1;">
           ${avatarHtml}
@@ -453,7 +467,7 @@ function updateSidebar() {
           <span class="relation-mini-badge ${rel.class}">${rel.text}</span>
         </div>
       `;
-      
+
       // Interactive Hover & Navigation
       card.addEventListener('mouseenter', () => {
         const matchingNode = nodes.find(n => n.name === other.name);
@@ -461,13 +475,13 @@ function updateSidebar() {
           hoveredNode = matchingNode;
         }
       });
-      
+
       card.addEventListener('mouseleave', () => {
         if (hoveredNode && hoveredNode.name === other.name) {
           hoveredNode = null;
         }
       });
-      
+
       card.addEventListener('click', () => {
         const matchingNode = nodes.find(n => n.name === other.name);
         if (matchingNode) {
@@ -475,7 +489,7 @@ function updateSidebar() {
           updateSidebar();
         }
       });
-      
+
       listEl.appendChild(card);
     });
   }
@@ -484,14 +498,14 @@ function updateSidebar() {
 // Canvas Rendering & Simulation Loop
 function tick() {
   if (!canvas || !ctx) return;
-  
+
   const width = canvas.width;
   const height = canvas.height;
-  
+
   // Dynamic theme colors
   const neutralLineColor = isDarkTheme ? 'rgba(255, 255, 255, 0.07)' : 'rgba(15, 23, 42, 0.07)';
   const innerBorderColor = isDarkTheme ? 'rgba(255, 255, 255, 0.75)' : 'rgba(15, 23, 42, 0.75)';
-  
+
   // 1. Update positions for gentle drift/float and smooth hover/select progress
   let anyFocus = 0;
   nodes.forEach(node => {
@@ -499,17 +513,17 @@ function tick() {
     node.angleY += node.speedY;
     node.x = node.baseX + Math.sin(node.angleX) * node.ampX;
     node.y = node.baseY + Math.cos(node.angleY) * node.ampY;
-    
+
     // Update progress variables smoothly (lerp)
     const isHovered = hoveredNode === node;
     const isSelected = selectedNode === node;
-    
+
     if (node.hoverProgress === undefined) node.hoverProgress = 0;
     if (node.selectProgress === undefined) node.selectProgress = 0;
-    
+
     node.hoverProgress += ((isHovered ? 1 : 0) - node.hoverProgress) * 0.15;
     node.selectProgress += ((isSelected ? 1 : 0) - node.selectProgress) * 0.15;
-    
+
     const f = Math.max(node.hoverProgress, node.selectProgress);
     if (f > anyFocus) anyFocus = f;
   });
@@ -518,30 +532,30 @@ function tick() {
   const dpr = window.devicePixelRatio || 1;
   const cssWidth = width / dpr;
   const cssHeight = height / dpr;
-  
+
   for (let pass = 0; pass < 3; pass++) {
     for (let i = 0; i < nodes.length; i++) {
       const n1 = nodes[i];
       const r1 = nodeRadius + (n1.hoverProgress * 3) + 6; // node radius + hover expansion + visual spacing padding
-      
+
       // Enforce boundary collision
       n1.x = Math.max(r1, Math.min(cssWidth - r1, n1.x));
       n1.y = Math.max(r1, Math.min(cssHeight - r1, n1.y));
-      
+
       for (let j = i + 1; j < nodes.length; j++) {
         const n2 = nodes[j];
         const r2 = nodeRadius + (n2.hoverProgress * 3) + 6;
-        
+
         const dx = n2.x - n1.x;
         const dy = n2.y - n1.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         const minDist = r1 + r2;
-        
+
         if (dist < minDist) {
           const overlap = minDist - dist;
           const forceX = (dist > 0.01 ? (dx / dist) : 1) * overlap * 0.5;
           const forceY = (dist > 0.01 ? (dy / dist) : 0) * overlap * 0.5;
-          
+
           n1.x -= forceX;
           n1.y -= forceY;
           n2.x += forceX;
@@ -553,19 +567,19 @@ function tick() {
 
   // 2. Draw Clear
   ctx.clearRect(0, 0, width, height);
-  
+
   // 3. Draw relations lines (links)
   for (let i = 0; i < nodes.length; i++) {
     for (let j = i + 1; j < nodes.length; j++) {
       const n1 = nodes[i];
       const n2 = nodes[j];
       const level = getRelationLevel(n1.name, n2.name);
-      
+
       const lineFocus = Math.max(
         n1.hoverProgress, n1.selectProgress,
         n2.hoverProgress, n2.selectProgress
       );
-      
+
       let opacity = 0.35;
       if (level === 0) {
         if (lineFocus <= 0.01) continue; // Don't draw neutral lines unless highlighted
@@ -575,46 +589,60 @@ function tick() {
         const fadedOpacity = 0.06;
         const unfocusedOpacity = normalOpacity - (normalOpacity - fadedOpacity) * anyFocus;
         const highlightedOpacity = 0.6;
-        
+
         opacity = unfocusedOpacity + (highlightedOpacity - unfocusedOpacity) * lineFocus;
       }
-      
+
       const rel = getRelationDetails(level);
       ctx.beginPath();
       ctx.moveTo(n1.x, n1.y);
       ctx.lineTo(n2.x, n2.y);
-      
+
       // Style link line
       ctx.lineWidth = level !== 0 ? (1.5 + lineFocus * 2) : 1;
       ctx.strokeStyle = level === 0 ? neutralLineColor : rel.color;
       ctx.globalAlpha = opacity;
-      
+
       if (level === 0) {
         ctx.setLineDash([4, 4]); // dashed lines for neutrals
       } else {
         ctx.setLineDash([]);
       }
-      
+
       ctx.stroke();
       ctx.globalAlpha = 1.0;
       ctx.setLineDash([]);
     }
   }
-  
+
   // 4. Draw nodes
   nodes.forEach(node => {
     const size = nodeRadius + (node.hoverProgress * 3);
     const hoverOrSelect = Math.max(node.hoverProgress, node.selectProgress);
     
+    const isVinland = node.name === 'Вінланд' || node.name.toLowerCase().includes('вінланд') || node.name.toLowerCase().includes('vinland');
+    const isMaxico = node.name === 'Махісо' || node.name.toLowerCase().includes('махісо') || node.name.toLowerCase().includes('maxico');
+    const isYadGetman = node.name.includes('Ядерний Гетьманат') || node.name.toLowerCase().includes('гетьманат') || node.name.toLowerCase().includes('getman');
+
+    const isVinlandHover = isVinland && node.hoverProgress > 0.01;
+    const isMaxicoHover = isMaxico && node.hoverProgress > 0.01;
+    const isYadGetmanHover = isYadGetman && node.hoverProgress > 0.01;
+    const isCustomHover = isVinlandHover || isMaxicoHover || isYadGetmanHover;
+
+    let hoverGlowColor = node.color;
+    if (isVinlandHover) hoverGlowColor = '#ffffff';
+    else if (isMaxicoHover) hoverGlowColor = '#000000';
+    else if (isYadGetmanHover) hoverGlowColor = '#d97706';
+
     // Draw expanding pulsating outer orbit ring
     if (hoverOrSelect > 0.01) {
       ctx.beginPath();
       const maxPulseSize = size + 8 + Math.sin(Date.now() * 0.005) * 3;
       const pulseSize = nodeRadius + (maxPulseSize - nodeRadius) * hoverOrSelect;
       ctx.arc(node.x, node.y, pulseSize, 0, Math.PI * 2);
-      ctx.strokeStyle = node.color;
-      ctx.lineWidth = 1.5;
-      ctx.globalAlpha = 0.4 * hoverOrSelect;
+      ctx.strokeStyle = isCustomHover ? hoverGlowColor : node.color;
+      ctx.lineWidth = isCustomHover ? 2.5 : 1.5;
+      ctx.globalAlpha = (isCustomHover ? 0.75 : 0.4) * hoverOrSelect;
       ctx.stroke();
       ctx.globalAlpha = 1.0;
     }
@@ -622,18 +650,18 @@ function tick() {
     // Check and lazy pre-render flag to offscreen canvas once loaded
     const flagImg = node.flag ? getFlagImage(node.flag) : null;
     const isImgLoaded = flagImg && flagImg.complete;
-    
+
     if (isImgLoaded && !node.flagCanvas) {
       try {
         const dpr = window.devicePixelRatio || 1;
         const maxRadius = nodeRadius + 3;
         const canvasSize = Math.ceil(maxRadius * 2 * dpr);
-        
+
         const offCanvas = document.createElement('canvas');
         offCanvas.width = canvasSize;
         offCanvas.height = canvasSize;
         const offCtx = offCanvas.getContext('2d');
-        
+
         if (offCtx) {
           offCtx.scale(dpr, dpr);
           offCtx.beginPath();
@@ -647,40 +675,40 @@ function tick() {
       }
     }
 
-    const fillColor = node.color;
+    const fillColor = isCustomHover ? hoverGlowColor : node.color;
     const hasFlagCanvas = !!node.flagCanvas;
-    
-    // Draw outer soft glow layers (extremely fast, hardware-accelerated vectors instead of software Gaussian blur)
-    const glowRadius1 = size + 3 + (node.hoverProgress * 5) + (node.selectProgress * 9);
+
+    // Draw outer soft glow layers (custom glow for Vinland/Maxico/YadGetman when hovered)
+    const glowRadius1 = size + 3 + (node.hoverProgress * (isCustomHover ? 8 : 5)) + (node.selectProgress * 9);
     ctx.beginPath();
     ctx.arc(node.x, node.y, glowRadius1, 0, Math.PI * 2);
     ctx.fillStyle = fillColor;
-    ctx.globalAlpha = 0.15 + (node.hoverProgress * 0.10) + (node.selectProgress * 0.15);
+    ctx.globalAlpha = (isCustomHover ? 0.45 : 0.15) + (node.hoverProgress * 0.10) + (node.selectProgress * 0.15);
     ctx.fill();
 
-    const glowRadius2 = size + 1.5 + (node.hoverProgress * 2.5) + (node.selectProgress * 4.5);
+    const glowRadius2 = size + 1.5 + (node.hoverProgress * (isCustomHover ? 4 : 2.5)) + (node.selectProgress * 4.5);
     ctx.beginPath();
     ctx.arc(node.x, node.y, glowRadius2, 0, Math.PI * 2);
     ctx.fillStyle = fillColor;
-    ctx.globalAlpha = 0.25 + (node.hoverProgress * 0.15) + (node.selectProgress * 0.25);
+    ctx.globalAlpha = (isCustomHover ? 0.65 : 0.25) + (node.hoverProgress * 0.15) + (node.selectProgress * 0.25);
     ctx.fill();
     ctx.globalAlpha = 1.0; // reset
-    
+
     // Draw base circle to provide background
     ctx.beginPath();
     ctx.arc(node.x, node.y, size, 0, Math.PI * 2);
     ctx.fillStyle = hasFlagCanvas ? '#1e293b' : fillColor;
     ctx.fill();
-    
+
     // Draw flag image using pre-rendered offscreen canvas
     let drawFlagSuccess = false;
     if (hasFlagCanvas) {
       try {
         ctx.drawImage(
-          node.flagCanvas, 
-          node.x - size, 
-          node.y - size, 
-          size * 2, 
+          node.flagCanvas,
+          node.x - size,
+          node.y - size,
+          size * 2,
           size * 2
         );
         drawFlagSuccess = true;
@@ -688,76 +716,74 @@ function tick() {
         console.warn('Failed to draw pre-rendered flag canvas for', node.name, e);
       }
     }
-    
-    // Smooth translucent selection overlay
-    if (node.selectProgress > 0.01) {
+
+    // Smooth translucent hover/selection overlay
+    const overlayAlpha = (isCustomHover ? node.hoverProgress * 0.4 : 0) + (node.selectProgress * 0.35);
+    if (overlayAlpha > 0.01) {
       ctx.beginPath();
       ctx.arc(node.x, node.y, size, 0, Math.PI * 2);
-      ctx.fillStyle = '#ffffff';
-      ctx.globalAlpha = node.selectProgress * 0.35;
+      ctx.fillStyle = isMaxicoHover ? '#000000' : (isYadGetmanHover ? '#d97706' : '#ffffff');
+      ctx.globalAlpha = Math.min(0.6, overlayAlpha);
       ctx.fill();
       ctx.globalAlpha = 1.0; // reset
     }
-    
-    // Inner center border (blend from innerBorderColor to node.color on selection)
-    ctx.lineWidth = 2 + (node.selectProgress * 2);
-    ctx.strokeStyle = innerBorderColor;
+
+    // Inner center border (stroke in custom color when hovered)
+    ctx.lineWidth = 2 + (node.hoverProgress * (isCustomHover ? 2 : 0)) + (node.selectProgress * 2);
+    ctx.strokeStyle = isCustomHover ? hoverGlowColor : innerBorderColor;
     ctx.stroke();
-    
-    if (node.selectProgress > 0.01) {
+
+    if (node.selectProgress > 0.01 || isCustomHover) {
       ctx.beginPath();
       ctx.arc(node.x, node.y, size, 0, Math.PI * 2);
-      ctx.strokeStyle = node.color;
-      ctx.globalAlpha = node.selectProgress;
+      ctx.strokeStyle = isCustomHover ? hoverGlowColor : node.color;
+      ctx.globalAlpha = Math.max(node.selectProgress, isCustomHover ? node.hoverProgress : 0);
       ctx.stroke();
       ctx.globalAlpha = 1.0; // reset
     }
-    
+
     // Fallback: Text drawing inside node if flag is not loaded or failed to render
     if (!drawFlagSuccess) {
       ctx.font = 'bold 12px sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       const abbr = getAbbreviation(node.name);
-      
-      ctx.fillStyle = '#ffffff';
+
+      ctx.fillStyle = isMaxicoHover ? '#ffffff' : '#ffffff';
       ctx.fillText(abbr, node.x, node.y);
-      
-      if (node.selectProgress > 0.01) {
-        ctx.fillStyle = '#1e293b';
-        ctx.globalAlpha = node.selectProgress;
+
+      if (node.selectProgress > 0.01 || isCustomHover) {
+        ctx.fillStyle = isMaxicoHover ? '#ffffff' : '#1e293b';
+        ctx.globalAlpha = Math.max(node.selectProgress, isCustomHover ? node.hoverProgress : 0);
         ctx.fillText(abbr, node.x, node.y);
         ctx.globalAlpha = 1.0; // reset
       }
     }
   });
-  
+
   requestAnimationFrame(tick);
 }
 
 // Mouse events and interactivity
 function setupInteractivity() {
   if (!canvas) return;
-  
+
   function getMousePos(e) {
     const rect = canvas.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-    
+
     return {
-      x: (clientX - rect.left) * scaleX,
-      y: (clientY - rect.top) * scaleY
+      x: clientX - rect.left,
+      y: clientY - rect.top
     };
   }
-  
+
   function getNodeAt(pos) {
     return nodes.find(node => {
       const dx = node.x - pos.x;
       const dy = node.y - pos.y;
-      return Math.sqrt(dx*dx + dy*dy) < nodeRadius + 8;
+      return Math.sqrt(dx * dx + dy * dy) < nodeRadius + 8;
     });
   }
 
@@ -770,12 +796,12 @@ function setupInteractivity() {
       canvas.style.cursor = node ? 'pointer' : 'default';
     }
   }
-  
+
   // Pointer Down (selection only, no dragging)
   function handleDown(e) {
     const pos = getMousePos(e);
     const node = getNodeAt(pos);
-    
+
     if (node) {
       selectedNode = node;
       updateSidebar();
@@ -788,7 +814,7 @@ function setupInteractivity() {
   // Event Listeners
   canvas.addEventListener('mousemove', handleMove);
   canvas.addEventListener('mousedown', handleDown);
-  
+
   // Touch support for mobile
   canvas.addEventListener('touchmove', (e) => {
     e.preventDefault();
@@ -808,7 +834,7 @@ function setupInteractivity() {
     ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     positionNodes();
   }
-  
+
   if (window.ResizeObserver) {
     const observer = new ResizeObserver(() => {
       handleResize();
@@ -817,7 +843,7 @@ function setupInteractivity() {
   } else {
     window.addEventListener('resize', handleResize);
   }
-  
+
   // Run initial resize to set dimensions
   handleResize();
 }
