@@ -3,34 +3,46 @@
 // =====================================================
 
 // 1. DATA DEFINITIONS
-
 const PARTIES = {
-  israel: {
-    id: 'israel',
-    name: '«Єдиний Ізраїль»',
-    color: '#0ea5e9',
-    logo: 'yediniy_israel.svg',
-    leader: 'T1dy_',
-    seats: 0,
-    desc: 'Ми - партія миру і порядку, поєднавши дві безперечно великі пустельні держави - ВЛНР і Республіка Сходу. Ми зробили партію, яка відстоюватиме права всіх євреїв сервера, партію яка служитиме виключно на благо сервера та його народу, партію яка покаже що таке справжній прогрес!'
-  },
-  sluga_kartona: {
-    id: 'sluga_kartona',
-    name: '«Слуга Картона»',
-    color: '#d97706',
-    logo: null,
-    leader: 'Kra1zz3r',
-    seats: 0,
-    desc: `Партія «Слуга Картона» — це політична сила, яка виступає за мир, єдність та процвітання всіх мешканців сервера. Ми переконані, що кожен гравець, незалежно від досвіду чи достатку, заслуговує на безпечне життя, власний дім і можливість розвиватися.<br><br>Ми не будемо годувати виборців порожніми обіцянками. Наша мета — реальні справи та конкретні покращення, які відчує кожен.<br><br><strong>Наші принципи:</strong><br>• Мир та співпраця між усіма гравцями.<br>• Допомога кожному у створенні власного житла.<br>• Турбота про добробут та продовольство кожного мешканця сервера.<br>• Підтримка розвитку міст, ферм, виробництва та торгівлі.<br>• Справедливість, взаємоповага та чесність.<br><br><strong>Наші обіцянки (Ідеологія — Демократія):</strong><br>• Кожен новий гравець отримає шанс швидко розпочати своє життя на сервері.<br>• Ми підтримуватимемо розвиток інфраструктури, щоб життя було комфортнішим для всіх.<br>• Будемо створювати громадські ферми, склади та корисні проєкти, якими зможуть користуватися всі.<br>• Захищатимемо мир і не допустимо безглуздих конфліктів, які шкодять розвитку сервера.<br>• Працюватимемо над тим, щоб кожен міг ситно поїсти, мати дах над головою та комфортні умови для гри.<br><br><strong>Найважливіший закон партії:</strong><br><em>У кожному домі має бути сухий картон!</em><br>Бо сухий картон — це символ достатку, стабільності та справжнього добробуту. Де є сухий картон — там є порядок, процвітання і світле майбутнє.`
+  myr: {
+    id: 'myr',
+    name: '«Мир та Розвиток»',
+    short: 'МИР',
+    color: '#38bdf8',
+    logo: 'myr.jpg',
+    leader: 'Yurk0',
+    seats: 7,
+    desc: `<strong>Ідеологія:</strong><br><em>Стабільність та комфортне життя</em>. Ми за те, щоб кожен гравець міг спокійно будувати свої заводи, запускати літальні апарати та розвиватися, не чекаючи, що завтра його базу рознесуть. МИР — це просто можливість нормально <em>жити в задоволення</em>.<br><br><strong>Мета:</strong><br>Захистити результати праці кожного гравця та забезпечити спокій на сервері. Ми хочемо, щоб конфлікти та війни відійшли на другий план, а держави зосередилися на <em>спільному розвитку</em>, торгівлі та вільному переміщенні світом.<br><br><strong>Цілі:</strong><br>• Глобальна інфраструктура: Проєктування та будівництво <em>міждержавних залізничних магістралей та повітряних хабів</em>.<br>• Забезпечення безпеки гравців серверу: Допомога з створенням міжнародної поліції та кураторство її роботи.`
   },
   bulava: {
     id: 'bulava',
     name: '«Булава»',
-    color: '#475569',
+    short: 'Булава',
+    color: '#ef4444',
     logo: 'bulava.png',
     leader: 'rodyaa',
-    seats: 0,
+    seats: 4,
     desc: `Партія «Булава» — це консервативне об'єднання однодумців, яке прагне до стабільності, порядку та масштабного розвитку нашого сервера.<br>Ми виступаємо за налагодження міцних зв'язків між державами, мирне вирішення конфліктів та взаємовигідну торгівлю на засадах вільного ринку без зайвих обмежень.<br><br><strong>Наші головні пріоритети:</strong><br>• <strong>Облаштування спавну:</strong> Спавн - це обличчя сервера. Ми допоможемо перетворити його на красивий, зручний та безпечний центр.<br>• <strong>Паспортний стіл:</strong> Одна з найпріоритетніших ініціатив. Створимо орган, де абсолютно кожен гравець зможе легально отримати паспорт бажаної країни.<br>• <strong>Правопорядок:</strong> Тісна співпраця з адміністрацією та допомога у створенні органів правопорядку для захисту громадян.<br>• <strong>Культурне життя:</strong> Організація івентів та свят для яскравого життя на сервері.<br><br><strong>Обирайте «Булаву» — голосуйте за мудрість, за волю та державу!</strong>`
+  },
+  sluga_kartona: {
+    id: 'sluga_kartona',
+    name: '«Слуга Картона»',
+    short: 'Слуга Картона',
+    color: '#fbbf24',
+    logo: null,
+    leader: 'Kra1zz3r',
+    seats: 3,
+    desc: `Партія «Слуга Картона» — це політична сила, яка виступає за мир, єдність та процвітання всіх мешканців сервера. Ми за те, щоб кожен гравець мав безпечне життя, власний дім і можливість розвиватися.<br><br><strong>Наші пріоритети (Ідеологія — Демократія):</strong><br>• <strong>Мир та допомога:</strong> Захист миру, взаємоповага та всебічна допомога новим гравцям на початку гри.<br>• <strong>Добробут та житло:</strong> Сприяння будівництву власного житла та забезпечення продовольством.<br>• <strong>Спільний розвиток:</strong> Створення громадських ферм, складів та корисних інфраструктурних проектів.<br>• <strong>Найважливіший закон:</strong> <em>У кожному домі має бути сухий картон!</em> Бо сухий картон — це символ стабільності, порядку та процвітання.`
+  },
+  israel: {
+    id: 'israel',
+    name: '«Єдиний Ізраїль»',
+    short: 'Єдиний Ізраїль',
+    color: '#1e40af',
+    logo: 'yediniy_israel.svg',
+    leader: 'T1dy_',
+    seats: 2,
+    desc: `<strong>Ідеологія:</strong><br><em>Мир, порядок та прогрес</em>. Об'єднавши дві великі пустельні держави — ВЛНР та Республіку Сходу, ми створили політичну силу для стабільного розвитку та безпеки.<br><br><strong>Наші пріоритети:</strong><br>• <strong>Захист прав громадян:</strong> Відстоювання інтересів та прав усіх євреїв сервера.<br>• <strong>Служіння громаді:</strong> Робота виключно на благо сервера та його народу.<br>• <strong>Справжній прогрес:</strong> Впровадження реформ та кураторство інфраструктурних проектів.`
   }
 };
 
@@ -38,20 +50,132 @@ const STATES = {
   fkn: { name: 'Федерація Китайських Народів (ФКН)', flag: 'fkn.svg' },
   frm: { name: 'Федеративна Республіка Меркантія (ФРМ)', flag: 'frm.svg' },
   verchovensk: { name: 'Верховенськ', flag: 'verchovensk.svg' },
-  rnr: { name: 'Ронкова Народна Республіка (РНР)', flag: null },
-  vlnr: { name: 'ВЛНР', flag: 'vlnr.jpg' },
-  r_shodu: { name: 'Республіка Сходу', flag: 'r_shodu.jpg' },
-  sunshine: { name: 'Саншайн', flag: 'sunshine.svg' },
   kar: { name: 'Камчатська Автономна Республіка (КАР)', flag: 'kar_new.jpg' },
   maxico: { name: 'Махісо', flag: 'maxico.jpg' },
-  tech_empire: { name: 'Технократична Імперія', flag: 'tech_empire.jpg' }
+  tech_empire: { name: 'Технократична Імперія', flag: 'tech_empire.jpg' },
+  vinland: { name: 'Вінланд', flag: 'vinland.jpg' },
+  yad_getman: { name: 'Ядерний Гетьманат', flag: 'yad_getman.jpg' }
 };
 
-const DEPUTIES = [];
+const DEPUTIES = [
+  // Left Row
+  { seatId: 'left-1', nickname: 'Yurk0', role: 'Депутат I Склику', state: STATES.fkn, party: PARTIES.myr, status: 'Present' },
+  { seatId: 'left-2', nickname: 'Kra1zz3r', role: 'Депутат I Склику', state: STATES.maxico, party: PARTIES.sluga_kartona, status: 'Present' },
+  { seatId: 'left-3', nickname: 'InvisibleFear', skinNickname: 'Nikodemmmm_', role: 'Депутат I Склику', state: STATES.verchovensk, party: PARTIES.myr, status: 'Present' },
+  { seatId: 'left-4', nickname: 'LeWal', role: 'Депутат I Склику', state: STATES.fkn, party: PARTIES.myr, status: 'Present' },
+  { seatId: 'left-5', nickname: 'aklelic', role: 'Депутат I Склику', state: STATES.verchovensk, party: PARTIES.myr, status: 'Present' },
+  { seatId: 'left-6', nickname: 'Houssston', role: 'Депутат I Склику', state: STATES.fkn, party: PARTIES.myr, status: 'Present' },
+  { seatId: 'left-7', nickname: 'Xalox_', skinNickname: 'SandwichMC_', role: 'Депутат I Склику', state: STATES.verchovensk, party: PARTIES.myr, status: 'Present' },
+  { seatId: 'left-8', nickname: 'led2024', role: 'Депутат I Склику', state: STATES.verchovensk, party: PARTIES.myr, status: 'Absent' },
+  
+  // Right Row
+  { seatId: 'right-1', nickname: 'TuftedSquire159', role: 'Депутат I Склику', state: STATES.frm, party: PARTIES.bulava, status: 'Present' },
+  { seatId: 'right-2', nickname: 'Arsen_Bush', skinNickname: 'EPOKLARIFON', role: 'Депутат I Склику', state: STATES.tech_empire, party: PARTIES.bulava, status: 'Present' },
+  { seatId: 'right-3', nickname: 'epsteinenko', role: 'Депутат I Склику', state: STATES.tech_empire, party: PARTIES.bulava, status: 'Present' },
+  { seatId: 'right-4', nickname: 'vert0s', role: 'Депутат I Склику', state: STATES.frm, party: PARTIES.bulava, status: 'Present' },
+  { seatId: 'right-5', nickname: 'T1dy_', role: 'Депутат I Склику', state: { name: '—', flag: null }, party: PARTIES.israel, status: 'Present' },
+  { seatId: 'right-6', nickname: 'spacediego', role: 'Депутат I Склику', state: STATES.maxico, party: PARTIES.sluga_kartona, status: 'Present' },
+  { seatId: 'right-7', nickname: 'vskiy', role: 'Депутат I Склику', state: { name: '—', flag: null }, party: PARTIES.israel, status: 'Present' },
+  { seatId: 'right-8', nickname: '_Mourang_', role: 'Депутат I Склику', state: STATES.maxico, party: PARTIES.sluga_kartona, status: 'Present' },
+  { seatId: 'speaker', nickname: 'rodyaa', role: 'Голова Парламенту', state: { name: '—', flag: null }, party: PARTIES.bulava, status: 'Present' }
+];
 
-const LAWS = [];
+const LAWS = [
+  {
+    id: 'law-1',
+    title: 'Про установлення верховних чинів та розробку Конституції',
+    date: '18 Липня, 2026',
+    sponsor: 'rodyaa',
+    desc: 'Офіційне введення посад Гетьмана та Генерального писаря. Обов’язок розробки проєкту Конституції сервера та винесення його на референдум.'
+  },
+  {
+    id: 'law-2',
+    title: 'Про створення державних міністерств',
+    date: '18 Липня, 2026',
+    sponsor: 'rodyaa',
+    desc: 'Заснування чотирьох постійних відомств для розвитку сервера: МВС, Мінекономіки, Мінінфраструктури та МЗС.'
+  },
+  {
+    id: 'law-3',
+    title: 'Про статус та межі Спавну',
+    date: '18 Липня, 2026',
+    sponsor: 'rodyaa',
+    desc: 'Оголошення Спавну демілітаризованою зоною з дипломатичною недоторканністю, забороною воєн, арештів та неузгодженого будівництва.'
+  },
+  {
+    id: 'law-4',
+    title: 'Про державну валюту',
+    date: '18 Липня, 2026',
+    sponsor: 'rodyaa',
+    desc: 'Монети з моду Create Numismatics оголошено єдиною законною платіжною валютою сервера для податків, мита, штрафів та торгівлі.'
+  }
+];
 
-const PROTOCOLS = [];
+const PROTOCOLS = [
+  {
+    id: 'protocol-1',
+    title: 'Перше засідання Генеральної Ради',
+    date: '18 Липня, 2026',
+    content: `
+      <p style="margin-bottom: 0.75rem; font-weight: 600;">Перше засідання Генеральної Ради офіційно закрито.</p>
+      <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.85rem;">Рішення Генеральної Ради:</p>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div style="padding: 0.85rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-item); border-radius: var(--radius-sm);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <strong style="color: var(--text-main); font-size: 0.92rem;">БЛОК 1: Про установлення верховних чинів та розробку Конституції</strong>
+            <span style="font-size: 0.72rem; font-weight: 800; padding: 0.2rem 0.5rem; background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 4px;">ПРИЙНЯТО (6 ЗА, 0 ПРОТИ)</span>
+          </div>
+          <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem;">
+            <li>На сервері офіційно вводяться дві посади — Гетьман та Генеральний писар.</li>
+            <li>Конкретних людей на ці посади Генеральна Рада обере окремим голосуванням трохи пізніше.</li>
+            <li>Після обрання Гетьман і Писар будуть зобов'язані написати проєкт Конституції сервера та винести його на загальний референдум.</li>
+          </ul>
+        </div>
+
+        <div style="padding: 0.85rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-item); border-radius: var(--radius-sm);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <strong style="color: var(--text-main); font-size: 0.92rem;">БЛОК 2: Про створення державних міністерств</strong>
+            <span style="font-size: 0.72rem; font-weight: 800; padding: 0.2rem 0.5rem; background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 4px;">ПРИЙНЯТО (9 ЗА, 1 ПРОТИ)</span>
+          </div>
+          <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem;">
+            <li>Для розвитку сервера засновують чотири постійні відомства — МВС, Мінекономіки, Мінінфраструктури та МЗС.</li>
+            <li>Хто саме стане міністрами, Генеральна Рада та Центральний Уряд вирішать окремим рішенням згодом.</li>
+          </ul>
+        </div>
+
+        <div style="padding: 0.85rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-item); border-radius: var(--radius-sm);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <strong style="color: var(--text-main); font-size: 0.92rem;">БЛОК 3: Про статус та межі Спавну</strong>
+            <span style="font-size: 0.72rem; font-weight: 800; padding: 0.2rem 0.5rem; background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 4px;">ПРИЙНЯТО (7 ЗА, 2 ПРОТИ)</span>
+          </div>
+          <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem;">
+            <li>Спавн захищений від будь-яких воєн і міждержавних конфліктів.</li>
+            <li>На спавні діє дипломатична недоторканність. Заборонені арешти, політичні розшуки, переслідування чи цькування за власні погляди гравця.</li>
+            <li>Територія оголошена демілітаризованою зоною. Пересуватися військовим загонам або ПВК тут заборонено (виняток — сили правопорядку під контролем МВС). Контроль за перебуванням техніки, яка має на собі озброєння, переходить МВС.</li>
+            <li>Спавн стає офіційним місцем для проведення мирних переговорів і самітів між фракціями під особисту гарантію безпеки від Центрального Уряду.</li>
+            <li>Заборонено будувати, копати або міняти ландшафт без дозволу.</li>
+            <li>Усіма дозволами на будівництво, благоустроєм та порядком на спавні тепер займаються спільно Міністерство Інфраструктури та Голова Спавну.</li>
+          </ul>
+        </div>
+
+        <div style="padding: 0.85rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-item); border-radius: var(--radius-sm);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <strong style="color: var(--text-main); font-size: 0.92rem;">БЛОК 4: Про державну валюту</strong>
+            <span style="font-size: 0.72rem; font-weight: 800; padding: 0.2rem 0.5rem; background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 4px;">ПРИЙНЯТО (8 ЗА, 3 ПРОТИ)</span>
+          </div>
+          <ul style="margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.3rem;">
+            <li>Монети з моду Create Numismatics офіційно стають єдиною законною валютою на всьому сервері.</li>
+            <li>Тільки в цій валюті тепер приймаються всі державні податки, мита, штрафи, а також ведуться торги в лавках на території спавну.</li>
+          </ul>
+        </div>
+      </div>
+    `
+  }
+];
+
+// 3D Skin Viewer globals (skinview3d)
+let skinViewer = null;
 
 // 2. DOM MANIPULATION & INTERACTIVITY
 
@@ -138,15 +262,20 @@ function createSeatDOM(seatId, deputy) {
 // Common setup for occupied seat buttons
 function setupSeatElement(btn, deputy) {
   btn.style.setProperty('--party-color', deputy.party.color);
-  btn.setAttribute('aria-label', `Депутат ${deputy.nickname} (${deputy.party.name})`);
+  btn.setAttribute('aria-label', `Депутат ${deputy.nickname} (${deputy.party.short || deputy.party.name})`);
   
   // Custom class for party styling if needed
   btn.classList.add(`party-${deputy.party.id}`);
   
-  // Minecraft avatar heads are loaded direct from mc-heads.net API using nickname
+  // Minecraft avatar heads are loaded direct from mc-heads.net API using nickname/skinNickname
   // Fallback styling is a text initials indicator
-  const avatarUrl = `https://mc-heads.net/avatar/${deputy.nickname}/64`;
+  const skinNick = deputy.skinNickname || deputy.nickname;
+  const avatarUrl = `https://mc-heads.net/avatar/${skinNick}/64`;
   
+  const flagHtml = deputy.state.flag 
+    ? `<span style="width: 12px; height: 12px; border-radius: 50%; overflow: hidden; clip-path: circle(50%); -webkit-clip-path: circle(50%); display: inline-block; background: url('${deputy.state.flag}') center/cover no-repeat; border: 1px solid rgba(255,255,255,0.2); flex-shrink: 0;"></span>` 
+    : '';
+
   btn.innerHTML = `
     <div class="seat-avatar-container" style="width: 100%; height: 100%; border-radius: 6px; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative;">
       <img class="seat-skin-head" src="${avatarUrl}" alt="${deputy.nickname}" style="width: 72%; height: 72%; object-fit: contain; image-rendering: pixelated; transition: transform 0.2s ease;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -154,7 +283,13 @@ function setupSeatElement(btn, deputy) {
         ${deputy.nickname.substring(0, 2)}
       </div>
     </div>
-    <span class="seat-tooltip">${deputy.nickname} <span style="font-size: 0.7rem; opacity: 0.7; display: block;">${deputy.party.name}</span></span>
+    <span class="seat-tooltip" style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem; white-space: nowrap;">
+      <span style="display: flex; align-items: center; gap: 0.35rem; justify-content: center; font-weight: 700; white-space: nowrap; ${deputy.nickname.length > 12 ? 'font-size: 10px; letter-spacing: 0;' : ''}">
+        ${flagHtml}
+        ${deputy.nickname}
+      </span>
+      <span class="tooltip-party-name" style="font-size: 0.65rem; opacity: 0.75; font-weight: 500; white-space: nowrap;">${deputy.party.short || deputy.party.name}</span>
+    </span>
   `;
 
   // Selection click handler
@@ -175,37 +310,45 @@ function selectSeat(seatBtn, deputy) {
   if (emptyPanel) emptyPanel.style.display = 'none';
   if (contentPanel) contentPanel.style.display = 'flex';
 
-  // Fill details dynamically
-  document.getElementById('deputy-name').textContent = deputy.nickname;
-  document.getElementById('deputy-role').textContent = deputy.role;
+  // Fill details dynamically with responsive font size for long nicknames
+  const nameEl = document.getElementById('deputy-name');
+  if (nameEl) {
+    nameEl.textContent = deputy.nickname;
+    if (deputy.nickname.length > 13) {
+      nameEl.style.fontSize = '1.05rem';
+    } else {
+      nameEl.style.fontSize = '1.45rem';
+    }
+  }
+  
+  let roleText = deputy.role;
+  if (deputy.nickname === deputy.party.leader) {
+    roleText = `Голова партії ${deputy.party.name}, ${deputy.role}`;
+  }
+  document.getElementById('deputy-role').textContent = roleText;
   document.getElementById('deputy-state-name').textContent = deputy.state.name;
   document.getElementById('deputy-party-name').textContent = deputy.party.name;
 
-  // Avatar skin head in details card
-  const avatarImg = document.getElementById('deputy-avatar');
-  if (avatarImg) {
-    avatarImg.src = `https://mc-heads.net/avatar/${deputy.nickname}/128`;
-    avatarImg.alt = deputy.nickname;
-  }
+  // Avatar skin body in details card (3D Skin Viewer)
+  const skinNick = deputy.skinNickname || deputy.nickname;
+  const skinUrl = `https://mc-heads.net/skin/${skinNick}`;
+  initSkinViewer(skinUrl);
 
   // Status Badge
   const statusBadge = document.getElementById('deputy-status-badge');
   if (statusBadge) {
     if (deputy.status === 'Present') {
       statusBadge.textContent = 'Присутній';
-      statusBadge.className = 'badge badge-green';
       statusBadge.style.backgroundColor = 'rgba(34, 197, 94, 0.1)';
       statusBadge.style.borderColor = 'rgba(34, 197, 94, 0.3)';
       statusBadge.style.color = '#22c55e';
     } else if (deputy.status === 'Absent') {
       statusBadge.textContent = 'Відсутній';
-      statusBadge.className = 'badge badge-red';
       statusBadge.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
       statusBadge.style.borderColor = 'rgba(239, 68, 68, 0.3)';
       statusBadge.style.color = '#ef4444';
     } else {
       statusBadge.textContent = 'У відпустці';
-      statusBadge.className = 'badge badge-gold';
       statusBadge.style.backgroundColor = 'rgba(234, 179, 8, 0.1)';
       statusBadge.style.borderColor = 'rgba(234, 179, 8, 0.3)';
       statusBadge.style.color = '#eab308';
@@ -217,18 +360,53 @@ function selectSeat(seatBtn, deputy) {
   if (flagWrapper) {
     flagWrapper.innerHTML = '';
     if (deputy.state.flag) {
-      flagWrapper.style.background = `url('${deputy.state.flag}') center/cover no-repeat`;
+      flagWrapper.style.background = 'none';
+      const img = document.createElement('img');
+      img.src = deputy.state.flag;
+      img.alt = deputy.state.name;
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.style.objectFit = 'cover';
+      img.style.borderRadius = '50%';
+      img.style.clipPath = 'circle(50%)';
+      img.style.webkitClipPath = 'circle(50%)';
+      flagWrapper.appendChild(img);
     } else {
       flagWrapper.style.background = `linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.15))`;
       flagWrapper.innerHTML = `<span style="font-size: 0.6rem; font-weight:800; color:var(--text-muted);">N/A</span>`;
     }
   }
 
-  // Party dot color
-  const partyDot = document.getElementById('deputy-party-color-dot');
-  if (partyDot) {
-    partyDot.style.backgroundColor = deputy.party.color;
-    partyDot.style.boxShadow = `0 0 8px ${deputy.party.color}`;
+  // Party logo or color dot
+  const partyLogoWrapper = document.getElementById('deputy-party-logo-wrapper');
+  if (partyLogoWrapper) {
+    partyLogoWrapper.innerHTML = '';
+    partyLogoWrapper.style.boxShadow = 'none';
+    if (deputy.party.logo) {
+      partyLogoWrapper.style.backgroundColor = 'transparent';
+      partyLogoWrapper.style.border = '1px solid rgba(255,255,255,0.15)';
+      const img = document.createElement('img');
+      img.src = deputy.party.logo;
+      img.alt = deputy.party.name;
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.style.objectFit = 'cover';
+      img.style.borderRadius = '50%';
+      img.style.clipPath = 'circle(50%)';
+      img.style.webkitClipPath = 'circle(50%)';
+      partyLogoWrapper.appendChild(img);
+    } else {
+      // Fallback to a colored dot
+      partyLogoWrapper.style.backgroundColor = 'transparent';
+      partyLogoWrapper.style.border = 'none';
+      const dot = document.createElement('span');
+      dot.style.width = '14px';
+      dot.style.height = '14px';
+      dot.style.borderRadius = '50%';
+      dot.style.backgroundColor = deputy.party.color;
+      dot.style.boxShadow = `0 0 8px ${deputy.party.color}`;
+      partyLogoWrapper.appendChild(dot);
+    }
   }
 
   // Smooth scroll to profile on mobile devices (width <= 768px)
@@ -262,7 +440,7 @@ function showVacantProfile(seatId) {
   if (contentPanel) contentPanel.style.display = 'flex';
 
   if (seatId === 'speaker') {
-    document.getElementById('deputy-name').textContent = 'Посада Спікера вакантна';
+    document.getElementById('deputy-name').textContent = 'Посада Спікера';
     document.getElementById('deputy-role').textContent = 'Голова Парламенту';
     document.getElementById('deputy-state-name').textContent = '—';
     document.getElementById('deputy-party-name').textContent = '—';
@@ -273,10 +451,19 @@ function showVacantProfile(seatId) {
     document.getElementById('deputy-party-name').textContent = '—';
   }
 
+  const canvas = document.getElementById('deputy-skin-canvas');
   const avatarImg = document.getElementById('deputy-avatar');
-  if (avatarImg) {
+  if (canvas && avatarImg) {
+    canvas.style.display = 'none';
+    avatarImg.style.display = 'block';
     avatarImg.src = 'logo_s.png'; 
     avatarImg.alt = 'Vacant';
+    
+    // Dispose of skinViewer to free WebGL memory
+    if (skinViewer) {
+      skinViewer.dispose();
+      skinViewer = null;
+    }
   }
 
   const statusBadge = document.getElementById('deputy-status-badge');
@@ -294,10 +481,18 @@ function showVacantProfile(seatId) {
     flagWrapper.style.background = `rgba(0,0,0,0.15)`;
   }
 
-  const partyDot = document.getElementById('deputy-party-color-dot');
-  if (partyDot) {
-    partyDot.style.backgroundColor = 'rgba(255,255,255,0.1)';
-    partyDot.style.boxShadow = 'none';
+  const partyLogoWrapper = document.getElementById('deputy-party-logo-wrapper');
+  if (partyLogoWrapper) {
+    partyLogoWrapper.innerHTML = '';
+    partyLogoWrapper.style.backgroundColor = 'transparent';
+    partyLogoWrapper.style.border = 'none';
+    const dot = document.createElement('span');
+    dot.style.width = '14px';
+    dot.style.height = '14px';
+    dot.style.borderRadius = '50%';
+    dot.style.backgroundColor = 'rgba(255,255,255,0.1)';
+    dot.style.boxShadow = 'none';
+    partyLogoWrapper.appendChild(dot);
   }
 }
 
@@ -334,7 +529,7 @@ function initPartiesList() {
       <div class="party-card-header" style="display:flex; align-items:center; justify-content:space-between; margin-bottom: 0.75rem; gap: 0.5rem; width: 100%;">
         <div style="display:flex; align-items:center; gap:0.6rem;">
           ${logoHtml}
-          <span class="party-badge badge" style="background: rgba(${hexToRgb(party.color)}, 0.1); border: 1px solid rgba(${hexToRgb(party.color)}, 0.3); color: ${party.color}; font-size: 0.7rem; font-weight:800;">
+          <span class="party-badge badge" style="background: rgba(${hexToRgb(party.color)}, 0.1); border: 1px solid rgba(${hexToRgb(party.color)}, 0.3); color: ${party.color}; font-size: 0.75rem; font-weight:800; padding: 0.25rem 0.6rem;">
             ${party.name}
           </span>
         </div>
@@ -399,12 +594,15 @@ function initLawsList() {
     item.style.cursor = 'pointer';
     item.style.transition = 'all 0.25s var(--ease-out-expo)';
 
+    const numHtml = law.num ? `
+          <span style="font-family: 'Mojangles', 'Minecraft', monospace; font-size: 0.75rem; padding: 0.15rem 0.5rem; background: rgba(251, 191, 36, 0.1); border: 1px solid rgba(251, 191, 36, 0.25); color: #fbbf24; border-radius: 4px;">
+            ${law.num}
+          </span>` : '';
+
     item.innerHTML = `
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap: 0.5rem;">
         <div style="display:flex; align-items:center; gap: 0.5rem;">
-          <span style="font-family: 'Minecraft', monospace; font-size: 0.75rem; padding: 0.15rem 0.5rem; background: rgba(251, 191, 36, 0.1); border: 1px solid rgba(251, 191, 36, 0.25); color: #fbbf24; border-radius: 4px;">
-            ${law.num}
-          </span>
+          ${numHtml}
           <h4 style="margin: 0; font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--text-main);">${law.title}</h4>
         </div>
         <span style="font-size: 0.72rem; color: var(--text-muted);">${law.date}</span>
@@ -412,7 +610,7 @@ function initLawsList() {
       <p style="font-size: 0.85rem; color: var(--text-body); line-height: 1.5; margin: 0.25rem 0 0.5rem;">${law.desc}</p>
       <div style="font-size: 0.72rem; color: var(--text-muted); display:flex; align-items:center; gap: 0.35rem;">
         <span>Ініціатор:</span>
-        <strong style="color: var(--text-main);">${law.sponsor}</strong>
+        <strong style="color: var(--text-main); font-family: 'Mojangles', 'Minecraft', monospace;">${law.sponsor}</strong>
       </div>
     `;
 
@@ -477,30 +675,27 @@ function initProtocolsAccordion() {
           <strong style="font-family: var(--font-display); font-size: 0.98rem; font-weight: 700; color: var(--text-main);">${proto.title}</strong>
           <span style="font-size: 0.72rem; color: var(--text-muted);">${proto.date}</span>
         </span>
-        <svg class="icon accordion-chevron" viewBox="0 0 24 24" style="width:16px; height:16px; transition: transform 0.3s var(--ease-out-expo);"><polyline points="6 9 12 15 18 9"/></svg>
+        <svg class="icon accordion-chevron" viewBox="0 0 24 24" style="width:16px; height:16px;"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-      <div class="accordion-content" hidden style="padding: 0 1.15rem 1.15rem; font-size: 0.88rem; line-height: 1.6; color: var(--text-body); border-top: 1px dashed var(--border-item); padding-top: 1rem; background: rgba(0,0,0,0.05);">
+      <div class="accordion-content" style="font-size: 0.88rem; line-height: 1.6; color: var(--text-body); border-top: 1px dashed var(--border-item); background: rgba(0,0,0,0.05);">
         ${proto.content}
       </div>
     `;
 
     const trigger = accordionItem.querySelector('.accordion-trigger');
-    const content = accordionItem.querySelector('.accordion-content');
 
     trigger.addEventListener('click', () => {
       const isOpen = accordionItem.classList.contains('open');
 
-      // Close all open ones first
+      // Close all open ones smooth
       document.querySelectorAll('.protocols-section .accordion-item.open').forEach(openItem => {
         openItem.classList.remove('open');
-        openItem.querySelector('.accordion-content').hidden = true;
         openItem.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'false');
       });
 
       // Toggle clicked
       if (!isOpen) {
         accordionItem.classList.add('open');
-        content.hidden = false;
         trigger.setAttribute('aria-expanded', 'true');
       }
     });
@@ -524,4 +719,36 @@ function showToast(toastEl) {
   clearTimeout(toastTimer);
   toastEl.classList.add('show');
   toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2800);
+}
+
+// Initialize or update the 3D skin viewer
+function initSkinViewer(skinUrl) {
+  const canvas = document.getElementById('deputy-skin-canvas');
+  const imgFallback = document.getElementById('deputy-avatar');
+  if (!canvas || !imgFallback) return;
+
+  // Toggle display visibility
+  canvas.style.display = 'block';
+  imgFallback.style.display = 'none';
+
+  // Cleanly dispose of old WebGL instance to reload texture correctly
+  if (skinViewer) {
+    skinViewer.dispose();
+    skinViewer = null;
+  }
+
+  // Create a fresh instance to avoid caching/rendering issues
+  skinViewer = new skinview3d.SkinViewer({
+    canvas: canvas,
+    width: 100,
+    height: 190,
+    skin: skinUrl
+  });
+
+  // Disable zoom (wheel/touch zoom)
+  skinViewer.controls.enableZoom = false;
+
+  // Enable slow auto-rotation (using camera orbit controls for smooth resuming after mouse drag)
+  skinViewer.controls.autoRotate = true;
+  skinViewer.controls.autoRotateSpeed = 2.0; // Smooth slow rotation speed
 }
