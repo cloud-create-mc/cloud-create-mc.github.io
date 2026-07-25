@@ -11,7 +11,7 @@
   <title>Cloud Create — Парламент</title>
   <meta name="description" content="Офіційний орган законодавчої влади Cloud Create. Склад парламенту, політичні партії, чинні закони та протоколи засідань.">
   <link rel="icon" type="image/png" href="logo_s.png">
-  <link rel="stylesheet" href="style.css?v=1.3.0">
+  <link rel="stylesheet" href="style.css?v=1.3.2">
 </head>
 <body>
 
@@ -61,16 +61,50 @@
 
       <!-- Page Hero -->
       <div class="page-hero" style="margin-bottom: 2rem;">
-        <div class="rp-hero-accent">
-          <svg class="icon" viewBox="0 0 24 24" style="width:13px;height:13px;stroke-width:2;fill:none;stroke:currentColor;">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-          Законодавчий Орган
-        </div>
         <h1 class="section-title" style="font-size:2.8rem;">Парламент</h1>
         <p class="section-subtitle" style="max-width:580px; margin:0.75rem auto 0; line-height:1.65;">
           Офіційний орган законодавчої влади Cloud Create. Склад з 16 депутатів, що представляють держави та політичні партії.
         </p>
+      </div>
+
+      <!-- Frozen Party System Notice Banner -->
+      <div class="parliament-notice-banner" style="
+        max-width: 850px;
+        margin: 0 auto 2.5rem;
+        padding: 1.1rem 1.5rem;
+        background: rgba(251, 191, 36, 0.08);
+        border: 1.5px solid rgba(251, 191, 36, 0.35);
+        border-radius: var(--radius-lg);
+        display: flex;
+        align-items: center;
+        gap: 1.1rem;
+        box-shadow: 0 4px 20px rgba(251, 191, 36, 0.08);
+      ">
+        <div style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          background: rgba(251, 191, 36, 0.18);
+          color: #fbbf24;
+          flex-shrink: 0;
+        ">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <div style="flex: 1;">
+          <div style="font-weight: 800; font-size: 1.05rem; color: var(--text-main); margin-bottom: 0.25rem; font-family: var(--font-display);">
+            Важливе повідомлення
+          </div>
+          <div style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.5;">
+            Наразі партійну систему заморожено. На сервері діють <strong>всесерверні засідання</strong>.
+          </div>
+        </div>
       </div>
 
       <!-- MAIN PARLIAMENT GRID -->
@@ -89,18 +123,19 @@
           </div>
 
           <!-- Seating Chart Render Container -->
-          <div class="seating-chart-container" style="position: relative; width: 100%; border: 1px solid var(--border-item); border-radius: var(--radius-lg); background: rgba(0, 0, 0, 0.15); padding: 3rem 2rem 2rem; overflow: hidden; display: flex; flex-direction: column; gap: 2rem; align-items: center;">
+          <div class="seating-chart-container" style="position: relative; width: 100%; border: 1px solid var(--border-item); border-radius: var(--radius-lg); background: rgba(0, 0, 0, 0.15); padding: 1.6rem 2rem 2rem; overflow: visible; display: flex; flex-direction: column; gap: 2rem; align-items: center;">
             
             <!-- Speaker Desk (Top of the hall) -->
             <div class="speaker-desk-area" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; width: 100%;">
-              <div class="speaker-podium-label" style="font-family: var(--font-display); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);">Трибуна Спікера</div>
+              <div class="speaker-podium-label" style="font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);">Трибуна Спікера</div>
               <div class="speaker-desk-row" style="display: flex; justify-content: center; width: 100%;">
                 <button class="parliament-seat speaker-seat" id="seat-speaker" data-seat-id="speaker" style="width: 70px; height: 70px; border-radius: 12px; border: 2px dashed rgba(255, 255, 255, 0.2); background: rgba(255,255,255,0.03); cursor: pointer; transition: all 0.2s var(--ease-out-expo); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
                   <!-- Speaker avatar/content loaded dynamically -->
                 </button>
               </div>
-              <!-- Visual Speaker Desk Table -->
-              <div class="speaker-wooden-table" style="width: 140px; height: 16px; background: #6b4423; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); position: relative; margin-top: -0.25rem;"></div>
+              <div class="speaker-podium-dais" style="display: flex; flex-direction: column; align-items: center; position: relative; margin-top: 0.15rem; width: 100%;">
+                <div class="speaker-wooden-table" style="width: 140px; height: 16px; background: #6b4423; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); z-index: 3;"></div>
+              </div>
             </div>
 
             <!-- Hall Aisle & Side Rows -->
@@ -122,7 +157,6 @@
               </div>
             </div>
 
-
           </div>
         </section>
 
@@ -138,32 +172,36 @@
           </div>
 
           <!-- Profile Content Panel (Hidden initially) -->
-          <div id="deputy-profile-content" style="display: none; flex-direction: column; height: 100%;">
+          <div id="deputy-profile-content" style="display: none; flex-direction: column; gap: 1.25rem; height: 100%;">
             
-            <div class="profile-header" style="display: flex; align-items: center; gap: 1.25rem; border-bottom: 1px solid var(--border-item); padding-bottom: 1.25rem; margin-bottom: 1.25rem; position: relative;">
-              <!-- 3D Skin head / Avatar -->
-              <div class="deputy-skin-avatar-wrapper" style="position: relative; width: 72px; height: 72px; border-radius: 12px; overflow: hidden; background: rgba(0,0,0,0.2); border: 2px solid var(--border-item); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
-                <img id="deputy-avatar" src="" alt="Skin head" style="width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated;">
+            <div class="dossier-layout" style="display: flex; gap: 1.25rem; align-items: flex-start; border-bottom: 1px solid var(--border-item); padding-bottom: 1.25rem; position: relative;">
+              <!-- 3D Skin Body render -->
+              <div class="deputy-skin-avatar-wrapper" style="position: relative; width: 100px; height: 190px; border-radius: var(--radius-md); overflow: hidden; background: rgba(0,0,0,0.2); border: 2px solid var(--border-item); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+                <canvas id="deputy-skin-canvas" style="width: 100%; height: 100%; display: none; outline: none; cursor: grab;"></canvas>
+                <img id="deputy-avatar" src="logo_s.png" alt="Skin render" style="height: 90%; object-fit: contain; image-rendering: pixelated; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); display: block;">
               </div>
-              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.2rem;">
-                <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-                  <h3 id="deputy-name" style="margin: 0; font-size: 1.4rem; font-family: var(--font-display); font-weight: 800; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Нікнейм</h3>
-                  <span id="deputy-status-badge" class="badge" style="font-size: 0.65rem; padding: 0.15rem 0.5rem;">Активний</span>
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.4rem; min-height: 190px; justify-content: center;">
+                <div>
+                  <h3 id="deputy-name" style="margin: 0; font-size: 1.45rem; font-family: var(--font-display); font-weight: 800; color: var(--text-main); line-height: 1.2; white-space: nowrap; word-break: normal;">Нікнейм</h3>
+                  <span id="deputy-role" style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); display: block; margin-top: 0.15rem;">Депутат</span>
                 </div>
-                <span id="deputy-role" style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Депутат</span>
+                
+                <div style="margin-top: 0.5rem;">
+                  <span id="deputy-status-badge" style="display: inline-flex; align-items: center; padding: 0.25rem 0.6rem; font-size: 0.72rem; font-weight: 800; border-radius: var(--radius-sm); border: 1px solid var(--border-item); text-transform: uppercase; letter-spacing: 0.05em;">Присутній</span>
+                </div>
               </div>
             </div>
 
             <!-- Profile Meta Fields -->
-            <div class="profile-details-list" style="display: flex; flex-direction: column; gap: 1rem;">
+            <div class="profile-details-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
               
               <!-- State Representation -->
               <div class="profile-meta-row" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-item); border-radius: var(--radius-md);">
                 <div style="display: flex; flex-direction: column;">
-                  <span style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Держава</span>
-                  <strong id="deputy-state-name" style="font-size: 0.92rem; color: var(--text-main); margin-top: 0.15rem;">ФКН</strong>
+                  <span style="font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Держава</span>
+                  <strong id="deputy-state-name" style="font-size: 0.9rem; color: var(--text-main); margin-top: 0.15rem;">ФКН</strong>
                 </div>
-                <div id="deputy-state-flag-wrapper" style="width: 32px; height: 32px; border-radius: 50%; overflow: hidden; border: 1px solid var(--border-item); box-shadow: 0 2px 6px rgba(0,0,0,0.15); flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+                <div id="deputy-state-flag-wrapper" style="width: 30px; height: 30px; border-radius: 50%; overflow: hidden; border: 1px solid var(--border-item); box-shadow: 0 2px 6px rgba(0,0,0,0.15); flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
                   <!-- Flag img loaded dynamically -->
                 </div>
               </div>
@@ -171,13 +209,11 @@
               <!-- Political Party -->
               <div class="profile-meta-row" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-item); border-radius: var(--radius-md);">
                 <div style="display: flex; flex-direction: column;">
-                  <span style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Партія</span>
-                  <strong id="deputy-party-name" style="font-size: 0.92rem; color: var(--text-main); margin-top: 0.15rem;">Назва партії</strong>
+                  <span style="font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Партія</span>
+                  <strong id="deputy-party-name" style="font-size: 0.9rem; color: var(--text-main); margin-top: 0.15rem;">Назва партії</strong>
                 </div>
-                <span id="deputy-party-color-dot" style="width: 14px; height: 14px; border-radius: 50%; display: inline-block; border: 1px solid rgba(255,255,255,0.2);"></span>
+                <div id="deputy-party-logo-wrapper" style="width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.2);"></div>
               </div>
-
-
 
             </div>
           </div>
@@ -193,11 +229,11 @@
           </svg>
           Політичні партії парламенту
         </h3>
-        <p style="font-size: 0.92rem; color: var(--text-muted); margin: -1rem 0 2rem; max-width: 600px;">
-          Наведіть курсор на картку партії, щоб підсвітити її місця в залі засідань.
+        <p style="font-size: 0.92rem; color: var(--text-muted); margin: -1rem 0 2rem; max-width: 650px;">
+          Наразі партійну систему заморожено і діють всесерверні засідання. Наведіть курсор на картку партії, щоб підсвітити її місця в залі засідань.
         </p>
 
-        <div class="parties-list-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; align-items: start;">
+        <div class="parties-list-grid">
           <!-- Filled dynamically via JS -->
         </div>
       </section>
@@ -206,7 +242,7 @@
       <div class="laws-protocols-grid" style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2rem; margin-bottom: 5rem; align-items: start;">
         
         <!-- PASSED LAWS SECTION -->
-        <section class="card laws-section" style="padding: 2.25rem; position: relative; z-index: 5; height: 100%;">
+        <section class="card laws-section" style="padding: 2.25rem; position: relative; z-index: 5; align-self: start;">
           <h3 style="font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; color: var(--text-main); margin: 0 0 1.75rem; display: flex; align-items: center; gap: 0.6rem;">
             <svg class="icon" viewBox="0 0 24 24" style="width:20px; height:20px; stroke-width: 2px; color: #fbbf24; fill: none; stroke: currentColor;">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
@@ -220,7 +256,7 @@
         </section>
 
         <!-- SESSION PROTOCOLS SECTION -->
-        <section class="card protocols-section" style="padding: 2.25rem; position: relative; z-index: 5; height: 100%;">
+        <section class="card protocols-section" style="padding: 2.25rem; position: relative; z-index: 5; align-self: start;">
           <h3 style="font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; color: var(--text-main); margin: 0 0 1.75rem; display: flex; align-items: center; gap: 0.6rem;">
             <svg class="icon" viewBox="0 0 24 24" style="width:20px; height:20px; stroke-width: 2px; color: #fbbf24; fill: none; stroke: currentColor;">
               <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
@@ -235,6 +271,106 @@
         </section>
 
       </div><!-- /laws-protocols-grid -->
+
+      <!-- SECTION: ELECTION INFO -->
+      <section class="card election-results-section stagger" style="padding: 2.25rem; margin-bottom: 5rem; position: relative; z-index: 5;">
+        <h3 style="font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; color: var(--text-main); margin: 0 0 1.5rem; display: flex; align-items: center; gap: 0.6rem;">
+          <svg class="icon" viewBox="0 0 24 24" style="width:20px; height:20px; stroke-width: 2.2px; color: #fbbf24; fill: none; stroke: currentColor;">
+            <circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>
+          </svg>
+          Результати виборів до Генеральної Ради I Склику
+        </h3>
+        <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">
+          Вибори завершилися, голоси підраховані. Це були перші вибори на нашому сервері. Вітаємо всю спільноту з цією історичною подією!
+        </p>
+
+        <div class="election-results-grid" style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2rem; align-items: stretch;">
+          <!-- Left side: mandats distribution -->
+          <div style="display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem; background: rgba(255,255,255,0.01); border: 1px solid var(--border-item); border-radius: var(--radius-md); justify-content: center;">
+            <h4 style="margin: 0; color: var(--text-main); font-weight: 700; font-size: 1.05rem;">Процент голосів та розподіл мандатів:</h4>
+            
+            <!-- Stacked bar chart -->
+            <div class="mandates-progress-bar" style="display: flex; height: 18px; border-radius: 9px; overflow: hidden; margin: 0.25rem 0 1rem; border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);">
+              <div style="width: 43.75%; background: #38bdf8; height: 100%;" title="Мир та Розвиток: 7 мандатів (44%)"></div>
+              <div style="width: 25%; background: #ef4444; height: 100%;" title="«Булава»: 4 мандати (24%)"></div>
+              <div style="width: 18.75%; background: #fbbf24; height: 100%;" title="«Слуга Картона»: 3 мандати (20%)"></div>
+              <div style="width: 12.5%; background: #1e40af; height: 100%;" title="«Єдиний Ізраїль»: 2 мандати (12%)"></div>
+            </div>
+
+            <!-- Myr -->
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.03);">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="width: 10px; height: 10px; border-radius: 50%; background: #38bdf8; box-shadow: 0 0 6px #38bdf8;"></span>
+                <strong style="color: var(--text-main); font-weight: 600;">Мир та Розвиток (МИР)</strong>
+              </div>
+              <div style="color: var(--text-muted); font-size: 0.92rem;">
+                <span style="color: var(--text-main); font-weight: 700;">44%</span> • 7 мандатів
+              </div>
+            </div>
+
+            <!-- Bulava -->
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.03);">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444; box-shadow: 0 0 6px #ef4444;"></span>
+                <strong style="color: var(--text-main); font-weight: 600;">«Булава»</strong>
+              </div>
+              <div style="color: var(--text-muted); font-size: 0.92rem;">
+                <span style="color: var(--text-main); font-weight: 700;">24%</span> • 4 мандати
+              </div>
+            </div>
+
+            <!-- Sluga Kartona -->
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.03);">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="width: 10px; height: 10px; border-radius: 50%; background: #fbbf24; box-shadow: 0 0 6px #fbbf24;"></span>
+                <strong style="color: var(--text-main); font-weight: 600;">«Слуга Картона» (СК)</strong>
+              </div>
+              <div style="color: var(--text-muted); font-size: 0.92rem;">
+                <span style="color: var(--text-main); font-weight: 700;">20%</span> • 3 мандати
+              </div>
+            </div>
+
+            <!-- Israel -->
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="width: 10px; height: 10px; border-radius: 50%; background: #1e40af; box-shadow: 0 0 6px #1e40af;"></span>
+                <strong style="color: var(--text-main); font-weight: 600;">«Єдиний Ізраїль» (ЄІ)</strong>
+              </div>
+              <div style="color: var(--text-muted); font-size: 0.92rem;">
+                <span style="color: var(--text-main); font-weight: 700;">12%</span> • 2 мандати
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right side: statistics -->
+          <div style="display: flex; flex-direction: column; justify-content: center; gap: 1.5rem; padding: 1.5rem; background: rgba(255,255,255,0.01); border: 1px solid var(--border-item); border-radius: var(--radius-md);">
+            <h4 style="margin: 0; color: var(--text-main); font-weight: 700; font-size: 1.05rem;">Статистичні дані виборів:</h4>
+            
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(251, 191, 36, 0.1); border: 1px solid rgba(251, 191, 36, 0.2); display: flex; align-items: center; justify-content: center; color: #fbbf24; flex-shrink: 0;">
+                <svg class="icon" viewBox="0 0 24 24" style="width:24px; height:24px; fill:none; stroke:currentColor; stroke-width: 2.2px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div>
+                <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; display: block; letter-spacing: 0.03em;">Явка на вибори</span>
+                <strong style="font-size: 1.3rem; color: var(--text-main); font-weight: 800;">14.22%</strong>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.2); display: flex; align-items: center; justify-content: center; color: #22c55e; flex-shrink: 0;">
+                <svg class="icon" viewBox="0 0 24 24" style="width:24px; height:24px; fill:none; stroke:currentColor; stroke-width: 2.2px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div>
+                <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; display: block; letter-spacing: 0.03em;">Кількість дійсних голосів</span>
+                <strong style="font-size: 1.3rem; color: var(--text-main); font-weight: 800;">86.2%</strong>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
 
     </div><!-- /container -->
   </main>
@@ -268,6 +404,7 @@
   <div class="rules-toast" id="parliament-toast">Посилання скопійовано!</div>
 
   <script src="main.js?v=1.3.0"></script>
-  <script src="parliament.js?v=1.3.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/skinview3d/bundles/skinview3d.bundle.js"></script>
+  <script src="parliament.js?v=1.3.6"></script>
 </body>
 </html>
