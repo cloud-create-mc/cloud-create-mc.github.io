@@ -2,11 +2,6 @@
 <html lang="uk">
 
 <head>
-  <script>
-    if (localStorage.getItem('theme') === 'dark') {
-      document.documentElement.classList.add('dark-theme');
-    }
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cloud Create — Модпак</title>
@@ -27,8 +22,8 @@
     }
 
     .tag-core {
-      background: rgba(14, 165, 233, 0.12);
-      color: var(--sky-600);
+      background: rgba(251, 191, 36, 0.14);
+      color: var(--amber-400);
     }
 
     .tag-addon {
@@ -124,7 +119,7 @@
       align-items: center;
       gap: 0.75rem;
       padding: 0.75rem 0;
-      border-bottom: 1px solid rgba(14, 165, 233, 0.08);
+      border-bottom: 1px solid rgba(251, 191, 36, 0.15);
     }
 
     .mod-item:last-child {
@@ -148,23 +143,6 @@
         <span></span>
         <span></span>
         <span></span>
-      </button>
-
-      <button class="theme-toggle" id="theme-toggle" aria-label="Перемкнути тему">
-        <svg class="icon sun-icon" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="5" />
-          <line x1="12" y1="1" x2="12" y2="3" />
-          <line x1="12" y1="21" x2="12" y2="23" />
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-          <line x1="1" y1="12" x2="3" y2="12" />
-          <line x1="21" y1="12" x2="23" y2="12" />
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-        </svg>
-        <svg class="icon moon-icon" viewBox="0 0 24 24">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-        </svg>
       </button>
       <ul class="nav-links" id="nav-menu" role="list">
         <li><a href="home"><svg class="icon" viewBox="0 0 24 24">
@@ -207,19 +185,19 @@
           <div class="modpack-banner-message">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
               stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-              <polyline points="22 4 12 14.01 9 11.01" />
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
             </svg>
-            <span>Версія модпаку v1.7 доступна для завантаження!</span>
+            <span>Наразі версія модпаку v2 готується</span>
           </div>
         </div>
       </div>
 
       <!-- Page Hero -->
       <div class="page-hero">
-        <h1 class="section-title" style="font-size:2.5rem;">Завантажити модпак</h1>
+        <h1 class="section-title" style="font-size:2.5rem;">Модпак 2 Сезону</h1>
         <p class="section-subtitle" style="max-width:520px; margin:0.5rem auto 0;">
-          Покрокова інструкція встановлення модпаку Cloud Create. Займе не більше 10 хвилин.
+          Триває активна розробка оновленого модпаку v2 Cloud Create.
         </p>
       </div>
 
@@ -245,25 +223,23 @@
               Офіційний збірник для ліцензійних лаунчерів (Modrinth, Prism, CurseForge).</p>
           </div>
           <div style="width:100%; display:flex; flex-direction:column; align-items:center; margin-top:auto;">
-            <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:1rem; font-weight:600;">Версія 1.21.1 ·
-              NeoForge · 100+ модів</p>
-            <a href="#" id="download-mrpack" class="btn btn-gold" style="width:100%;" download>
+            <p style="color:var(--amber-400); font-size:0.82rem; margin-bottom:1rem; font-weight:700;">Версія v2 в розробці · 2 Сезон</p>
+            <a href="#" id="download-mrpack" class="btn btn-gold" style="width:100%;">
               <svg class="icon" viewBox="0 0 24 24">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg> Завантажити .mrpack
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg> Наразі v2 готується
             </a>
           </div>
         </div>
 
         <!-- Cracked/Pirate Card (.zip) -->
-        <div class="card card-sky"
-          style="text-align:center; padding:2.5rem 1.8rem; border-top:3px solid var(--sky-500); display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
+        <div class="card card-gold"
+          style="text-align:center; padding:2.5rem 1.8rem; border-top:3px solid var(--amber-400); display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
           <div style="width:100%; display:flex; flex-direction:column; align-items:center;">
-            <div class="badge badge-sky" style="margin-bottom:1.2rem;">Для Піраток</div>
+            <div class="badge badge-gold" style="margin-bottom:1.2rem;">Для Піраток</div>
             <svg class="icon" viewBox="0 0 24 24"
-              style="width: 2.2rem; height: 2.2rem; color:var(--sky-500); margin-bottom:1rem; opacity:0.9;">
+              style="width: 2.2rem; height: 2.2rem; color:var(--amber-400); margin-bottom:1rem; opacity:0.9;">
               <path d="M12 2a7 7 0 0 0-7 7c0 3 2.5 5.5 3 7.5h8c.5-2 3-4.5 3-7.5a7 7 0 0 0-7-7z" />
               <path d="M5 17v2c0 .6.4 1 1 1h2a2 2 0 0 0 2-2v-1" />
               <path d="M19 17v2c0 .6-.4 1-1 1h-2a2 2 0 0 1-2-2v-1" />
@@ -278,14 +254,12 @@
               Повний набір модів та потрібних папок для альтернативних лаунчерів (TLauncher, Legacy Launcher).</p>
           </div>
           <div style="width:100%; display:flex; flex-direction:column; align-items:center; margin-top:auto;">
-            <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:1rem; font-weight:600;">Версія 1.21.1 ·
-              NeoForge · 100+ модів</p>
-            <a href="#" id="download-zip" class="btn btn-primary" style="width:100%;" download>
+            <p style="color:var(--amber-400); font-size:0.82rem; margin-bottom:1rem; font-weight:700;">Версія v2 в розробці · 2 Сезон</p>
+            <a href="#" id="download-zip" class="btn btn-primary" style="width:100%;">
               <svg class="icon" viewBox="0 0 24 24">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </svg> Завантажити .zip
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg> Наразі v2 готується
             </a>
           </div>
         </div>
@@ -561,7 +535,7 @@
           <div class="card">
             <h3
               style="font-family:var(--font-display); font-weight:700; margin-bottom:1rem; font-size:1.05rem; display:flex; align-items:center;">
-              <svg class="icon" viewBox="0 0 24 24" style="color:var(--sky-500); margin-right:0.5rem;">
+              <svg class="icon" viewBox="0 0 24 24" style="color:var(--amber-400); margin-right:0.5rem;">
                 <circle cx="12" cy="12" r="3" />
                 <path
                   d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
@@ -621,14 +595,6 @@
               </svg> Декор та Сховища
             </h3>
             <div>
-              <div class="mod-item">
-                <div style="flex:1;">
-                  <div style="font-weight:600; font-size:0.9rem;">Sophisticated Storage</div>
-                  <div style="font-size:0.78rem; color:var(--text-muted);">Скрині, бочки та сейфи з можливістю
-                    покращень.</div>
-                </div>
-                <span class="mod-tag tag-storage">Сховище</span>
-              </div>
               <div class="mod-item">
                 <div style="flex:1;">
                   <div style="font-weight:600; font-size:0.9rem;">Sophisticated Backpacks</div>
