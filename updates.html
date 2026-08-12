@@ -2,11 +2,6 @@
 <html lang="uk">
 
 <head>
-  <script>
-    if (localStorage.getItem('theme') === 'dark') {
-      document.documentElement.classList.add('dark-theme');
-    }
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cloud Create — Оновлення</title>
@@ -31,23 +26,6 @@
         <span></span>
         <span></span>
         <span></span>
-      </button>
-
-      <button class="theme-toggle" id="theme-toggle" aria-label="Перемкнути тему">
-        <svg class="icon sun-icon" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="5" />
-          <line x1="12" y1="1" x2="12" y2="3" />
-          <line x1="12" y1="21" x2="12" y2="23" />
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-          <line x1="1" y1="12" x2="3" y2="12" />
-          <line x1="21" y1="12" x2="23" y2="12" />
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-        </svg>
-        <svg class="icon moon-icon" viewBox="0 0 24 24">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-        </svg>
       </button>
       <ul class="nav-links" id="nav-menu" role="list">
         <li><a href="home"><svg class="icon" viewBox="0 0 24 24">
@@ -90,6 +68,56 @@
 
       <!-- TIMELINE CONTENT -->
       <div class="updates-timeline stagger">
+
+        <!-- Release Card: Update 6 -->
+        <div class="card update-release-card">
+          <div class="update-release-header">
+            <span class="update-date-badge">12 Серпня, 2026</span>
+            <h2 class="update-release-title">Оновлення 6</h2>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.5; margin: 0 0 1rem;">
+            Оновлення до 2 Сезону!
+          </p>
+          <div class="update-features-list">
+            <div class="update-feature-item">
+              <span class="update-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg>
+              </span>
+              <div class="update-feature-text">
+                <strong>Підготовка сайту:</strong> Сайт було повністю підготовлено до 2 Сезону.
+              </div>
+            </div>
+            <div class="update-feature-item">
+              <span class="update-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </span>
+              <div class="update-feature-text">
+                <strong>Сторінка Парламенту:</strong> Перероблено <a href="parliament">сторінку парламенту</a> для 2 Сезону, оновлено систему виконавчих посад та кроки проведення сесій.
+              </div>
+            </div>
+            <div class="update-feature-item">
+              <span class="update-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
+              </span>
+              <div class="update-feature-text">
+                <strong>Правила сервера:</strong> Оновлено та розширено <a href="rules">правила сервера</a> (додано розділи Машинобудування та інфраструктури, Промисловості та ресурсів, Прикордонних конфліктів та Військових таборів).
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Release Card: Update 5 -->
         <div class="card update-release-card">
