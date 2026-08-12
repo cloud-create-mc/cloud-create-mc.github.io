@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <script>
-    if (localStorage.getItem('theme') === 'dark') {
-      document.documentElement.classList.add('dark-theme');
-    }
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cloud Create — Дипломатична Карта</title>
@@ -25,7 +20,7 @@
   <!-- DIPLOMATIC SIDEBAR BACKDROP (Mobile) -->
   <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
 
-  <!-- HEADER — RP nav (Back + label + theme toggle) -->
+  <!-- HEADER — RP nav (Back + label) -->
   <header>
     <nav>
       <!-- Back to RP Hub -->
@@ -50,12 +45,8 @@
           <img src="logo.png" alt="Cloud Create" class="logo-icon">
         </a>
       </div>
-
-      <!-- Theme toggle -->
-      <button class="theme-toggle" id="theme-toggle" aria-label="Перемкнути тему">
-        <svg class="icon sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <svg class="icon moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      </button>
+    </nav>
+  </header>
     </nav>
   </header>
 
@@ -88,8 +79,61 @@
         </div>
 
         <div class="rp-diplomatic-container">
-          <div class="rp-map-wrapper">
+          <div class="rp-map-wrapper" style="position: relative;">
             <canvas id="diplomatic-canvas"></canvas>
+            
+            <div class="rp-map-placeholder-overlay" style="
+              position: absolute;
+              inset: 0;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              padding: 2rem;
+              background: rgba(15, 23, 42, 0.82);
+              backdrop-filter: blur(12px);
+              -webkit-backdrop-filter: blur(12px);
+              border-radius: var(--radius-lg);
+              z-index: 10;
+              gap: 1rem;
+            ">
+              <div style="
+                width: 54px;
+                height: 54px;
+                border-radius: 50%;
+                background: rgba(251, 191, 36, 0.14);
+                border: 1px solid rgba(251, 191, 36, 0.35);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--amber-400);
+                box-shadow: 0 0 20px rgba(251, 191, 36, 0.2);
+              ">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 26px; height: 26px;"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+              </div>
+              <div>
+                <h3 style="font-family: var(--font-display); font-weight: 800; font-size: 1.45rem; color: var(--text-main); margin: 0 0 0.4rem;">
+                  Наразі дипломатична карта відсутня
+                </h3>
+                <p style="font-size: 0.95rem; color: var(--text-muted); max-width: 480px; margin: 0; line-height: 1.55;">
+                  Триває підготовка до нового 2 Сезону. Розробка та налаштування міжнародної карти й політичних відносин уже ведеться!
+                </p>
+              </div>
+              <div style="
+                font-size: 0.82rem;
+                font-weight: 700;
+                color: var(--amber-400);
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                background: rgba(251, 191, 36, 0.1);
+                padding: 0.4rem 0.9rem;
+                border-radius: var(--radius-full);
+                border: 1px solid rgba(251, 191, 36, 0.25);
+              ">
+                2 Сезон готується • Робота триває
+              </div>
+            </div>
           </div>
 
           <!-- Mobile country list (alternative to canvas) -->
@@ -206,7 +250,7 @@
               </h4>
               
               <!-- -1 -->
-              <div class="guide-card val-n1" style="border-left: 4px solid #facc15;">
+              <div class="guide-card val-n1" style="border-left: 4px solid #fbbf24;">
                 <div class="guide-header">
                   <span class="guide-badge badge-n1">-1</span>
                   <strong class="guide-title">Напружені відносини</strong>
@@ -215,7 +259,7 @@
               </div>
 
               <!-- -2 -->
-              <div class="guide-card val-n2" style="border-left: 4px solid #fb923c;">
+              <div class="guide-card val-n2" style="border-left: 4px solid #f59e0b;">
                 <div class="guide-header">
                   <span class="guide-badge badge-n2">-2</span>
                   <strong class="guide-title">Конфліктні відносини</strong>
@@ -237,7 +281,7 @@
         </div>
 
         <div style="margin-top: 1.5rem; padding: 1rem 1.25rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border-item); border-radius: var(--radius-md); font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; display: flex; gap: 0.75rem; align-items: flex-start;">
-          <svg class="icon" viewBox="0 0 24 24" style="width: 20px; height: 20px; stroke-width: 2px; color: #38bdf8; flex-shrink: 0; fill: none; stroke: currentColor;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <svg class="icon" viewBox="0 0 24 24" style="width: 20px; height: 20px; stroke-width: 2px; color: var(--amber-400); flex-shrink: 0; fill: none; stroke: currentColor;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
           <div>
             <strong>Правило зміни відносин:</strong> Зміна політичних відносин не може бути різкою. За один RP-пост рівень відносин можна змінити максимум на 2 пункти в будь-який бік. Стрибки через кілька рівнів заборонені. Виняток: різка зміна можлива лише за наявності вагомої RP-причини.
           </div>
