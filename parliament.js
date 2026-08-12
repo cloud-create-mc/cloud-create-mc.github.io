@@ -2,122 +2,12 @@
 //  Cloud Create — RP Parliament script
 // =====================================================
 
-// 1. DATA DEFINITIONS
-const PARTIES = {
-  myr: {
-    id: 'myr',
-    name: '«Мир та Розвиток»',
-    short: 'МИР',
-    color: '#38bdf8',
-    logo: 'myr.jpg',
-    leader: 'Yurk0',
-    seats: 7,
-    desc: `<strong>Ідеологія:</strong><br><em>Стабільність та комфортне життя</em>. Ми за те, щоб кожен гравець міг спокійно будувати свої заводи, запускати літальні апарати та розвиватися, не чекаючи, що завтра його базу рознесуть. МИР — це просто можливість нормально <em>жити в задоволення</em>.<br><br><strong>Мета:</strong><br>Захистити результати праці кожного гравця та забезпечити спокій на сервері. Ми хочемо, щоб конфлікти та війни відійшли на другий план, а держави зосередилися на <em>спільному розвитку</em>, торгівлі та вільному переміщенні світом.<br><br><strong>Цілі:</strong><br>• Глобальна інфраструктура: Проєктування та будівництво <em>міждержавних залізничних магістралей та повітряних хабів</em>.<br>• Забезпечення безпеки гравців серверу: Допомога з створенням міжнародної поліції та кураторство її роботи.`
-  },
-  bulava: {
-    id: 'bulava',
-    name: '«Булава»',
-    short: 'Булава',
-    color: '#ef4444',
-    logo: 'bulava.png',
-    leader: 'rodyaa',
-    seats: 4,
-    desc: `Партія «Булава» — це консервативне об'єднання однодумців, яке прагне до стабільності, порядку та масштабного розвитку нашого сервера.<br>Ми виступаємо за налагодження міцних зв'язків між державами, мирне вирішення конфліктів та взаємовигідну торгівлю на засадах вільного ринку без зайвих обмежень.<br><br><strong>Наші головні пріоритети:</strong><br>• <strong>Облаштування спавну:</strong> Спавн - це обличчя сервера. Ми допоможемо перетворити його на красивий, зручний та безпечний центр.<br>• <strong>Паспортний стіл:</strong> Одна з найпріоритетніших ініціатив. Створимо орган, де абсолютно кожен гравець зможе легально отримати паспорт бажаної країни.<br>• <strong>Правопорядок:</strong> Тісна співпраця з адміністрацією та допомога у створенні органів правопорядку для захисту громадян.<br>• <strong>Культурне життя:</strong> Організація івентів та свят для яскравого життя на сервері.<br><br><strong>Обирайте «Булаву» — голосуйте за мудрість, за волю та державу!</strong>`
-  },
-  sluga_kartona: {
-    id: 'sluga_kartona',
-    name: '«Слуга Картона»',
-    short: 'Слуга Картона',
-    color: '#fbbf24',
-    logo: null,
-    leader: 'Kra1zz3r',
-    seats: 3,
-    desc: `Партія «Слуга Картона» — це політична сила, яка виступає за мир, єдність та процвітання всіх мешканців сервера. Ми за те, щоб кожен гравець мав безпечне життя, власний дім і можливість розвиватися.<br><br><strong>Наші пріоритети (Ідеологія — Демократія):</strong><br>• <strong>Мир та допомога:</strong> Захист миру, взаємоповага та всебічна допомога новим гравцям на початку гри.<br>• <strong>Добробут та житло:</strong> Сприяння будівництву власного житла та забезпечення продовольством.<br>• <strong>Спільний розвиток:</strong> Створення громадських ферм, складів та корисних інфраструктурних проектів.<br>• <strong>Найважливіший закон:</strong> <em>У кожному домі має бути сухий картон!</em> Бо сухий картон — це символ стабільності, порядку та процвітання.`
-  },
-  israel: {
-    id: 'israel',
-    name: '«Єдиний Ізраїль»',
-    short: 'Єдиний Ізраїль',
-    color: '#1e40af',
-    logo: 'yediniy_israel.svg',
-    leader: 'T1dy_',
-    seats: 2,
-    desc: `<strong>Ідеологія:</strong><br><em>Мир, порядок та прогрес</em>. Об'єднавши дві великі пустельні держави — ВЛНР та Республіку Сходу, ми створили політичну силу для стабільного розвитку та безпеки.<br><br><strong>Наші пріоритети:</strong><br>• <strong>Захист прав громадян:</strong> Відстоювання інтересів та прав усіх євреїв сервера.<br>• <strong>Служіння громаді:</strong> Робота виключно на благо сервера та його народу.<br>• <strong>Справжній прогрес:</strong> Впровадження реформ та кураторство інфраструктурних проектів.`
-  }
-};
-
-const STATES = {
-  fkn: { name: 'Федерація Китайських Народів (ФКН)', flag: 'fkn.svg' },
-  frm: { name: 'Федеративна Республіка Меркантія (ФРМ)', flag: 'frm.svg' },
-  verchovensk: { name: 'Верховенськ', flag: 'verchovensk.svg' },
-  kar: { name: 'Камчатська Автономна Республіка (КАР)', flag: 'kar_new.jpg' },
-  maxico: { name: 'Махісо', flag: 'maxico.jpg' },
-  tech_empire: { name: 'Технократична Імперія', flag: 'tech_empire.jpg' },
-  vinland: { name: 'Вінланд', flag: 'vinland.jpg' },
-  yad_getman: { name: 'Ядерний Гетьманат', flag: 'yad_getman.jpg' }
-};
-
-const DEPUTIES = [
-  // Left Row
-  { seatId: 'left-1', nickname: 'Yurk0', role: 'Депутат I Склику', state: STATES.fkn, party: PARTIES.myr, status: 'Present' },
-  { seatId: 'left-2', nickname: 'Kra1zz3r', role: 'Депутат I Склику', state: STATES.maxico, party: PARTIES.sluga_kartona, status: 'Present' },
-  { seatId: 'left-3', nickname: 'InvisibleFear', skinNickname: 'Nikodemmmm_', role: 'Депутат I Склику', state: STATES.verchovensk, party: PARTIES.myr, status: 'Present' },
-  { seatId: 'left-4', nickname: 'LeWal', role: 'Депутат I Склику', state: STATES.fkn, party: PARTIES.myr, status: 'Present' },
-  { seatId: 'left-5', nickname: 'aklelic', role: 'Депутат I Склику', state: STATES.verchovensk, party: PARTIES.myr, status: 'Present' },
-  { seatId: 'left-6', nickname: 'Houssston', role: 'Депутат I Склику', state: STATES.fkn, party: PARTIES.myr, status: 'Present' },
-  { seatId: 'left-7', nickname: 'Xalox_', skinNickname: 'SandwichMC_', role: 'Депутат I Склику', state: STATES.verchovensk, party: PARTIES.myr, status: 'Present' },
-  { seatId: 'left-8', nickname: 'led2024', role: 'Депутат I Склику', state: STATES.verchovensk, party: PARTIES.myr, status: 'Absent' },
-  
-  // Right Row
-  { seatId: 'right-1', nickname: 'TuftedSquire159', role: 'Депутат I Склику', state: STATES.frm, party: PARTIES.bulava, status: 'Present' },
-  { seatId: 'right-2', nickname: 'Arsen_Bush', skinNickname: 'EPOKLARIFON', role: 'Депутат I Склику', state: STATES.tech_empire, party: PARTIES.bulava, status: 'Present' },
-  { seatId: 'right-3', nickname: 'epsteinenko', role: 'Депутат I Склику', state: STATES.tech_empire, party: PARTIES.bulava, status: 'Present' },
-  { seatId: 'right-4', nickname: 'vert0s', role: 'Депутат I Склику', state: STATES.frm, party: PARTIES.bulava, status: 'Present' },
-  { seatId: 'right-5', nickname: 'T1dy_', role: 'Депутат I Склику', state: { name: '—', flag: null }, party: PARTIES.israel, status: 'Present' },
-  { seatId: 'right-6', nickname: 'spacediego', role: 'Депутат I Склику', state: STATES.maxico, party: PARTIES.sluga_kartona, status: 'Present' },
-  { seatId: 'right-7', nickname: 'vskiy', role: 'Депутат I Склику', state: { name: '—', flag: null }, party: PARTIES.israel, status: 'Present' },
-  { seatId: 'right-8', nickname: '_Mourang_', role: 'Депутат I Склику', state: STATES.maxico, party: PARTIES.sluga_kartona, status: 'Present' },
-  { seatId: 'speaker', nickname: 'rodyaa', role: 'Голова Парламенту', state: { name: '—', flag: null }, party: PARTIES.bulava, status: 'Present' }
-];
-
-const LAWS = [
-  {
-    id: 'law-1',
-    title: 'Про установлення верховних чинів та розробку Конституції',
-    date: '18 Липня, 2026',
-    sponsor: 'rodyaa',
-    desc: 'Офіційне введення посад Гетьмана та Генерального писаря. Обов’язок розробки проєкту Конституції сервера та винесення його на референдум.'
-  },
-  {
-    id: 'law-2',
-    title: 'Про створення державних міністерств',
-    date: '18 Липня, 2026',
-    sponsor: 'rodyaa',
-    desc: 'Заснування чотирьох постійних відомств для розвитку сервера: МВС, Мінекономіки, Мінінфраструктури та МЗС.'
-  },
-  {
-    id: 'law-3',
-    title: 'Про статус та межі Спавну',
-    date: '18 Липня, 2026',
-    sponsor: 'rodyaa',
-    desc: 'Оголошення Спавну демілітаризованою зоною з дипломатичною недоторканністю, забороною воєн, арештів та неузгодженого будівництва.'
-  },
-  {
-    id: 'law-4',
-    title: 'Про державну валюту',
-    date: '18 Липня, 2026',
-    sponsor: 'rodyaa',
-    desc: 'Монети з моду Create Numismatics оголошено єдиною законною платіжною валютою сервера для податків, мита, штрафів та торгівлі.'
-  }
-];
-
-const PROTOCOLS = [
-  {
-    id: 'protocol-1',
-    title: 'Перше засідання Генеральної Ради',
-    date: '18 Липня, 2026',
-    content: `
-      <p style="margin-bottom: 0.75rem; font-weight: 600;">Перше засідання Генеральної Ради офіційно закрито.</p>
+// 1. DATA DEFINITIONS (Cleared for Season 2)
+const PARTIES = {};
+const STATES = {};
+const DEPUTIES = [];
+const LAWS = [];
+const PROTOCOLS = [];
       <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.85rem;">Рішення Генеральної Ради:</p>
 
       <div style="display: flex; flex-direction: column; gap: 1rem;">
