@@ -9,8 +9,8 @@ const CONFIG = {
   DISCORD_URL: 'https://discord.gg/N54MhNbZEM',
   TIKTOK_URL: 'https://www.tiktok.com/@cloudcreatee',
   TELEGRAM_URL: 'https://t.me/CloudCreatee',
-  MRPACK_URL: './CC%20Modpack%20v1.7.mrpack',
-  ZIP_URL: 'https://github.com/cloud-create-mc/cloud-create-mc.github.io/releases/download/Modpack/CC.Modpack.v1.7.zip',
+  MRPACK_URL: '#',
+  ZIP_URL: '#',
   DONATE_URL: 'https://donatello.to/cloudcreate',
 };
 
@@ -39,23 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --------------------------------------------------
-  // 1.2. Theme Toggle Button
-  // --------------------------------------------------
-  const themeToggles = document.querySelectorAll('.theme-toggle');
-  themeToggles.forEach(toggleBtn => {
-    toggleBtn.addEventListener('click', () => {
-      const toggleTheme = () => {
-        const isDark = document.documentElement.classList.toggle('dark-theme');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      };
-
-      if (document.startViewTransition) {
-        document.startViewTransition(toggleTheme);
-      } else {
-        toggleTheme();
-      }
-    });
-  });  // --------------------------------------------------
   // 1.3. Flying Cloud Logo Easter Egg
   // --------------------------------------------------
   const logoLink = document.querySelector('.logo a');
@@ -671,6 +654,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (numEl) {
           const numText = numEl.textContent.trim(); // e.g. "7.4"
           item.id = `${prefix}-${numText}`;
+          item.setAttribute('title', 'Скопіювати посилання на правило');
 
           item.addEventListener('click', async (e) => {
             if (e.target.closest('a') || e.target.closest('button')) return;
@@ -703,6 +687,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Forbidden rule items
       section.querySelectorAll('.rule-forbidden-item').forEach((item, idx) => {
         item.id = `${sectionId}-forbidden-${idx + 1}`;
+        item.setAttribute('title', 'Скопіювати посилання на правило');
 
         item.addEventListener('click', async (e) => {
           if (e.target.closest('a') || e.target.closest('button')) return;
@@ -729,6 +714,152 @@ document.addEventListener('DOMContentLoaded', () => {
           void item.offsetWidth; // trigger reflow
           item.classList.add('highlight-pulse');
         });
+      });
+    });
+  }
+
+  // --------------------------------------------------
+  // 11. Rules Real-time Search Engine
+  // --------------------------------------------------
+  const rulesSearchInput = document.getElementById('rules-search-input');
+  const rulesSearchClear = document.getElementById('rules-search-clear');
+  const rulesSearchStatus = document.getElementById('rules-search-status');
+
+  function clearSearchHighlights() {
+    document.querySelectorAll('mark.search-highlight').forEach(mark => {
+      const parent = mark.parentNode;
+      if (parent) {
+        parent.replaceChild(document.createTextNode(mark.textContent), mark);
+        parent.normalize();
+      }
+    });
+  }
+
+  function highlightTextNode(node, query) {
+    const text = node.nodeValue;
+    const lowerText = text.toLowerCase();
+    const index = lowerText.indexOf(query);
+    if (index === -1) return false;
+
+    const span = document.createElement('span');
+    let lastIndex = 0;
+    let pos = lowerText.indexOf(query);
+
+    while (pos !== -1) {
+      span.appendChild(document.createTextNode(text.substring(lastIndex, pos)));
+      const mark = document.createElement('mark');
+      mark.className = 'search-highlight';
+      mark.appendChild(document.createTextNode(text.substring(pos, pos + query.length)));
+      span.appendChild(mark);
+      lastIndex = pos + query.length;
+      pos = lowerText.indexOf(query, lastIndex);
+    }
+    span.appendChild(document.createTextNode(text.substring(lastIndex)));
+    if (node.parentNode) {
+      node.parentNode.replaceChild(span, node);
+    }
+    return true;
+  }
+
+  function performRulesSearch(query) {
+    query = query.trim().toLowerCase();
+    clearSearchHighlights();
+
+    if (!query) {
+      // Empty query: restore normal section switching
+      if (rulesSearchClear) rulesSearchClear.style.display = 'none';
+      if (rulesSearchStatus) rulesSearchStatus.style.display = 'none';
+
+      // Restore display of elements according to currently active section
+      rulesSections.forEach(section => {
+        const isCurrentlyActive = section.classList.contains('active');
+        section.style.display = isCurrentlyActive ? 'block' : 'none';
+
+        section.querySelectorAll('.rule-item, .rule-forbidden-item, .rule-intro-card, .rules-sub-heading').forEach(el => {
+          el.style.display = '';
+        });
+      });
+      return;
+    }
+
+    if (rulesSearchClear) rulesSearchClear.style.display = 'flex';
+
+    let totalMatches = 0;
+
+    rulesSections.forEach(section => {
+      let sectionMatches = 0;
+
+      // Search inside rule items
+      const items = section.querySelectorAll('.rule-item, .rule-forbidden-item');
+      items.forEach(item => {
+        const textContent = item.textContent.toLowerCase();
+        if (textContent.includes(query)) {
+          item.style.display = 'flex';
+          sectionMatches++;
+          totalMatches++;
+
+          // Highlight matching text in text nodes
+          const textContainer = item.querySelector('.rule-text, .rule-forbidden-text');
+          if (textContainer) {
+            const textNodes = [];
+            const walk = document.createTreeWalker(textContainer, NodeFilter.SHOW_TEXT, null, false);
+            let n;
+            while (n = walk.nextNode()) {
+              if (n.nodeValue.trim().length > 0) textNodes.push(n);
+            }
+            textNodes.forEach(node => highlightTextNode(node, query));
+          }
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      // Show/hide section based on whether it has matches
+      if (sectionMatches > 0) {
+        section.style.display = 'block';
+      } else {
+        section.style.display = 'none';
+      }
+    });
+
+    if (rulesSearchStatus) {
+      rulesSearchStatus.style.display = 'flex';
+      if (totalMatches > 0) {
+        rulesSearchStatus.textContent = `Знайдено правил: ${totalMatches}`;
+      } else {
+        rulesSearchStatus.textContent = 'Нічого не знайдено за вашим запитом';
+      }
+    }
+  }
+
+  if (rulesSearchInput) {
+    rulesSearchInput.addEventListener('input', (e) => {
+      performRulesSearch(e.target.value);
+    });
+
+    if (rulesSearchClear) {
+      rulesSearchClear.addEventListener('click', () => {
+        rulesSearchInput.value = '';
+        performRulesSearch('');
+        rulesSearchInput.focus();
+      });
+    }
+
+    // Reset search when clicking category navigation buttons
+    rulesMenuItems.forEach(item => {
+      item.addEventListener('click', () => {
+        if (rulesSearchInput.value) {
+          rulesSearchInput.value = '';
+          performRulesSearch('');
+        }
+      });
+    });
+    rulesMobileItems.forEach(item => {
+      item.addEventListener('click', () => {
+        if (rulesSearchInput.value) {
+          rulesSearchInput.value = '';
+          performRulesSearch('');
+        }
       });
     });
   }
