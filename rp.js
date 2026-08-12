@@ -2,23 +2,11 @@
 //  Cloud Create — RP Diplomatic Relations Map script
 // =====================================================
 
-// CONFIG: Paste your published Google Sheets CSV URL here.
-// To get this URL: In Google Sheets -> File -> Share -> Publish to web -> Select "Entire Document" or "Sheet1" -> Select "CSV" -> Click Publish.
-const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1lI2u0Kl4NsXo60jLD4PE1XILlwgcL0rKOJTmVDod9eM/export?format=csv';
+// CONFIG: Paste your published Google Sheets CSV URL here for Season 2.
+const GOOGLE_SHEET_CSV_URL = '';
 
-// Fallback Mock Data (Everyone is 0/Neutral by default as requested, but can be updated via Sheet)
-const DEFAULT_MOCK_STATES = [
-  { name: 'Федерація Китайських Народів', leader: 'Yurk0', color: '#ef4444', flag: 'fkn.svg' },
-  { name: 'Федеративна Республіка Меркантія', leader: 'vert0s', color: '#eab308', flag: 'frm.svg' },
-  { name: 'Верховенськ', leader: 'InvisibleFear', color: '#38bdf8', flag: 'verchovensk.svg' },
-  { name: 'Камчатська Автономна Республіка', leader: 'MrKurzik', color: '#6366f1', flag: 'kar_new.jpg' },
-  { name: 'Махісо', leader: '_Mourang_ та Kra1zz3r', color: '#ec4899', flag: 'maxico.jpg' },
-  { name: 'Технократична Імперія', leader: 'epsteinenko', color: '#0d9488', flag: 'tech_empire.jpg' },
-  { name: 'Вінланд', leader: 'ProstoRoma', color: '#10b981', flag: 'vinland.jpg' },
-  { name: 'Ядерний Гетьманат', leader: 'Skoropadskyi', color: '#84cc16', flag: 'yad_getman.jpg' }
-];
-
-// All relations are 0 (Neutral) initially as requested
+// Default States & Relations (Cleared for Season 2)
+const DEFAULT_MOCK_STATES = [];
 const DEFAULT_MOCK_RELATIONS = [];
 
 // App State
@@ -92,9 +80,9 @@ function getRelationDetails(level) {
     case 1:
       return { class: 'badge-rel-p1', text: 'Сприятливі +1', desc: 'Сприятливі відносини.', color: '#06b6d4' };
     case -1:
-      return { class: 'badge-rel-n1', text: 'Напружені -1', desc: 'Напружені відносини.', color: '#facc15' };
+      return { class: 'badge-rel-n1', text: 'Напружені -1', desc: 'Напружені відносини.', color: '#fbbf24' };
     case -2:
-      return { class: 'badge-rel-n2', text: 'Конфліктні -2', desc: 'Конфліктні відносини.', color: '#fb923c' };
+      return { class: 'badge-rel-n2', text: 'Конфліктні -2', desc: 'Конфліктні відносини.', color: '#f59e0b' };
     case -3:
       return { class: 'badge-rel-n3', text: 'Війна -3', desc: 'Війна.', color: '#ef4444' };
     default:
@@ -336,6 +324,11 @@ function renderMobileStatesList() {
   if (!container) return;
   container.innerHTML = '';
 
+  if (states.length === 0) {
+    container.innerHTML = `<div style="text-align: center; padding: 2rem 1rem; color: var(--amber-400); font-weight: 700; font-size: 0.95rem;">Карта дипломатичних відносин буде оновлена з початком 2 Сезону!</div>`;
+    return;
+  }
+
   states.forEach(state => {
     const card = document.createElement('div');
     card.className = 'mobile-state-card';
@@ -501,6 +494,19 @@ function tick() {
 
   const width = canvas.width;
   const height = canvas.height;
+
+  if (nodes.length === 0) {
+    ctx.clearRect(0, 0, width, height);
+    const dpr = window.devicePixelRatio || 1;
+    ctx.save();
+    ctx.font = '700 16px Inter, system-ui, sans-serif';
+    ctx.fillStyle = 'rgba(251, 191, 36, 0.88)';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('Карта дипломатичних відносин буде оновлена з початком 2 Сезону!', (width / dpr) / 2, (height / dpr) / 2);
+    ctx.restore();
+    return;
+  }
 
   // Dynamic theme colors
   const neutralLineColor = isDarkTheme ? 'rgba(255, 255, 255, 0.07)' : 'rgba(15, 23, 42, 0.07)';
