@@ -7,48 +7,146 @@
   <title>Cloud Create — Модпак</title>
   <meta name="description"
     content="Скачай модпак Cloud Create та приєднуйся до сервера. Покрокова інструкція встановлення та список модів.">
-  <link rel="icon" type="image/png" href="logo_s.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css?v=1.3.0">
 
   <style>
     .mod-tag {
       display: inline-block;
-      padding: 0.2rem 0.65rem;
-      border-radius: var(--radius-full);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--radius-sm);
       text-transform: uppercase;
+      margin-left: auto;
     }
 
-    .tag-core {
-      background: rgba(251, 191, 36, 0.14);
-      color: var(--amber-400);
+    .tag-tech {
+      background: rgba(14, 165, 233, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(14, 165, 233, 0.3);
     }
 
-    .tag-addon {
-      background: rgba(202, 138, 4, 0.12);
-      color: var(--gold-600);
+    .tag-magic {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.3);
     }
 
-    .tag-utility {
-      background: rgba(71, 85, 105, 0.10);
-      color: var(--slate-600);
+    .tag-world {
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
     }
 
-    .tag-storage {
-      background: rgba(168, 85, 247, 0.10);
-      color: #9333ea;
+    .tag-util {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
     }
 
-    .tag-fps {
-      background: rgba(34, 197, 94, 0.12);
-      color: #16a34a;
+    .tag-decor {
+      background: rgba(236, 72, 153, 0.15);
+      color: #f472b6;
+      border: 1px solid rgba(236, 72, 153, 0.3);
     }
 
-    .tag-deco {
-      background: rgba(236, 72, 153, 0.12);
-      color: #db2777;
+    .mod-icon-wrapper {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mod-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-heading);
+    }
+
+    .mod-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+    }
+
+    .tab-btn {
+      padding: 0.75rem 1.5rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: 1px solid var(--border-card);
+      background: var(--bg-card);
+      color: var(--text-muted);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 200ms ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tab-btn.active {
+      background: var(--gold-600);
+      color: #0b0f19;
+      border-color: var(--gold-600);
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+    }
+
+    .tab-btn:hover:not(.active) {
+      background: var(--bg-card-hover);
+      color: var(--text-heading);
+    }
+
+    .tabs-nav {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gold-600);
+      color: #0b0f19;
+      font-weight: 800;
+      font-family: var(--font-display);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+
+    .step-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: var(--text-heading);
+    }
+
+    .step-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
     }
 
     .mods-grid {
@@ -180,15 +278,15 @@
 
       <!-- Modpack Available Announcement Banner -->
       <div class="modpack-banner"
-        style="flex-direction: column; align-items: flex-start; gap: 0.5rem; max-width: 580px;">
+        style="flex-direction: column; align-items: flex-start; gap: 0.5rem; max-width: 580px; border-color: rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.08);">
         <div class="modpack-banner-inner" style="justify-content: flex-start;">
-          <div class="modpack-banner-message">
+          <div class="modpack-banner-message" style="color: #22c55e;">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
               stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
             </svg>
-            <span>Наразі версія модпаку v2 готується</span>
+            <span>Офіційну версію модпаку v2 випущено та відкрито для завантаження!</span>
           </div>
         </div>
       </div>
@@ -196,8 +294,8 @@
       <!-- Page Hero -->
       <div class="page-hero">
         <h1 class="section-title" style="font-size:2.5rem;">Модпак 2 Сезону</h1>
-        <p class="section-subtitle" style="max-width:520px; margin:0.5rem auto 0;">
-          Триває активна розробка оновленого модпаку v2 Cloud Create.
+        <p class="section-subtitle" style="max-width:560px; margin:0.5rem auto 0;">
+          Офіційна версія модпаку v2 Cloud Create з усіма ключовими модами для 2 Сезону.
         </p>
       </div>
 
@@ -223,12 +321,13 @@
               Офіційний збірник для ліцензійних лаунчерів (Modrinth, Prism, CurseForge).</p>
           </div>
           <div style="width:100%; display:flex; flex-direction:column; align-items:center; margin-top:auto;">
-            <p style="color:var(--amber-400); font-size:0.82rem; margin-bottom:1rem; font-weight:700;">Версія v2 в розробці · 2 Сезон</p>
-            <a href="#" id="download-mrpack" class="btn btn-gold" style="width:100%;">
-              <svg class="icon" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg> Наразі v2 готується
+            <p style="color:var(--amber-400); font-size:0.82rem; margin-bottom:1rem; font-weight:700;">Офіційний випуск · v2</p>
+            <a href="https://github.com/cloud-create-mc/cloud-create-mc.github.io/releases/download/Modpack/CC.Modpack.v2.mrpack" id="download-mrpack" class="btn btn-gold" style="width:100%;">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg> Завантажити .mrpack (v2)
             </a>
           </div>
         </div>
@@ -254,12 +353,13 @@
               Повний набір модів та потрібних папок для альтернативних лаунчерів (TLauncher, Legacy Launcher).</p>
           </div>
           <div style="width:100%; display:flex; flex-direction:column; align-items:center; margin-top:auto;">
-            <p style="color:var(--amber-400); font-size:0.82rem; margin-bottom:1rem; font-weight:700;">Версія v2 в розробці · 2 Сезон</p>
-            <a href="#" id="download-zip" class="btn btn-primary" style="width:100%;">
-              <svg class="icon" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg> Наразі v2 готується
+            <p style="color:var(--amber-400); font-size:0.82rem; margin-bottom:1rem; font-weight:700;">Офіційний випуск · v2</p>
+            <a href="https://github.com/cloud-create-mc/cloud-create-mc.github.io/releases/download/Modpack/CC.Modpack.v2.zip" id="download-zip" class="btn btn-primary" style="width:100%;">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg> Завантажити .zip (v2)
             </a>
           </div>
         </div>
