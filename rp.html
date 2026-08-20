@@ -1,49 +1,68 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cloud Create — Рольова Гра</title>
-  <meta name="description" content="Рольовий відділ Cloud Create — новини, парламент, закони, карта світу та інше.">
-  <link rel="icon" type="image/png" href="logo_s.png">
-  <link rel="stylesheet" href="style.css?v=1.3.0">
+  <title>Cloud Create — Правила сервера</title>
+  <meta name="description" content="Правила гри та спілкування на сервері Cloud Create. Ознайомся перед початком гри.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <!-- AMBER GLOW ORBS (RP theme) -->
-  <div class="rp-orb rp-orb-1"></div>
-  <div class="rp-orb rp-orb-2"></div>
+  <!-- AMBIENT GLOW ORBS -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow-orb orb-3"></div>
 
   <!-- SKY BACKGROUND -->
   <div class="sky-bg"></div>
 
-  <!-- HEADER — RP nav (Back + label) -->
+  <!-- HEADER -->
   <header>
     <nav>
-      <!-- Back to main site -->
-      <div style="order:1; display:flex; align-items:center; gap:0.5rem;">
-        <a href="home" class="rp-back-btn" aria-label="Назад на головний сайт">
-          <svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px;">
-            <polyline points="15 18 9 12 15 6"/>
-          </svg>
-          Назад
-        </a>
-        <span class="rp-nav-label">
-          <svg class="icon" viewBox="0 0 24 24" style="width:14px;height:14px;stroke-width:2;">
-            <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-          </svg>
-          РП Відділ
-        </span>
-      </div>
-
-      <!-- Logo -->
       <div class="logo">
-        <a href="rp" aria-label="Cloud Create — РП">
+        <a href="home" aria-label="Cloud Create — Головна">
           <img src="logo.png" alt="Cloud Create" class="logo-icon">
         </a>
       </div>
-
-
+      <button class="menu-toggle" id="mobile-menu-btn" aria-label="Меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="nav-menu" role="list">
+        <li><a href="home"><svg class="icon" viewBox="0 0 24 24">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg> Головна</a></li>
+        <li><a href="modpack"><svg class="icon" viewBox="0 0 24 24">
+              <path
+                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+              <line x1="12" y1="22.08" x2="12" y2="12" />
+              <line x1="12" y1="12" x2="3.27" y2="6.96" />
+              <line x1="12" y1="12" x2="20.73" y2="6.96" />
+            </svg> Модпак</a></li>
+        <li><a href="rules" class="active"><svg class="icon" viewBox="0 0 24 24">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+            </svg> Правила</a></li>
+        <li><a href="shop"><svg class="icon" viewBox="0 0 24 24">
+              <circle cx="8" cy="21" r="1" />
+              <circle cx="19" cy="21" r="1" />
+              <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+            </svg> Магазин</a></li>
+        <li><a href="rp"><svg class="icon" viewBox="0 0 24 24">
+              <path d="M12 20h9" />
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+            </svg> РП</a></li>
+      </ul>
     </nav>
   </header>
 
@@ -52,121 +71,2334 @@
 
       <!-- Page Hero -->
       <div class="page-hero">
-        <div class="rp-hero-accent">
-          <svg class="icon" viewBox="0 0 24 24" style="width:13px;height:13px;stroke-width:2;">
-            <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+        <h1 class="section-title" style="font-size:2.5rem;">Правила сервера</h1>
+        <p class="section-subtitle" style="max-width:520px; margin:0.5rem auto 0;">Ознайомтесь з правилами гри та
+          рольової взаємодії на Cloud Create.</p>
+      </div>
+
+      <!-- Global Rules Search Bar (Centrally positioned above rules layout) -->
+      <div class="rules-global-search-wrapper">
+        <div class="rules-search-box">
+          <svg class="icon search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
-          Рольова Гра
+          <input type="text" id="rules-search-input"
+            placeholder="Швидкий пошук по всіх правилах (наприклад: рудник, шпиталь, 11.5)..."
+            aria-label="Пошук по правилах" autocomplete="off" />
+          <button type="button" id="rules-search-clear" class="search-clear-btn" aria-label="Очистити пошук"
+            style="display: none;">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
         </div>
-        <h1 class="section-title" style="font-size:2.8rem;">РП Відділ</h1>
-        <p class="section-subtitle" style="max-width:580px; margin:0.75rem auto 0; line-height:1.65;">
-          Тут зосереджено все, що пов'язано з РП на Cloud Create — новини, парламент, закони та багато іншого.
-        </p>
+        <div id="rules-search-status" class="rules-search-status" style="display: none;"></div>
       </div>
 
+      <!-- Rules Mobile Navigation Dropdown (Shown on mobile) -->
+      <div class="rules-mobile-nav">
+        <button class="rules-mobile-trigger" id="rules-mobile-btn" aria-haspopup="listbox" aria-expanded="false">
+          <span class="btn-content">
+            <svg class="icon select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="currentColor" fill-opacity="0.16" />
+              <path d="M9 11l2 2 4-4" />
+            </svg>
+            <span class="active-category-text" id="active-category-mobile-text">1. Поведінка та чесна гра</span>
+          </span>
+          <svg class="icon chevron-icon" viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="rules-mobile-dropdown" id="rules-mobile-menu" role="listbox">
+          <div class="rules-mobile-group-title">Minecraft Правила</div>
+          <button class="rules-mobile-item active" data-section="mc-1" role="option" aria-selected="true">1. Поведінка
+            та чесна гра</button>
+          <button class="rules-mobile-item" data-section="mc-2" role="option">2. Території та будівництво</button>
 
+          <div class="rules-mobile-group-title">RP — Загальні принципи</div>
+          <button class="rules-mobile-item" data-section="rp-1" role="option">1. Загальні принципи</button>
+          <button class="rules-mobile-item" data-section="rp-2" role="option">2. Арешти</button>
+          <button class="rules-mobile-item" data-section="rp-3" role="option">3. Викрадення</button>
+          <button class="rules-mobile-item" data-section="rp-4" role="option">4. RP-адміністрація</button>
 
-      <!-- Module Cards Grid -->
-      <div class="rp-modules-flex stagger">
+          <div class="rules-mobile-group-title">RP — Політика та економіка</div>
+          <button class="rules-mobile-item" data-section="rp-5" role="option">5. Економіка</button>
+          <button class="rules-mobile-item" data-section="rp-6" role="option">6. Промисловість та ресурси</button>
+          <button class="rules-mobile-item" data-section="rp-7" role="option">7. Машинобудування та інфраструктура</button>
+          <button class="rules-mobile-item" data-section="rp-8" role="option">8. Заснування міст та держав</button>
+          <button class="rules-mobile-item" data-section="rp-9" role="option">9. Політичні відносини</button>
+          <button class="rules-mobile-item" data-section="rp-10" role="option">10. Центральний уряд</button>
 
-        <!-- News -->
-        <a href="#" class="rp-module-card coming-soon" aria-label="РП Новини — незабаром">
-          <div class="rp-coming-badge">Незабаром</div>
-          <div class="rp-module-icon">
-            <svg class="icon" viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>
-          </div>
-          <div class="rp-module-title">Новини</div>
-          <p class="rp-module-desc">Останні події, анонси та важливі оголошення рольового світу Cloud Create.</p>
-          <div class="rp-module-arrow">
-            <svg class="icon" viewBox="0 0 24 24" style="width:15px;height:15px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            Перейти
-          </div>
-        </a>
+          <div class="rules-mobile-group-title">RP — Конфлікти та війни</div>
+          <button class="rules-mobile-item" data-section="rp-11" role="option">11. Війна та конфлікти</button>
+          <button class="rules-mobile-item" data-section="rp-12" role="option">12. Прикордонний конфлікт</button>
+          <button class="rules-mobile-item" data-section="rp-13" role="option">13. Диверсії та спеціальні
+            операції</button>
+          <button class="rules-mobile-item" data-section="rp-14" role="option">14. Військові табори</button>
+          <button class="rules-mobile-item" data-section="rp-15" role="option">15. Військові організації та
+            найманці</button>
+          <button class="rules-mobile-item" data-section="rp-16" role="option">16. Заборонені предмети під
+            час...</button>
+          <button class="rules-mobile-item" data-section="rp-17" role="option">17. Віддалені рудники</button>
 
-        <!-- Parliament -->
-        <a href="parliament" class="rp-module-card" aria-label="Парламент">
-          <div class="rp-module-icon">
-            <svg class="icon" viewBox="0 0 24 24"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
-          </div>
-          <div class="rp-module-title">Парламент</div>
-          <p class="rp-module-desc">Склад парламенту, політичні партії, чинні закони та протоколи засідань.</p>
-          <div class="rp-module-arrow">
-            <svg class="icon" viewBox="0 0 24 24" style="width:15px;height:15px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            Перейти
-          </div>
-        </a>
+          <div class="rules-mobile-group-title">Кодекс Адміністрації</div>
+          <button class="rules-mobile-item" data-section="adm-1" role="option">Регламент адміністрації</button>
 
-        <!-- Laws -->
-        <a href="#" class="rp-module-card coming-soon" aria-label="Закони — незабаром">
-          <div class="rp-coming-badge">Незабаром</div>
-          <div class="rp-module-icon">
-            <svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          </div>
-          <div class="rp-module-title">Закони</div>
-          <p class="rp-module-desc">Кодекси, нормативні акти та чинне законодавство рольової держави.</p>
-          <div class="rp-module-arrow">
-            <svg class="icon" viewBox="0 0 24 24" style="width:15px;height:15px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            Перейти
-          </div>
-        </a>
-
-
-
-        <!-- Diplomacy Map -->
-        <a href="diplomacy" class="rp-module-card" aria-label="Дипломатична Карта">
-          <div class="rp-module-icon">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
-          </div>
-          <div class="rp-module-title">Дипломатія</div>
-          <p class="rp-module-desc">Інтерактивна карта політичних відносин між державами сервера.</p>
-          <div class="rp-module-arrow">
-            <svg class="icon" viewBox="0 0 24 24" style="width:15px;height:15px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            Перейти
-          </div>
-        </a>
-
-        <!-- RP Rules -->
-        <a href="rules#rp" class="rp-module-card" aria-label="РП Правила">
-          <div class="rp-module-icon">
-            <svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          </div>
-          <div class="rp-module-title">РП Правила</div>
-          <p class="rp-module-desc">Повний звід правил рольової гри — від загальних принципів до бойового регламенту.</p>
-          <div class="rp-module-arrow">
-            <svg class="icon" viewBox="0 0 24 24" style="width:15px;height:15px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            Перейти
-          </div>
-        </a>
-
+        </div>
       </div>
-    </div><!-- /container -->
+
+      <!-- Rules Layout Container -->
+      <div class="rules-layout">
+
+        <!-- Sticky Sidebar Menu (Shown on desktop) -->
+        <aside class="card rules-sidebar">
+
+          <div class="rules-group">
+            <div class="rules-group-title">Minecraft Правила</div>
+            <div class="rules-menu-list">
+              <button class="rules-menu-item active" data-section="mc-1">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="currentColor" fill-opacity="0.16" />
+                  <path d="M9 11l2 2 4-4" />
+                </svg>
+                1. Поведінка та чесна гра
+              </button>
+              <button class="rules-menu-item" data-section="mc-2">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 10V5a2 2 0 0 1 2-2h5" />
+                  <path d="M14 3h5a2 2 0 0 1 2 2v5" />
+                  <path d="M21 14v5a2 2 0 0 1-2 2h-5" />
+                  <path d="M10 21H5a2 2 0 0 1-2-2v-5" />
+                  <rect x="7" y="7" width="10" height="10" rx="1.5" fill="currentColor" fill-opacity="0.16" />
+                  <circle cx="12" cy="12" r="2" fill="currentColor" />
+                </svg>
+                2. Території та будівництво
+              </button>
+            </div>
+          </div>
+
+          <div class="rules-group">
+            <div class="rules-group-title">RP — Загальні принципи</div>
+            <div class="rules-menu-list">
+              <button class="rules-menu-item" data-section="rp-1">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.16" />
+                  <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor"
+                    fill-opacity="0.25" />
+                </svg>
+                1. Загальні принципи
+              </button>
+              <button class="rules-menu-item" data-section="rp-2">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" fill="currentColor" fill-opacity="0.08" />
+                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+                  <path d="M4 22h16" />
+                  <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+                  <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+                  <path d="M18 2H6v7a6 6 0 0 0 12 0V2z" fill="currentColor" fill-opacity="0.16" />
+                </svg>
+                2. Арешти
+              </button>
+              <button class="rules-menu-item" data-section="rp-3">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" fill="currentColor" fill-opacity="0.12" />
+                  <circle cx="9" cy="7" r="4" fill="currentColor" fill-opacity="0.16" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  <line x1="19" y1="11" x2="23" y2="11" />
+                  <line x1="21" y1="9" x2="21" y2="13" />
+                </svg>
+                3. Викрадення
+              </button>
+              <button class="rules-menu-item" data-section="rp-4">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.5 12.5l-4-4M6.5 16.5L3 20c-.5.5-.5 1.5 0 2s1.5.5 2 0l3.5-3.5" />
+                  <rect x="11.5" y="3.5" width="8" height="8" rx="2" transform="rotate(45 15.5 7.5)" fill="currentColor"
+                    fill-opacity="0.16" />
+                  <path d="M12 5.5l6.5 6.5" />
+                </svg>
+                4. RP-адміністрація
+              </button>
+            </div>
+          </div>
+
+          <div class="rules-group">
+            <div class="rules-group-title">RP — Політика та економіка</div>
+            <div class="rules-menu-list">
+              <button class="rules-menu-item" data-section="rp-5">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="6" rx="8" ry="3" fill="currentColor" fill-opacity="0.2" />
+                  <path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6" fill="currentColor" fill-opacity="0.08" />
+                  <path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" fill="currentColor" fill-opacity="0.08" />
+                  <ellipse cx="12" cy="12" rx="8" ry="3" fill="currentColor" fill-opacity="0.16" />
+                  <ellipse cx="12" cy="18" rx="8" ry="3" fill="currentColor" fill-opacity="0.16" />
+                </svg>
+                5. Економіка
+              </button>
+              <button class="rules-menu-item" data-section="rp-6">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 21H2V8l7 4V8l7 4V8l6 4v9z" fill="currentColor" fill-opacity="0.16" />
+                  <line x1="7" y1="18" x2="7" y2="15" />
+                  <line x1="12" y1="18" x2="12" y2="15" />
+                  <line x1="17" y1="18" x2="17" y2="15" />
+                </svg>
+                6. Промисловість та ресурси
+              </button>
+              <button class="rules-menu-item" data-section="rp-7">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3" fill="currentColor" />
+                  <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"
+                    fill="currentColor" fill-opacity="0.16" />
+                </svg>
+                7. Машинобудування та інфраструктура
+              </button>
+              <button class="rules-menu-item" data-section="rp-8">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" fill="currentColor" fill-opacity="0.16" />
+                  <circle cx="9" cy="7" r="4" fill="currentColor" fill-opacity="0.16" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                8. Заснування міст та держав
+              </button>
+              <button class="rules-menu-item" data-section="rp-9">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 21h18" />
+                  <path d="M3 10h18" />
+                  <path d="M5 10v7M9 10v7M13 10v7M17 10v7" />
+                  <polygon points="12 2 2 10 22 10 12 2" fill="currentColor" fill-opacity="0.16" />
+                  <path d="M9 21h6v-4H9v4z" fill="currentColor" fill-opacity="0.2" />
+                </svg>
+                9. Політичні відносини
+              </button>
+              <button class="rules-menu-item" data-section="rp-10">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" fill="currentColor"
+                    fill-opacity="0.16" />
+                  <line x1="4" y1="22" x2="4" y2="15" />
+                </svg>
+                10. Центральний уряд
+              </button>
+            </div>
+          </div>
+
+          <div class="rules-group">
+            <div class="rules-group-title">RP — Конфлікти та війни</div>
+            <div class="rules-menu-list">
+              <button class="rules-menu-item" data-section="rp-11">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="currentColor" fill-opacity="0.12" />
+                  <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5" />
+                  <line x1="13" y1="19" x2="19" y2="13" />
+                  <line x1="16" y1="16" x2="20" y2="20" />
+                  <polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5" />
+                  <line x1="3" y1="21" x2="9" y2="15" />
+                </svg>
+                11. Війна та конфлікти
+              </button>
+              <button class="rules-menu-item" data-section="rp-12">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" fill="currentColor"
+                    fill-opacity="0.16" />
+                  <line x1="4" y1="22" x2="4" y2="15" />
+                  <line x1="12" y1="22" x2="12" y2="17" />
+                  <line x1="20" y1="22" x2="20" y2="15" />
+                </svg>
+                12. Прикордонний конфлікт
+              </button>
+              <button class="rules-menu-item" data-section="rp-13">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="13" r="7" fill="currentColor" fill-opacity="0.16" />
+                  <path d="M16 8l3.5-3.5" />
+                  <path d="M20 3.5c1-1 2 0 1 1s-1 2-2 1" />
+                  <path d="M9 11l4 4" />
+                </svg>
+                13. Диверсії та спеціальні операції
+              </button>
+              <button class="rules-menu-item" data-section="rp-14">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 3 2 21 22 21 12 3" fill="currentColor" fill-opacity="0.16" />
+                  <polyline points="12 3 12 21" />
+                  <path d="M5 21l7-8 7 8" />
+                </svg>
+                14. Військові табори
+              </button>
+              <button class="rules-menu-item" data-section="rp-15">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2a5 5 0 0 0-5 5v3h10V7a5 5 0 0 0-5-5z" fill="currentColor" fill-opacity="0.16" />
+                  <path d="M17 10h2a2 2 0 0 1 2 2v2a8 8 0 0 1-16 0v-2a2 2 0 0 1 2-2h2" />
+                  <path d="M9 14h6M9 16h6" />
+                </svg>
+                15. Військові організації та найманці
+              </button>
+              <button class="rules-menu-item" data-section="rp-16">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+                    fill="currentColor" fill-opacity="0.16" />
+                  <line x1="12" y1="9" x2="12" y2="13" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+                16. Заборонені предмети під час...
+              </button>
+              <button class="rules-menu-item" data-section="rp-17">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" fill="currentColor" fill-opacity="0.16"/>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                  <line x1="12" y1="22.08" x2="12" y2="12"/>
+                </svg>
+                17. Віддалені рудники
+              </button>
+            </div>
+          </div>
+
+          <div class="rules-group">
+            <div class="rules-group-title">Кодекс Адміністрації</div>
+            <div class="rules-menu-list">
+              <button class="rules-menu-item" data-section="adm-1">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="currentColor" fill-opacity="0.16" />
+                  <path d="M12 8v4" />
+                  <path d="M12 16h.01" />
+                </svg>
+                Регламент адміністрації
+              </button>
+            </div>
+          </div>
+
+        </aside>
+
+        <!-- Rules Content Card -->
+        <div class="card rules-content" id="rules-content-card">
+
+          <!-- MINECRAFT RULES -->
+          <!-- 1. Behavior and Fair Play -->
+          <div id="mc-1" class="rules-section active">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="currentColor" fill-opacity="0.16" />
+                <path d="M9 11l2 2 4-4" />
+              </svg>
+              <span>1. Поведінка та чесна гра</span>
+            </h2>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">1.1</span>
+                <div class="rule-text">Кожен гравець або учасник сервера, заходячи на наш сервер, автоматично
+                  погоджується з правилами. Правила діють на будь-якого гравця без винятків.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">1.2</span>
+                <div class="rule-text">Адміністрація залишає за собою право видавати, знімати та змінювати покарання,
+                  керуючись власними переконаннями.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">1.3</span>
+                <div class="rule-text">Будь-яке покарання може бути 1 раз оскаржено через тікети на Discord сервері.
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">1.4</span>
+                <div class="rule-text">
+                  Заборонено виправдання російської агресії проти України будь-яким способом.
+                  <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: перманентний бан.</em>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">1.5</span>
+                <div class="rule-text">Власник облікового запису несе повну відповідальність за дії, виконані з його
+                  облікового запису. Відмовки типу «це не я, це мій брат» не приймаються.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">1.6</span>
+                <div class="rule-text">
+                  Заборонено ображати, принижувати, дискримінувати та розпалювати агресію за будь-якою ознакою. Це
+                  правило поширюється на будь-які засоби комунікації: глобальний чат, локальний чат, назви предметів,
+                  Discord-чат.
+                  <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: м'ют терміном від 1 до 48 годин на розсуд модератора.</em>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">1.7</span>
+                <div class="rule-text">
+                  Заборонені нікнейми та повідомлення, які містять банворди Twitch або порушують правила Discord.
+                  <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: м'ют терміном від 1 до 48 годин на розсуд модератора.</em>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">1.8</span>
+                <div class="rule-text">
+                  Заборонено публікацію особистих даних будь-якої людини без її на те згоди.
+                  <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: перманентний бан.</em>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">1.9</span>
+                <div class="rule-text">
+                  Заборонено будувати/створювати, писати, надсилати у текстові канали або демонструвати в будь-якому
+                  іншому вигляді непристойні, образливі чи провокаційні символи, фігури та зображення (зокрема зетки,
+                  зображення/будови пенісів тощо).
+                  <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: за текстові повідомлення або публікацію фото/зображень — м'ют на 1 годину (при
+                    першому порушенні), при повторних — м'ют на кілька днів; за будівництво — бан від 5 до 15 днів або
+                    перманентний бан на розсуд адміністратора.</em>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">1.10</span>
+                <div class="rule-text">Усі правила категорії «Основні правила» розповсюджуються як на Discord, так і на
+                  Майнкрафт сервер, включаючи войс-чат.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">1.11</span>
+                <div class="rule-text">
+                  Заборонено будь-які спроби обходу чи зловживання правилами сервера.
+                  <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: видається адміністрацією на свій розсуд.</em>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Territories and Construction -->
+          <div id="mc-2" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 10V5a2 2 0 0 1 2-2h5" />
+                <path d="M14 3h5a2 2 0 0 1 2 2v5" />
+                <path d="M21 14v5a2 2 0 0 1-2 2h-5" />
+                <path d="M10 21H5a2 2 0 0 1-2-2v-5" />
+                <rect x="7" y="7" width="10" height="10" rx="1.5" fill="currentColor" fill-opacity="0.16" />
+                <circle cx="12" cy="12" r="2" fill="currentColor" />
+              </svg>
+              <span>2. Території та будівництво</span>
+            </h2>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">2.1</span>
+                <div class="rule-text">Приват територій здійснюється виключно за допомогою моду <strong>«Open Parties
+                    and Claims»</strong>. Будь-які привати табличками або подібні до них не вважаються за привати.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.2</span>
+                <div class="rule-text">Якщо менша частина конструкції знаходиться на вільній території, конструкція
+                  вважається частиною привату, якому належить більша її частина.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.3</span>
+                <div class="rule-text">
+                  Заборонені будь-які механізми, побудовані з метою нашкодити серверу чи гравцю. Про ферми, що значно
+                  навантажують сервер, гравець має бути повідомлений та знести їх протягом тижня. Про знесення лаг-машин
+                  гравців повідомляти не потрібно.
+                  <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: перманентний бан за лаг-машину; бан від 7 до 10 днів на розсуд адміністратора за
+                    механізм, що навантажує сервер (при повторному порушенні — перманентний бан).</em>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.4</span>
+                <div class="rule-text">
+                  Заборонено засмічувати світ хаотично поставленими блоками.
+                  <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: бан від 1 до 7 днів на розсуд адміністратора.</em>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.5</span>
+                <div class="rule-text">
+                  Заборонено залишати блоки чи непотрібні конструкції фізичними. Завжди вимикайте фізику непотрібним
+                  конструкціям.
+                  <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: бан від 1 до 10 днів на розсуд адміністратора.</em>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.6</span>
+                <div class="rule-text">
+                  Заборонено продавати ігрові ресурси за реальні цінності.
+                  <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: перманентний бан.</em>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.7</span>
+                <div class="rule-text">
+                  Заборонено гриферство у будь-якому його вигляді: руйнування чужих будівель, крадіжка речей, вбивство
+                  чужих мобів, вбивство гравців без РП-причини.
+                  <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: бан від 10 до 30 днів або перманентний бан на розсуд адміністратора.</em>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.8</span>
+                <div class="rule-text">
+                  Заборонено використовувати баги (ігрові помилки). Якщо ви побачили баг — зобов'язані повідомити
+                  адміністрацію у спеціальному каналі.
+                  <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: бан від 10 до 30 днів або перманентний бан на розсуд адміністратора.</em>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.9</span>
+                <div class="rule-text">
+                  Заборонено обманювати гравців з метою отримання ігрової чи реальної вигоди або крадіжки облікових
+                  записів.
+                  <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: перманентний бан.</em>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.10</span>
+                <div class="rule-text">
+                  Заборонено використовувати модифікації та програмне забезпечення, якого немає у збірці сервера, з
+                  метою отримання переваги над іншими гравцями. Приклади: Freecam, X-Ray
+                  <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: бан від 10 до 30 днів або перманентний бан на розсуд адміністратора.</em>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.11</span>
+                <div class="rule-text">Спавном є території 400 на 400 блоків від місця спавну гравця. Це повністю мирна
+                  територія, на якій заборонено будувати сміття та механізми.</div>
+              </div>
+              <div class="rule-item forbidden">
+                <span class="rule-num">2.12</span>
+                <div class="rule-text">Заборонено будівництво будь-яких логістичних шляхів у незер-світі.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.13</span>
+                <div class="rule-text">Заборонено підривати сховища та скрині на всій території сервера.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.14</span>
+                <div class="rule-text">Максимальна кількість жителів (мобів) — 15 на одну країну. Усі вони обов'язково
+                  мають бути розміщені на золотих блоках.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RP RULES -->
+
+          <!-- SUBGROUP 1: RP — Загальні принципи -->
+          <div id="rp-1" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.16" />
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor"
+                  fill-opacity="0.25" />
+              </svg>
+              <span>1. Загальні принципи</span>
+            </h2>
+            <div class="rule-intro-card">
+              <p>Сервер базується на індустріальному РП світі з модами <strong>Create</strong> та <strong>Create:
+                  Aeronautics</strong>, з розвитком держав, економіки та військових конфліктів.</p>
+              <div class="rules-sub-heading" style="margin-top: 1rem; border: none; padding: 0;">Основні напрями:</div>
+              <ul>
+                <li>Військова система</li>
+                <li>Промисловість та ресурси</li>
+                <li>Дипломатія</li>
+                <li>Економіка</li>
+              </ul>
+            </div>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">1.1</span>
+                <div class="rule-text">
+                  <strong>RP-логіка:</strong> Будь-яка дія має мати RP-причину. Заборонені нелогічні або "ігрові" дії
+                  без обґрунтування. Світ розвивається через історію та наслідки дій гравців.
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">1.2</span>
+                <div class="rule-text">
+                  <strong>Використання RP-предметів:</strong> Заборонено використовувати РП предмети не в РП ситуаціях
+                  (приклад: заковувати гравців без РП причини, битися дубінкою заради розваги).
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">1.3</span>
+                <div class="rule-text">
+                  За будь-яке порушення/обхід встановлених RolePlay правил сервера до гравців або фракцій
+                  застосовуватимуться міри покарання — від попередження до тимчасового чи перманентного блокування
+                  акаунту, або ж вводитимуться санкції проти гравця/фракції на розсуд РП-Адміністрації.
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">1.4</span>
+                <div class="rule-text">
+                  <strong>Головна мета РП правил сервера:</strong> Створення умов для якісної, організованої, комфортної
+                  та цікавої гри для всього ком'юніті. Сервер та ігрові конфлікти не повинні ставати джерелом особистої
+                  ненависті, ворожнечі чи токсичності поза межами РП-процесу. Гравці та лідери фракцій зобов'язані
+                  поважати працю один одного, пам'ятаючи, що будь-яке протистояння — це насамперед спільний глибокий
+                  івент та гра, створена для взаємного задоволення.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="rp-2" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" fill="currentColor" fill-opacity="0.08" />
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+                <path d="M4 22h16" />
+                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+                <path d="M18 2H6v7a6 6 0 0 0 12 0V2z" fill="currentColor" fill-opacity="0.16" />
+              </svg>
+              <span>2. Арешти</span>
+            </h2>
+            <div class="rule-intro-card">
+              <p>Арешти можна проводити за допомогою моду <strong>«Snatched»</strong>. Нижче наведені правила проведення
+                затримань, утримання, депортації та розшуку на сервері.</p>
+            </div>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">2.1</span>
+                <div class="rule-text"><strong>Заборона безпідставного сковування:</strong> Забороняється
+                  використовувати інструменти сковування на гравцеві без вагомої RP-причини. Зв'язувати гравця заради
+                  жарту або без внутрішньоігрового контексту (без особистої згоди гравця) розцінюється як порушення.
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.2</span>
+                <div class="rule-text">
+                  <strong>Підстави для арешту:</strong> Скувати та заарештувати гравця можна лише якщо він:
+                  <ul class="rule-sub-list">
+                    <li>Порушив чинне законодавство країни, в якій перебуває.</li>
+                    <li>Незаконно проник на закриту, приватну або охоронювану територію.</li>
+                    <li>Порушив візовий режим країни (у цьому випадку сковувати дозволено виключно з метою депортації).
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.3</span>
+                <div class="rule-text">
+                  <strong>Депортація:</strong>
+                  <ul class="rule-sub-list">
+                    <li>Депортація здійснюється шляхом примусового вивезення та супроводу затриманого гравця
+                      безпосередньо на територію тієї держави, громадянином якої він є.</li>
+                    <li>Утримувати гравця у в'язниці за порушення візового режиму замість депортації —
+                      <strong>заборонено</strong>.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.4</span>
+                <div class="rule-text">
+                  <strong>Строки утримання під вартою:</strong>
+                  <ul class="rule-sub-list">
+                    <li><strong>Стандартний арешт:</strong> Скованого гравця заборонено насильно утримувати понад
+                      <strong>1 годину</strong> реального часу. Утримання довше можливе лише за особистою згодою гравця.
+                      В іншому випадку після закінчення години ви зобов'язані його відпустити.
+                    </li>
+                    <li><strong>Тяжкий злочин:</strong> У разі доведеного тяжкого злочину (наприклад: теракт,
+                      шпигунство, вбивство) дозволено утримувати в тюрмі до <strong>доби</strong> реального часу.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.5</span>
+                <div class="rule-text">
+                  <strong>Арешти на спавні:</strong>
+                  <ul class="rule-sub-list">
+                    <li>Звичайним гравцям та іноземним структурам заборонено самостійно заарештовувати гравців на
+                      території спавну.</li>
+                    <li>Правопорядком на спавні займається виключно <strong>Національна поліція сервера</strong>.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">2.6</span>
+                <div class="rule-text"><strong>Розшук:</strong> Оголосити гравця в розшук можна лише за наявності
+                  доведеного порушення закону, вчиненого на території держави.<br>Оголошення в розшук без доказів або з
+                  вигаданих причин <span style="white-space:nowrap">— <strong>заборонено</strong>.</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="rp-3" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" fill="currentColor" fill-opacity="0.12" />
+                <circle cx="9" cy="7" r="4" fill="currentColor" fill-opacity="0.16" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                <line x1="19" y1="11" x2="23" y2="11" />
+                <line x1="21" y1="9" x2="21" y2="13" />
+              </svg>
+              <span>3. Викрадення</span>
+            </h2>
+            <div class="rule-intro-card">
+              <p>Викрадення гравця є <strong>спеціальною операцією</strong> та має таке ж саме КД, що й диверсії за
+                правилом 13.2 (3 доби).<br>Це спланована та важлива RP-подія, яка не може проводитися спонтанно.</p>
+            </div>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">3.1</span>
+                <div class="rule-text">
+                  <strong>Викрадення:</strong> Викрадення можна проводити на будь-якому рівні політичних відносин, але
+                  це може призвести до погіршення відносин, якщо викрадення було сплановано за допомогою іншої
+                  держави.<br>
+                  При викраденні держава-жертва може погіршити відносини на <span style="white-space:nowrap"><strong>1
+                      пункт</strong>.</span>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">3.2</span>
+                <div class="rule-text">
+                  <strong>Обмеження щодо локацій:</strong> Заборонено проводити викрадення на офіційно визнаних
+                  нейтральних територіях, зокрема на території спавну чи міждержавних територіях.<br>
+                  Спавн є <strong>абсолютно безпечною зоною</strong> від викрадень. Для проведення операції виманюйте
+                  ціль за межі безпечних зон.
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">3.3</span>
+                <div class="rule-text">
+                  <strong>Обов'язкова причина для викрадення:</strong> Заборонено викрадати гравців без вагомої
+                  RP-причини.<br>
+                  Викрадення має переслідувати корисливі цілі в інтересах держави (наприклад: політичний тиск,
+                  проведення переговорів, отримання викупу).<br>
+                  Викрадення заради розваги або особистої неприязні — <span
+                    style="white-space:nowrap"><strong>заборонені</strong>.</span>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">3.4</span>
+                <div class="rule-text">
+                  <strong>Ліміти та статуси викупу:</strong> Сума викупу має бути адекватною і відповідати статусу
+                  викраденого гравця:
+                  <ul class="rule-sub-list">
+                    <li><strong>Глава держави та його заступник:</strong> до 2 шестерень «Сонце»</li>
+                    <li><strong>Високопоставлена особа</strong> (Глава армії, міністри): до 1 шестерні «Сонце»</li>
+                    <li><strong>Звичайний громадянин держави:</strong> до 4 шестерень «Корона»</li>
+                  </ul>
+                  <p style="margin-top: 0.5rem; font-style: italic; color: var(--text-muted);">Примітка: В рамках цієї
+                    суми дозволено просити ресурси, але їхня загальна вартість разом із грошима не повинна перевищувати
+                    встановлений ліміт.</p>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">3.5</span>
+                <div class="rule-text">
+                  <strong>Заборони:</strong>
+                  <ul class="rule-sub-list">
+                    <li>Заборонено вимагати понад зазначену суму будь-які додаткові матеріальні цінності (ресурси,
+                      предмети, території, бази) як доплату до викупу.</li>
+                    <li>Заборонено викрадати одного й того самого гравця кілька разів поспіль або ділити одне викрадення
+                      на етапи з метою обійти максимальну вартість.</li>
+                    <li>Заборонено навмисне або фіктивне пониження/підвищення статусу громадянина безпосередньо перед
+                      або під час викрадення задля вимоги іншого викупу.</li>
+                    <li>Заборонено вбивати гравця, якщо перемовини провалилися. <strong>Виняток:</strong> провальна
+                      операція з визволення.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="rp-4" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.5 12.5l-4-4M6.5 16.5L3 20c-.5.5-.5 1.5 0 2s1.5.5 2 0l3.5-3.5" />
+                <rect x="11.5" y="3.5" width="8" height="8" rx="2" transform="rotate(45 15.5 7.5)" fill="currentColor"
+                  fill-opacity="0.16" />
+                <path d="M12 5.5l6.5 6.5" />
+              </svg>
+              <span>4. RP-Адміністрація</span>
+            </h2>
+            <div class="rule-intro-card">
+              <p><strong>Вищий контрольний та апеляційний орган.</strong> Дії РП-адміністрації спрямовані виключно на
+                підтримку ігрового балансу та здорової атмосфери.</p>
+            </div>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">Функції</span>
+                <div class="rule-text">Контроль за дотриманням логіки, проведення івентів, вирішення спірних моментів,
+                  фіксація угод та війн.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">Рішення</span>
+                <div class="rule-text">Рішення RP-адміністрації є остаточними, але можуть бути переглянуті через
+                  тікет-систему за наявності доказів.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUBGROUP 2: RP — Політика та економіка -->
+          <div id="rp-5" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="6" rx="8" ry="3" fill="currentColor" fill-opacity="0.2" />
+                <path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6" fill="currentColor" fill-opacity="0.08" />
+                <path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" fill="currentColor" fill-opacity="0.08" />
+                <ellipse cx="12" cy="12" rx="8" ry="3" fill="currentColor" fill-opacity="0.16" />
+                <ellipse cx="12" cy="18" rx="8" ry="3" fill="currentColor" fill-opacity="0.16" />
+              </svg>
+              <span>5. Економіка</span>
+            </h2>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">Валюта</span>
+                <div class="rule-text"><strong>Офіційна валюта:</strong> Офіційною валютою сервера та єдиним засобом для фінансових розрахунків є валюта з моду <strong>Create Numismatics</strong>.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">Основи</span>
+                <div class="rule-text">Виробництво, Торгівля, Ресурси, Стабільність держав.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">Війна</span>
+                <div class="rule-text"><strong>Вплив війни:</strong> Падіння економіки, Дефіцит ресурсів, Руйнування
+                  інфраструктури.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">Заборони</span>
+                <div class="rule-text">Заборонено штучне руйнування економіки без RP-причини.</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="rp-6" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 21H2V8l7 4V8l7 4V8l6 4v9z" fill="currentColor" fill-opacity="0.16" />
+                <line x1="7" y1="18" x2="7" y2="15" />
+                <line x1="12" y1="18" x2="12" y2="15" />
+                <line x1="17" y1="18" x2="17" y2="15" />
+              </svg>
+              <span>6. Промисловість та ресурси</span>
+            </h2>
+            <div class="rule-intro-card">
+              <div class="rules-sub-heading" style="margin-top: 0; border: none; padding: 0;">Основи промисловості та ресурсів:</div>
+              <ul>
+                <li>Видобуток та переробка ресурсів</li>
+                <li>Виробництво товарів та техніки</li>
+                <li>Розвиток інфраструктури держави</li>
+              </ul>
+            </div>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">Роль</span>
+                <div class="rule-text">
+                  Індустріальний розвиток є основою економічної та військової могутності держави. Кожна країна має
+                  розвивати власне виробництво для забезпечення потреб армії та населення.
+                </div>
+              </div>
+            </div>
+
+            <div class="rules-sub-heading" style="margin-top: 1.75rem;">6.1. Рудники</div>
+            <div class="rule-intro-card">
+              <p><strong>Рудник</strong> — це стратегічна локація на карті з обмеженою або необмеженою кількістю
+                сировини, призначена для промислового видобутку ресурсів. Робота та функціонування рудників базуються на
+                механіках аддону <strong>Create: ReAutomatics</strong>.</p>
+            </div>
+
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">6.1</span>
+                <div class="rule-text">Локація із рудником повинна бути чітко огороджена по периметру щонайменше в
+                  радіусі 25 блоків.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">6.2</span>
+                <div class="rule-text">
+                  <strong>Забудова об'єкту:</strong>
+                  <ul class="rule-sub-list">
+                    <li>Сама територія рудника та його огородження мають бути адекватно й реалістично облаштовані.</li>
+                    <li>На території рудника обов'язково має бути зведена будівля керування рудником
+                      (адміністративний/командний пункт).</li>
+                    <li>Суворо заборонено навмисно псувати чанки з рудниками: забудовувати та фортифікувати їх
+                      обсидіаном, заливати лавою, водою чи іншими рідинами з метою зробити видобуток/захоплення
+                      неможливим.</li>
+                    <li>Дозволено зводити навколо рудника звичайні оборонні/логістичні споруди та фортифікації (стіни,
+                      вежі, КПП, залізницю) для захисту об'єкта.</li>
+                    <li>Не дозволяється будувати механізми для переробки сировини. На рудниках проходить тільки
+                      видобуток та збір сировини.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">6.3</span>
+                <div class="rule-text">Рудники не вважаються колоніями.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">6.4</span>
+                <div class="rule-text">Для офіційного закріплення рудника за певною компанією або фракцією необхідно
+                  обов'язково написати відповідний РП-пост у встановленому каналі.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">6.5</span>
+                <div class="rule-text">Обсяги видобутку, квоти, податки та конкретні ліміти встановлюються та
+                  регулюються окремими законодавчими актами Міністерства Економіки.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">6.6</span>
+                <div class="rule-text"><strong>Антимонопольне регулювання:</strong> До моменту створення та повноцінної організації Міністерства Економіки одній фракції, скваду, компанії або утвореному ними альянсу суворо заборонено володіти, монополізувати та контролювати понад 50% від загальної кількості рудників на сервері.
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">6.7</span>
+                <div class="rule-text">
+                  Будь-які спроби штучного обходу антимонопольного ліміту (використання підставних осіб, фіктивних
+                  фракцій-васалів, таємних угод або твінк-акаунтів для створення монополії) вважаються порушенням правил
+                  сервера.
+                  <em class="rule-penalty"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5" style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: видається на розсуд РП-Адміністрації (від вилучення об'єктів та розформування
+                    фіктивних фракцій до блокування акаунту).</em>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="rp-7" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3" fill="currentColor" />
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"
+                  fill="currentColor" fill-opacity="0.16" />
+              </svg>
+              <span>7. Машинобудування та інфраструктура</span>
+            </h2>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">7.1</span>
+                <div class="rule-text">
+                  <strong>Машинобудування:</strong> Промислова галузь та РП-процес, що включає проектування, збірку та ремонт будь-якої техніки на базі механік моду <strong>Create</strong>.
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">7.2</span>
+                <div class="rule-text">
+                  <strong>Конструкторське Бюро (КБ):</strong> Офіційна організація машинобудування в державі (фізично це офіс фракції). Через КБ фракція оголошує про старт досліджень та затверджує схематики техніки. Збірка будь-якого транспорту без діючого КБ <strong>заборонена</strong>.
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">7.3</span>
+                <div class="rule-text">
+                  <strong>Науково-виробничий цикл:</strong>
+                  <ul class="rule-sub-list">
+                    <li><strong>Старт:</strong> КБ пише короткий РП-пост про початок розробки (вказує тип техніки та її призначення). З цього моменту запускається час дослідження тривалістю <strong>1 годину</strong>.</li>
+                    <li><strong>Фаза:</strong> Поки йде час дослідження, фракція збирає матеріали та готує місце для збору техніки.</li>
+                    <li><strong>Збірка:</strong> Після закінчення часу дослідження фракція має право розпочати збірку.</li>
+                    <li><strong>Паралельні дослідження (7.3.1):</strong> Дозволено проводити до двох досліджень одночасно.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">7.4</span>
+                <div class="rule-text">
+                  <strong>Технічні обмеження для техніки:</strong>
+                  <ul class="rule-sub-list">
+                    <li>Об'єм техніки не має перевищувати 20 000 блоків.</li>
+                    <li>Максимальне озброєння до 8 гармат та до 8 автогармат.</li>
+                    <li>Техніка, яка містить образливу/заборонену символіку або надмірно навантажує сервер, видаляється адміністрацією.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="rules-sub-heading" style="margin-top: 2rem;">Інфраструктура</div>
+
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">7.5</span>
+                <div class="rule-text">
+                  Будь-яка збірка, базування та ремонт техніки дозволені виключно за наявності відповідної інфраструктури. Створення техніки без неї <span style="white-space:nowrap">— <strong>заборонено.</strong></span>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">7.6</span>
+                <div class="rule-text">
+                  <strong>Мінімальні норми споруд інфраструктури:</strong>
+                  <ul class="rule-sub-list">
+                    <li><strong>Аеродром:</strong> Рівна ЗПС довжиною від 60 блоків, шириною від 9 блоків та розміткою. Обов'язковий ангар, що повністю вміщує повітряне судно. Необхідний для побудови авіації. Для військової авіації потрібна також військова база та військовий завод.</li>
+                    <li><strong>Військова база:</strong> Має бути спорудою з повним огородженням по периметру та обов'язково вміщувати в себе: штаб, місце перебування для техніки, військовий плац та випробувальний полігон для стрільб. Також фракція за бажанням може розгорнути на базі постійний військовий шпиталь. Необхідна для створення військової техніки.</li>
+                    <li><strong>Військовий завод:</strong> Закритий цех для збірки БПЛА, бомб, ракет та гармат. Необхідна для створення військової техніки та озброєння.</li>
+                    <li><strong>Залізничне депо:</strong> Спеціалізована зона для обслуговування, ремонту та базування потягів. Необхідна для створення потягів.</li>
+                    <li><strong>Автоангар:</strong> Гараж із робочим підйомником на поршнях та складом інструментів. Необхідний для створення автотранспорту.</li>
+                    <li><strong>Порт:</strong> Причал для швартування та сухий док зі шлюзами для збірки кораблів.</li>
+                    <li><strong>Цивільна забудова:</strong> Будівництво великих залізничних вокзалів, пасажирських станцій, електростанцій, житлових кварталів тощо здійснюється фракціями за власним бажанням для розвитку РП-атмосфери.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">7.7</span>
+                <div class="rule-text">
+                  Для таємного будівництва інфраструктури замість РП-посту лідер фракції може повідомити адміністрацію про побудову об'єкту та надати докази побудови об'єкту.
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">7.8</span>
+                <div class="rule-text">
+                  <strong>Контроль та нагляд за виконанням правил:</strong> Чітко розділений між структурами:
+                  <ul class="rule-sub-list">
+                    <li><strong>Міністерство Інфраструктури:</strong> Відповідає суворо за логістичний та цивільний зв'язок об'єктів між собою, але не має доступу до закритих військових таємниць фракцій.</li>
+                    <li><strong>Адміністрація сервера:</strong> Проводить перевірки інфраструктури, КБ та лімітів техніки у разі надходження скарг від інших гравців, або за власним поглядом.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rule-item forbidden">
+                <span class="rule-num">7.9</span>
+                <div class="rule-text">
+                  <strong>Санкції за порушення правил:</strong>
+                  <ul class="rule-sub-list">
+                    <li>Побудова техніки чи зброї в обхід інфраструктури прирівнюється до навмисного обходу правил.</li>
+                    <li>Порушення карається примусовою конфіскацією/вилученням техніки Міністерством Інфраструктури та адмінами без повернення ресурсів.</li>
+                    <li>Будь-яка техніка без офіційної збірки визнається НРП об'єктом і видаляється.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="rp-8" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" fill="currentColor" fill-opacity="0.16" />
+                <circle cx="9" cy="7" r="4" fill="currentColor" fill-opacity="0.16" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              <span>8. Заснування міст та держав</span>
+            </h2>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">8.1</span>
+                <div class="rule-text">
+                  <strong>Заснування міста:</strong> Кожне місто має бути офіційно зареєстроване через спеціальний
+                  РП-пост. Публікація має бути створена лідером держави або мером міста.
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">8.2</span>
+                <div class="rule-text">
+                  <strong>Створення держави:</strong> Для офіційного визнання нової держави необхідно опублікувати
+                  окремий РП-пост.
+                  <p style="margin-top: 0.5rem; font-weight: 600;">Держава вважається створеною лише за умови виконання
+                    таких вимог:</p>
+                  <ul class="rule-sub-list">
+                    <li>У складі держави має бути не менше 3 гравців.</li>
+                    <li>В РП-пості обов'язково зазначається лідер.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="rp-9" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18" />
+                <path d="M3 10h18" />
+                <path d="M5 10v7M9 10v7M13 10v7M17 10v7" />
+                <polygon points="12 2 2 10 22 10 12 2" fill="currentColor" fill-opacity="0.16" />
+                <path d="M9 21h6v-4H9v4z" fill="currentColor" fill-opacity="0.2" />
+              </svg>
+              <span>9. Політичні відносини</span>
+            </h2>
+            <div class="rule-intro-card">
+              <p><strong>Дипломатичні інструменти:</strong> Мирні договори та альянси, Торговельні угоди, Оборонні
+                пакти, Ультиматуми та декларації.</p>
+              <p style="margin-top: 0.5rem;">Політичні відносини між державами або організаціями регулюються виключно
+                офіційними РП-постами. Повторна зміна або оновлення політичного курсу між тими самими сторонами
+                дозволяється з обов'язковим КД у 1 добу з моменту публікації попереднього поста. Політичні відносини
+                вимірюються за шкалою від +3 до -3. Кожен рівень встановлюється відповідним РП-постом.</p>
+            </div>
+
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">9.1</span>
+                <div class="rule-text">У держави може бути тільки один основний приват і один додатковий (який не межує
+                  з основним). Додатковий приват має бути РП обґрунтованим.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">9.2</span>
+                <div class="rule-text">Заборонено приватити територію безпосередньо навколо чужих приватів з метою
+                  обмеження розвитку або блокування життєдіяльності іншої держави чи її громадян.</div>
+              </div>
+            </div>
+
+            <div class="rules-sub-heading">Рівні політичних відносин</div>
+            <div class="rule-relations-table">
+              <div class="rule-relation-item">
+                <span class="rule-relation-badge badge-positive">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    style="width: 13px; height: 13px; margin-right: 3px;">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg> +3
+                </span>
+                <div class="rule-relation-text"><strong>Військово-політичний альянс.</strong> Повна взаємодопомога у
+                  війнах, спільні кордони, відкрита торгівля та єдиний оборонний пакт.</div>
+              </div>
+              <div class="rule-relation-item">
+                <span class="rule-relation-badge badge-positive">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    style="width: 13px; height: 13px; margin-right: 3px;">
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                  </svg> +2
+                </span>
+                <div class="rule-relation-text"><strong>Дружні відносини або партнерство.</strong> Укладання
+                  торговельних угод, пактів про ненапад та відкритий безвізовий режим.</div>
+              </div>
+              <div class="rule-relation-item">
+                <span class="rule-relation-badge badge-positive">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    style="width: 12px; height: 12px; margin-right: 3px;">
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg> +1
+                </span>
+                <div class="rule-relation-text"><strong>Сприятливі відносини.</strong> Початок дипломатичного зближення,
+                  дипломатичні місії, нейтрально-позитивний статус.</div>
+              </div>
+              <div class="rule-relation-item">
+                <span class="rule-relation-badge badge-neutral">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    style="width: 10px; height: 10px; margin-right: 3px;">
+                    <circle cx="12" cy="12" r="10" />
+                  </svg> 0
+                </span>
+                <div class="rule-relation-text"><strong>Нейтралітет.</strong> Базовий стан відносин. Відсутність
+                  спільних договорів, претензій чи відкритих конфліктів.</div>
+              </div>
+              <div class="rule-relation-item">
+                <span class="rule-relation-badge badge-negative">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    style="width: 12px; height: 12px; margin-right: 3px;">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg> -1
+                </span>
+                <div class="rule-relation-text"><strong>Напружені відносини.</strong> Введення перших дипломатичних
+                  обмежень, економічні санкції, або перші прояви агресії.</div>
+              </div>
+              <div class="rule-relation-item">
+                <span class="rule-relation-badge badge-negative">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    style="width: 13px; height: 13px; margin-right: 3px;">
+                    <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2" />
+                  </svg> -2
+                </span>
+                <div class="rule-relation-text"><strong>Конфліктні відносини.</strong> Закриття кордонів та посольств,
+                  повне припинення торгівлі, відкрита ворожа пропаганда. Можуть затримувати гравців ворожої держави для
+                  депортації.</div>
+              </div>
+              <div class="rule-relation-item">
+                <span class="rule-relation-badge badge-war">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    style="width: 13px; height: 13px; margin-right: 3px;">
+                    <path
+                      d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
+                  </svg> -3
+                </span>
+                <div class="rule-relation-text"><strong>Війна.</strong> Повномасштабний військовий конфлікт, проведення
+                  бойових дій.</div>
+              </div>
+            </div>
+
+            <div class="rules-list" style="margin-top: 1.25rem;">
+              <div class="rule-item">
+                <span class="rule-num">Динаміка</span>
+                <div class="rule-text"><strong>Зміна політичних відносин</strong> не може бути різкою. За один RP-пост
+                  рівень відносин можна змінити максимум на 2 пункти в будь-який бік. Стрибки через кілька рівнів
+                  заборонені. Виняток: Різка зміна можлива лише за наявності вагомої RP-причини.</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="rp-10" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" fill="currentColor"
+                  fill-opacity="0.16" />
+                <line x1="4" y1="22" x2="4" y2="15" />
+              </svg>
+              <span>10. Центральний уряд — Генеральна Асамблея Серверу (ГАС)</span>
+            </h2>
+            <div class="rule-intro-card">
+              <p><strong>Генеральна Асамблея Серверу (ГАС)</strong> — вищий орган законодавчої та міжнародної влади сервера Cloud Create, що складається з делегацій офіційно зареєстрованих країн.</p>
+              <p style="margin-top: 0.5rem;"><strong>Будівля ГАС:</strong> Будівлю ГАС буде обрано шляхом тендеру з ідей та проєктів, які гравці зможуть пропонувати в окремому новоствореному Discord-каналі з пропозиціями.</p>
+            </div>
+
+            <div class="rules-sub-heading">Формування, структура та представництво в ГАС</div>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">10.1</span>
+                <div class="rule-text"><strong>Офіційна назва:</strong> Парламент сервера офіційно називається <strong>Генеральна Асамблея Серверу (ГАС)</strong>.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.2</span>
+                <div class="rule-text"><strong>Гнучкий склад:</strong> Загальна кількість місць у ГАС є гнучкою і залежить від кількості населення зареєстрованих країн та відповідних квот.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.3</span>
+                <div class="rule-text"><strong>Склад делегацій:</strong> ГАС складатиметься виключно з представників офіційно зареєстрованих на сервері країн.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.4</span>
+                <div class="rule-text"><strong>Квоти представництва:</strong> Кількість місць для кожної країни розраховується пропорційно кількості її населення — <strong>1 представник на кожні 3 людини</strong>, з обмеженням <strong>не більше 4 місць</strong> на одну країну.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.5</span>
+                <div class="rule-text"><strong>Реєстрація населення та паспорти:</strong> Населення кожної країни має бути обов'язково зареєстроване в ГАС. Кожному громадянину видається паспорт у паспортному столі (заявка подається у вигляді книжечки, аналогічно до виборів 1 Сезону).</div>
+              </div>
+            </div>
+
+            <div class="rules-sub-heading">Спікер ГАС та Паспортний стіл</div>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">10.6</span>
+                <div class="rule-text"><strong>Обрання Спікера:</strong> Засідання ГАС проводяться Спікером, якого обирають представники країн шляхом голосування більшістю голосів. Кандидатом на роль Спікера може бути лише чинний член делегації будь-якої з зареєстрованих країн.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.7</span>
+                <div class="rule-text"><strong>Заступник Спікера:</strong> Спікер має право призначити собі заступника на власний розсуд.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.8</span>
+                <div class="rule-text"><strong>Обов'язки Спікера:</strong> Спікер відповідає за організацію засідань, видачу паспортів громадянам та ведення загальносерверного перепису населення.</div>
+              </div>
+            </div>
+
+            <div class="rules-sub-heading">Комітети ГАС та їхні компетенції</div>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">10.9</span>
+                <div class="rule-text"><strong>Призначення голови комітету:</strong> ГАС обирає та призначає голів трьох профільних комітетів:
+                  <ul class="rule-sub-list" style="margin-top: 0.35rem;">
+                    <li><strong>Комітет економіки</strong></li>
+                    <li><strong>Комітет інфраструктури та транспорту</strong></li>
+                    <li><strong>Комітет культури</strong></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.10</span>
+                <div class="rule-text"><strong>Склад керівництва комітету:</strong> Голова комітету може на власний розсуд обрати собі заступника та до 2 помічників (за потреби).</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.11</span>
+                <div class="rule-text"><strong>Комітет економіки:</strong> Відповідає за економіку сервера, валюту (Create Numismatics) та встановлення мінімальної квоти продажу ресурсів для Трейд-Холу Спавну.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.12</span>
+                <div class="rule-text"><strong>Комітет інфраструктури та транспорту:</strong> Співпрацює з РП-адміністрацією, відповідає за контроль інфраструктури гравців на РП-елементи та оцінює її придатність під використання транспорту.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.13</span>
+                <div class="rule-text"><strong>Комітет культури:</strong> Відповідає за організацію та проведення івентів за посередництвом адміністрації.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.14</span>
+                <div class="rule-text"><strong>Висловлення недовіри:</strong> Голову будь-якого комітету може бути знято з посади голосуванням ГАС більшістю голосів.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.15</span>
+                <div class="rule-text"><strong>Вибори голів комітетів:</strong> Голови комітетів обираються на <strong>третій день гри</strong>. Усі кандидати мають прибути в означену точку для проведення першої зустрічі та виступити з самопрезентацією. Щоб брати участь у виборах на посади голів комітетів, <strong>не обов'язково бути членом делегації країни</strong>.</div>
+              </div>
+            </div>
+
+            <div class="rules-sub-heading">Регламент засідань, санкції та миротворчий контингент</div>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">10.16</span>
+                <div class="rule-text"><strong>Регулярні засідання:</strong> Скликання ГАС має проводитися <strong>один раз на тиждень</strong>.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.17</span>
+                <div class="rule-text"><strong>Позачергове скликання:</strong> Негайне скликання ГАС має відбутися протягом <strong>1–2 днів</strong> за ініціативи будь-якої офіційно зареєстрованої країни сервера з представниками в ГАС за наявності вагомої причини (війна, робота комітетів тощо).</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.18</span>
+                <div class="rule-text"><strong>Виступи під час війни:</strong> У випадку війни між країнами сервера їхні представники можуть виступити в ГАС з поясненням своїх дій та своєю версією подій.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.19</span>
+                <div class="rule-text"><strong>Економічні санкції:</strong> У випадку війни ГАС може проголосувати за введення санкцій на рівні обмеження взаємодії між Трейд-Холом сервера та визначеною в голосуванні країною.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.20</span>
+                <div class="rule-text"><strong>Миротворчий контингент:</strong> ГАС може ввести миротворчий контингент на територію країни, яка стала жертвою агресії, за наявності <strong>2/3 голосів</strong>.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">10.21</span>
+                <div class="rule-text"><strong>Дії миротворців:</strong> Миротворчий контингент складається з найманців/добровольців з країн-членів ГАС і може виконувати <strong>лише оборонні дії</strong>.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUBGROUP 3: RP — Конфлікти та війни -->
+          <div id="rp-11" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="currentColor" fill-opacity="0.12" />
+                <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5" />
+                <line x1="13" y1="19" x2="19" y2="13" />
+                <line x1="16" y1="16" x2="20" y2="20" />
+                <polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5" />
+                <line x1="3" y1="21" x2="9" y2="15" />
+              </svg>
+              <span>11. Війна та конфлікти</span>
+            </h2>
+            <div class="rule-intro-card">
+              <p><strong>Війна</strong> — це крайня міра. Будь-яка війна повинна мати чітку причину (казус беллі),
+                зафіксовану в РП-постах (територіальні суперечки, порушення договорів, блокада, захист союзника,
+                диверсії).</p>
+            </div>
+
+            <div class="rules-sub-heading">Оголошення війни та ультиматуми</div>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">11.1</span>
+                <div class="rule-text"><strong>Виставлення ультиматуму:</strong> Держава зобов'язана опублікувати
+                  РП-пост із ультиматумом. Надається щонайменше 24 години на виконання.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.2</span>
+                <div class="rule-text"><strong>Оголошення війни:</strong> Якщо умови не виконані, публікується РП-пост
+                  про Оголошення війни. Відносини автоматично падають до -3.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.3</span>
+                <div class="rule-text">Заборонено оголошувати війну без попередніх дипломатичних кроків.</div>
+              </div>
+            </div>
+
+            <div class="rules-sub-heading">Регламент та етапи проведення війн</div>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">11.4</span>
+                <div class="rule-text"><strong>Поетапність кампанії:</strong> Будь-яка війна на сервері є затяжною
+                  воєнною кампанією, яка ведеться суворо поетапно. Прямий штурм головної бази ворога в перший день війни
+                  або без проходження попередніх етапів суворо заборонений.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.5</span>
+                <div class="rule-text">
+                  <strong>Три обов'язкові етапи воєнної кампанії:</strong> Воєнна кампанія ділиться на три обов'язкові
+                  етапи, які проходяться послідовно:
+                  <ul class="rule-sub-list">
+                    <li><strong>Етап I (Прикордонна битва):</strong> Об'єктом бойових дій є прикордонні форпости, лінії
+                      оборони, КПП або перша лінія укріплень сторони, що обороняється.</li>
+                    <li><strong>Етап II (Битва за регіони):</strong> Бойові дії переносяться на проміжну територію між
+                      державами. Об'єктами захоплення є стратегічні інфраструктурні об'єкти: залізничні вузли,
+                      логістичні магістралі, заводи тощо.</li>
+                    <li>
+                      <strong>Етап III (Фінальна битва):</strong> Перехід до цього етапу можливий лише після повної
+                      перемоги атакуючої сторони на Етапах I та II. Штурм столиці є фінальною облогою міста і проходить
+                      у 5 послідовних фазах:
+                      <ol style="margin-top: 0.5rem; padding-left: 1.2rem; line-height: 1.6;">
+                        <li><strong>Фаза 1 (Блокада):</strong> Оточення міста, повне перекриття всіх логістичних шляхів.
+                        </li>
+                        <li><strong>Фаза 2 (Артилерійська підготовка):</strong> Бомбардування укріплень за допомогою
+                          дозволеної артилерії.</li>
+                        <li><strong>Фаза 3 (Штурм):</strong> Активний прорив фортифікацій, стін та брам міста піхотою й
+                          танками.</li>
+                        <li><strong>Фаза 4 (Бій у місті):</strong> Вуличні бої, зачистка будівель та барикад.</li>
+                        <li><strong>Фаза 5 (Фінальна фаза):</strong> Офіційна капітуляція сторони, що обороняється, або
+                          успішне відбиття штурму.</li>
+                      </ol>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.6</span>
+                <div class="rule-text"><strong>Морські та повітряні битви:</strong> За обопільною згодою сторін
+                  конфлікту та з дозволу РП-адміністрації в рамках поточної кампанії можуть проводитися окремі масштабні
+                  морські або повітряні битви. Такі битви проходять у спеціально виділених для цього акваторіях чи
+                  повітряних зонах. Перемога в такій битві може дати стороні стратегічну перевагу (наприклад, дозволити
+                  обійти один із наземних етапів оборони).</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.7</span>
+                <div class="rule-text"><strong>Сіра зона:</strong> Перед кожним бойовим днем РП-адміністрація сервера
+                  визначає та маркує на карті конкретну ділянку території — сіру зону, у межах якої дозволені бойові дії
+                  поточного етапу. Ведення бойових дій, навмисні вбивства або бої за межами затвердженої Сірої зони
+                  караються як за навмисне вбивство або гриф.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.8</span>
+                <div class="rule-text"><strong>Часовий регламент боїв:</strong> Офіційні бойові зіткнення можуть
+                  проводитися виключно у часовому проміжку від 18:00 до 22:00 за київським часом. Точний час початку
+                  бойового зіткнення всередині цього проміжку має бути заздалегідь узгоджений обома сторонами конфлікту
+                  та затверджений РП-адміністрацією не менш ніж за 4 години до початку бою. Активна фаза штурму триває
+                  мінімум одну годину.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.9</span>
+                <div class="rule-text"><strong>Невдала фаза та перегрупування:</strong> Якщо атакуюча сторона не змогла
+                  виконати тактичну задачу етапу (або поточної фази облоги столиці) за відведений час, оголошується
+                  обов'язкове перемир'я на 24 години для перегрупування сил. Після цього призначається повторний бій за
+                  цей же етап.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.10</span>
+                <div class="rule-text"><strong>Контрнаступ:</strong> Якщо наступальний потенціал атакуючої сторони
+                  повністю вичерпано (втрачено техніку, зупинено просування), сторона, що обороняється, має право
+                  оголосити контрнаступ. У такому разі сторони міняються ролями, а фронт переноситься на один етап назад
+                  у бік території колишніх атакуючих.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.11</span>
+                <div class="rule-text"><strong>Точки відродження:</strong> У разі смерті на полі бою гравець не вилітає
+                  з івенту назовсім. Він відроджується виключно на території свого Польового табору (або прикордонної
+                  бази) у спеціально обладнаному Польовому шпиталі (ліжка мають бути встановлені там заздалегідь).
+                  Повернення в бій з будь-яких інших точок, крім офіційно затверджених РП-точок шпиталю/табору, суворо
+                  заборонено.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.12</span>
+                <div class="rule-text">
+                  <strong>Передова військова інфраструктура:</strong> Обов'язковість розгортання передової військової
+                  інфраструктури залежить від географічного положення сторін конфлікту:
+                  <ul class="rule-sub-list">
+                    <li><strong>При наявності спільного кордону:</strong> Атакуюча сторона має право вести наступ зі
+                      своїх прикордонних фортів, баз або укріплень. Роль польового шпиталю в такому разі виконує їхній
+                      найближчий постійний військовий об'єкт або спеціально підготовлений шпиталь.</li>
+                    <li><strong>При відсутності спільного кордону:</strong> Атакуюча сторона зобов'язана до початку
+                      вечірнього бою побудувати та зареєструвати у РП-адміністрації Польовий військовий табір на
+                      безпечній відстані від лінії фронту. Ведення далекого наступу без розгорнутого табору заборонено.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.13</span>
+                <div class="rule-text">
+                  <strong>КД у шпиталі при відродженні:</strong> Гравець, який з'явився у шпиталі після смерті,
+                  зобов'язаний відбути обов'язкове КД перед поверненням у бік передової. Базовий мінімальний час КД
+                  становить 10 хвилин (тривалість КД може динамічно регулюватися РП-адміністрацією безпосередньо перед
+                  початком бою).
+                  <p style="margin-top: 0.5rem; color: var(--text-muted);">Під час відбування КД гравцю заборонено
+                    залишати територію шпиталю або брати участь у перестрілках. Після закінчення КД гравець має право
+                    повністю переукомплектуватися, взяти техніку й повернутися в бій.</p>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.14</span>
+                <div class="rule-text">
+                  <strong>Зелена зона шпиталю та штурм табору:</strong> Територія шпиталю під час активного бою є
+                  зеленою зоною. Категорично заборонено вести будь-який вогонь (артилерійський, ручний, скидання бомб з
+                  авіації) по будівлі шпиталю, а також штурмувати її піхотою. За порушення цього пункту гравець/фракція
+                  карається як за навмисне вбивство/гриф.
+                  <p style="margin-top: 0.5rem;">Якщо супротивник успішно провів контрнаступ і підійшов до Військового
+                    табору ворога, знищення табору артилерією заборонено. Сторона конфлікту має право штурмувати табір.
+                    Щойно штурмуючі захоплюють головний штаб табору, бій завершується, табір вважається ліквідованим, а
+                    шпиталь — евакуйованим.</p>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.15</span>
+                <div class="rule-text">
+                  <strong>Обмеження ракетного озброєння:</strong> Використання будь-яких далекобійних або кастомних
+                  ракет на час війни обмежено. Категорично заборонено завдавати удару ракетами по сірій зоні з глибокого
+                  тилу. Під час активного штурму суворо заборонено завдавати ударів будь-якими ракетами безпосередньо по
+                  піхоті супротивника.
+                  <p style="margin-top: 0.5rem;">Усі бойові системи мають бути ближнього/середнього радіусу дії та
+                    застосовуватися для тактичного придушення техніки або військових. Дозволено використання керованого
+                    ракетного озброєння (ЗРК, ПТРК тощо) з ракетами та навідними підривниками виключно проти військової
+                    техніки.</p>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.16</span>
+                <div class="rule-text"><strong>Час проведення диверсій у тилу:</strong> Проведення диверсій у глибокому
+                  тилу ворога допускається виключно за 4 години до початку офіційного вечірнього бою або під час
+                  оголошеного перемир'я. Будь-яка диверсійна діяльність регулюється окремим Регламентом диверсій.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.17</span>
+                <div class="rule-text"><strong>Заборона диверсій під час активного бою:</strong> Категорично заборонено
+                  проводити будь-які диверсії, підриви інфраструктури або вилазки в тил під час активної фази бою. Під
+                  час бою всі сили фракцій мають бути зосереджені виключно в межах Сірої зони. Диверсії під час бою
+                  прирівнюються до грифу.</div>
+              </div>
+            </div>
+
+            <div class="rules-sub-heading">Наслідки війни та завершення конфлікту</div>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">11.18</span>
+                <div class="rule-text">
+                  <strong>Завершення військового конфлікту:</strong> Військовий конфлікт може бути завершений у один із
+                  таких способів:
+                  <ul class="rule-sub-list">
+                    <li><strong>Капітуляція</strong> — повне визнання однією зі сторін своєї поразки та прийняття умов
+                      переможця.</li>
+                    <li><strong>Мирна угода</strong> — двосторонній компромісний договір, умови якого влаштовують обидві
+                      сторони.</li>
+                    <li><strong>Перемир'я</strong> — тимчасове припинення вогню для проведення подальших дипломатичних
+                      переговорів.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.19</span>
+                <div class="rule-text">
+                  <strong>Права переможця при капітуляції:</strong> У разі повної капітуляції однієї зі сторін,
+                  держава-переможець має право:
+                  <ul class="rule-sub-list">
+                    <li>Забрати під свій контроль до 30% територій капітулювавшої держави.</li>
+                    <li>Повне захоплення або анексія столиці заборонені. Дозволено лише частковий контроль (наприклад,
+                      окремий квартал під базу, демілітаризовану зону чи посольство).</li>
+                    <li>Обкласти переможену сторону контрибуцією. Конкретні обсяги, терміни та ліміти виплат регулюються
+                      окремими угодами або законодавчими актами. Контрибуції мають бути адекватними і підсильними
+                      переможеній стороні.</li>
+                    <li>Встановлювати інші політичні чи економічні обмеження (наприклад, демілітаризацію певних зон чи
+                      контроль рудників), якщо це зафіксовано в підсумковому РП-пості про капітуляцію.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.20</span>
+                <div class="rule-text"><strong>Підсумки війни:</strong> Будь-які наслідки війни, територіальні зміни та
+                  умови виплат повинні бути чітко зафіксовані у фінальному РП-пості про завершення війни (мирний
+                  договір/акт про капітуляцію) з підписами або згодою лідерів обох держав (або односторонньо від
+                  переможця у разі капітуляції).</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">11.21</span>
+                <div class="rule-text">
+                  <strong>Перемир'я:</strong>
+                  <ul class="rule-sub-list">
+                    <li>Після офіційного завершення війни між сторонами конфлікту встановлюється обов'язкове перемир'я
+                      на 7+ днів.</li>
+                    <li>Протягом цього часу переможцю суворо заборонено виставляти нові ультиматуми, оголошувати війну
+                      або проводити диверсії проти цієї ж держави.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="rule-intro-card" style="margin-top: 1.5rem; border-left-color: #ef4444;">
+              <p><strong style="color: #f87171;">Відповідальність та філософія війн:</strong> У разі фіксації будь-якого
+                порушення правил, поточний бій за рішенням РП-адміністрації може бути повністю обнулений, або ж
+                сторона-порушниця отримає автоматичну технічна поразку в цьому бою.</p>
+              <p style="margin-top: 0.5rem;">Війна на сервері не має бути джерелом особистої ненависті чи токсичності та
+                мати єдину ціль — повністю знищити чи загриферити свого недруга. Війна — це в першу чергу масштабний,
+                глибоко спланований та цікавий івент для обох сторін конфлікту.</p>
+            </div>
+          </div>
+
+          <div id="rp-12" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" fill="currentColor"
+                  fill-opacity="0.16" />
+                <line x1="4" y1="22" x2="4" y2="15" />
+                <line x1="12" y1="22" x2="12" y2="17" />
+                <line x1="20" y1="22" x2="20" y2="15" />
+              </svg>
+              <span>12. Прикордонний конфлікт</span>
+            </h2>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">12.1</span>
+                <div class="rule-text"><strong>Визначення та мета:</strong> Прикордонний конфлікт — це локальне,
+                  обмежене в часі та просторі військове зіткнення між державами, яке відбувається без оголошення
+                  повномасштабної війни. Конфлікт стає доступним виключно на рівні політичних відносин -2. Головна мета
+                  — демонстрація сили, розвідка боєм, захоплення дрібних прикордонних пунктів або створення офіційного
+                  РП-приводу для повномасштабної війни.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">12.2</span>
+                <div class="rule-text"><strong>Територіальні межі конфлікту:</strong> Прикордонний конфлікт може
+                  розгортатися виключно у межах спільного державного кордону сторін, що зафіксований на офіційній карті
+                  сервера. Максимальна глибина зони конфлікту не може перевищувати 150 блоків в один чи інший бік від
+                  лінії державного кордону. Будь-яке просування військ далі ніж на 150 блоків вглиб чужої території
+                  суворо заборонено.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">12.3</span>
+                <div class="rule-text"><strong>Часові рамки та узгодження:</strong> Офіційні прикордонні зіткнення
+                  можуть проводитися виключно у загальносерверному часовому проміжку від 18:00 до 22:00 за київським
+                  часом. Точний час початку зіткнення має бути заздалегідь узгоджений лідерами фракцій та затверджений
+                  РП-адміністрацією не менш ніж за 3 години до старту.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">12.4</span>
+                <div class="rule-text"><strong>Тривалість бойових дій:</strong> Загальна тривалість активної фази
+                  бойових дій під час прикордонного конфлікту становить 45 хвилин з моменту першого пострілу або
+                  перетину лінії кордону. Щойно 45-хвилинний таймер закінчується, РП-адміністрація зупиняє бій в
+                  односторонньому порядку, фіксуючи поточні позиції сторін.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">12.5</span>
+                <div class="rule-text">
+                  <strong>Обмеження залучених сил та озброєння:</strong> На відміну від великої війни, прикордонні
+                  конфлікти мають суворі обмеження щодо кількості залучених сил, аби локальна сутичка не переросла в
+                  тотальне знищення інфраструктури:
+                  <ul class="rule-sub-list">
+                    <li><strong>Ліміт гравців:</strong> Максимальний онлайн учасників бою визначається адмінами
+                      безпосередньо перед битвою (не більше 5–6 піхотинців від кожної сторони).</li>
+                    <li><strong>Обмеження техніки:</strong> Дозволено використовувати одну одиницю легкої бронетехніки
+                      (БТР, бронеавтомобілі) та одну одиницю легкої авіації/гвинтокрилу. Використання важкої техніки,
+                      РСЗВ, БПЛА тощо суворо заборонено.</li>
+                    <li><strong>Артилерія та ракети:</strong> Будь-яке використання артилерії, КРО або ракет під час
+                      прикордонного конфлікту заборонено. Дозволено лише легке стрілецьке озброєння, гранати та РПГ як
+                      некерована піхотна зброя.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">12.6</span>
+                <div class="rule-text">
+                  <strong>Механіка відродження:</strong> Під час прикордонного конфлікту гравці мають лише одне життя на
+                  весь 45-хвилинний бій. Механіка польових чи домашніх шпиталів не діє. Якщо гравця вбили в зоні
+                  конфлікту — він повністю вилітає з івенту до кінця поточного вечірнього зіткнення, відроджується у
+                  себе в столиці й не має права повертатися на кордон чи передавати інформацію в рацію.
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">12.7</span>
+                <div class="rule-text">
+                  <strong>Підсумки та наслідки конфлікту:</strong> За результатами 45-хвилинного прикордонного зіткнення
+                  РП-адміністрація офіційно фіксує переможця. Сторона, що перемогла, має право одноразово відсунути
+                  лінію кордону на свою користь (але не більше ніж на 4 чанки вглиб) на ділянці зіткнення, або вимагати
+                  у переможеного виплату локальної контрибуції ресурсами за порушення суверенітету. На ділянку кордону,
+                  де відбувся конфлікт, накладається РП-імунітет на три доби, протягом яких повторні напади заборонені.
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">12.8</span>
+                <div class="rule-text">
+                  <strong>Відповідальність та покарання:</strong> Будь-яке зафіксоване адмінами навмисне порушення
+                  правил прикордонного конфлікту (використання важких танків чи ракет, таємне повернення гравців у бік
+                  кордону після смерті, арт. обстріли) призводить до автоматичної технічної поразки сторони-порушниці.
+                  При цьому сторона-переможець має право відсунути лінію кордону за пунктом 12.7.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="rp-13" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="13" r="7" fill="currentColor" fill-opacity="0.16" />
+                <path d="M16 8l3.5-3.5" />
+                <path d="M20 3.5c1-1 2 0 1 1s-1 2-2 1" />
+                <path d="M9 11l4 4" />
+              </svg>
+              <span>13. Диверсії та спеціальні операції</span>
+            </h2>
+
+            <div class="rule-intro-card">
+              <p><strong>Диверсія</strong> — це коротка, стрімка військова або таємна операція, яка має чітку, заздалегідь визначену РП-мету.</p>
+            </div>
+
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">13.1</span>
+                <div class="rule-text"><strong>Визначення та мета:</strong> Диверсія — це коротка, стрімка військова або таємна операція, яка має чітку, заздалегідь визначену РП-мету.</div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">13.2</span>
+                <div class="rule-text"><strong>Взаємозв'язок з рівнями відносин та ліміти:</strong>
+                  <ul class="rule-sub-list" style="margin-top: 0.35rem;">
+                    <li><strong>На рівні відносин -2:</strong> Дозволено проводити не більше 1 диверсії на дві доби (48 годин) від однієї держави/альянсу. Сюди входять підриви від диверсантів, поодинокі тактичні ракетні удари по тилу, а також викрадення. <em>Заборонено проводити диверсії під час активних бойових дій.</em></li>
+                    <li><strong>На рівні відносин -3:</strong> Дозволено проводити диверсії раз на добу (24 години).</li>
+                    <li><strong>На рівнях -1 і -2:</strong> Офіційно відкриваються механіки викрадень або замахів для створення причини для війни. На цьому рівні диверсії та спец. операції можна проводити раз на 2 доби.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">13.3</span>
+                <div class="rule-text"><strong>Обмеження руйнувань та засоби ураження:</strong>
+                  Диверсія повинна мати лише одну конкретну стратегічну ціль (наприклад: міст, ЛЕП, залізничний вузол, електростанція).
+                  <ul class="rule-sub-list" style="margin-top: 0.35rem;">
+                    <li>Категорично заборонено повне або тотальне знищення військових заводів, шпиталів, аеродромів чи великих об'єктів інфраструктури. Метою може бути виключно пошкодження споруди або тимчасове порушення її роботи. Об'єкт повинен залишатися придатним до швидкого ремонту. Серйозне пошкодження будівлі буде розглянуто як гриферство.</li>
+                    <li>Для підриву інфраструктури за допомогою диверсантів/ракет дозволено використовувати максимум 3 звичайні фугасні заряди або кількість вибухівки, що еквівалентна потужності трьох фугасних зарядів.</li>
+                    <li>Максимальна тривалість наземної диверсійної операції становить 30 хвилин з моменту першої атаки або ліквідації диверсантів.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">13.4</span>
+                <div class="rule-text"><strong>Особливості замахів та викрадень:</strong>
+                  <ul class="rule-sub-list" style="margin-top: 0.35rem;">
+                    <li>Проведення викрадень регулюється окремими правилами викрадень.</li>
+                    <li>Такі операції мають відбуватися в межах розумного: їх категорично заборонено проводити, якщо це може завадити офіційним загальносерверним івентам РП-адміністрації.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">13.5</span>
+                <div class="rule-text"><strong>Фіксація підсумків:</strong>
+                  <ul class="rule-sub-list" style="margin-top: 0.35rem;">
+                    <li>Після завершення будь-якої диверсії атакуюча сторона зобов'язана протягом 2 годин опублікувати детальний RP-Пост у відповідному каналі з описом перебігу подій та відео/скріншот-доказами.</li>
+                    <li>Остаточні наслідки фіксуються та затверджуються виключно РП-Адміністрацією сервера. У разі порушення регламенту — результати диверсії анулюються.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">13.6</span>
+                <div class="rule-text"><strong>Заборона ремонту та використання:</strong> Протягом <strong>3 годин</strong> від моменту нанесення останнього удару по об'єкту забороняється ремонт і використання пошкодженого об'єкту інфраструктури.</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="rp-14" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 3 2 21 22 21 12 3" fill="currentColor" fill-opacity="0.16" />
+                <polyline points="12 3 12 21" />
+                <path d="M5 21l7-8 7 8" />
+              </svg>
+              <span>14. Військові табори</span>
+            </h2>
+            <div class="rule-intro-card">
+              <p><strong>Військовий табір</strong> — тимчасова, мобільна військова інфраструктура фракції на фронті або
+                нейтральній території. Не є містом, не має власної економіки, не використовується для мирних цілей і
+                створюється виключно для ведення поточної воєнної кампанії.</p>
+              <p style="margin-top: 0.5rem;"><strong>Час побудови:</strong> 30 хвилин. Заборонено миттєве появлення в
+                зоні ворога.</p>
+            </div>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">14.1</span>
+                <div class="rule-text"><strong>Визначення та призначення:</strong> Військовий табір є тимчасовим бойовим
+                  опорним пунктом фракції. Табір не є містом, не має власної економіки та створюється виключно для
+                  ведення поточної воєнної кампанії.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">14.2</span>
+                <div class="rule-text">
+                  <strong>Капітальні споруди табору:</strong> Кожен офіційно зареєстрований військовий табір
+                  зобов'язаний мати три обов'язкові капітальні споруди всередині свого периметру:
+                  <ul class="rule-sub-list">
+                    <li><strong>Штаб:</strong> Головний командний пункт, утримання або захоплення якого визначає
+                      контроль над табором.</li>
+                    <li><strong>Польовий шпиталь:</strong> Зона з ліжками та точками спавну, яка є зеленою зоною.
+                      Фракціям офіційно дозволено облаштовувати та використовувати військовий шпиталь безпосередньо у
+                      себе вдома, як альтернативну або основну точку відродження під час будь-якого етапу війни. На
+                      домашній шпиталь повністю поширюються всі правила недоторканності та захисту від обстрілів.</li>
+                    <li><strong>Військовий склад:</strong> Захищене приміщення для зберігання резервного спорядження,
+                      броні, зброї та палива для техніки.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">14.3</span>
+                <div class="rule-text">
+                  <strong>Кількість дозволених військових таборів:</strong> Кількість дозволених військових таборів для
+                  однієї країни/альянсу прямо пропорційна кількості активних гравців на момент початку війни. На кожні 5
+                  гравців у фракції виділяється ліміт на 1 військовий табір:
+                  <ul class="rule-sub-list">
+                    <li>до 5 гравців — 1 табір</li>
+                    <li>10+ гравців — до 2 таборів</li>
+                    <li>15+ гравців — до 3 таборів</li>
+                    <li>20+ гравців — до 4 таборів</li>
+                  </ul>
+                  <p style="margin-top: 0.5rem; font-style: italic; color: var(--text-muted);">Примітка: Фракція має
+                    повне право не використовувати максимальний ліміт і поставити лише 1 консолідований табір для всіх
+                    своїх бійців, незалежно від великого онлайну.</p>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">14.4</span>
+                <div class="rule-text">
+                  <strong>Реєстрація та розміщення:</strong> Перед початком використання військового табору фракція
+                  зобов'язана повідомити РП-адміністрацію про його побудову (надати координати об'єкта для фіксації).
+                  <ul class="rule-sub-list">
+                    <li>Заборонено будувати та розгортати військовий табір на території ворожої держави. Військовий
+                      табір дозволено розміщувати виключно на нейтральних або союзницьких територіях.</li>
+                    <li>Новий військовий табір можна зробити у випадку просування вглиб території.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">14.5</span>
+                <div class="rule-text">
+                  <strong>Штурм та ліквідація:</strong> Військовий табір може бути знищений або ліквідований суворо і
+                  виключно шляхом прямого сухопутного штурму піхотою та танками.
+                  <ul class="rule-sub-list">
+                    <li>Заборонено проводити дистанційне бомбардування табору, обстрілювати його ракетами, авіаційними
+                      бомбами або вести по ньому вогонь з далекобійної артилерії. Бій за табір має відбуватися виключно
+                      обличчям до обличчя.</li>
+                    <li>Штурм табору вважається успішним, а табір — повністю ліквідованим, щойно сили контрнаступу
+                      проривають периметр і фізично захоплюють будівлю Штабу. З цього моменту шпиталь вважається
+                      евакуйованим, а поточний бойовий день завершується.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="rp-15" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a5 5 0 0 0-5 5v3h10V7a5 5 0 0 0-5-5z" fill="currentColor" fill-opacity="0.16" />
+                <path d="M17 10h2a2 2 0 0 1 2 2v2a8 8 0 0 1-16 0v-2a2 2 0 0 1 2-2h2" />
+                <path d="M9 14h6M9 16h6" />
+              </svg>
+              <span>15. Військові організації та найманці</span>
+            </h2>
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">15.1</span>
+                <div class="rule-text"><strong>Організації:</strong> Мінімальний склад не обов'язковий. Потрібна RP-мета
+                  та структура. Дозволено: війни, диверсії, операції.</div>
+              </div>
+              <div class="rule-item">
+                <span class="rule-num">15.2</span>
+                <div class="rule-text"><strong>Найманці:</strong> Одинаки або частина організації. Можуть виконувати
+                  контракти та брати участь у боях. Заборонено змінювати сторону під час бою без обґрунтування.</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="rp-16" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+                  fill="currentColor" fill-opacity="0.16" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              <span>16. Заборонені предмети під час боїв, облог та рейдів</span>
+            </h2>
+
+            <div class="rules-list">
+              <div class="rule-forbidden-item">
+                <svg class="icon rule-forbidden-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="15" y1="9" x2="9" y2="15" />
+                  <line x1="9" y1="9" x2="15" y2="15" />
+                </svg>
+                <div class="rule-forbidden-text">Використання тотемів безсмертя.</div>
+              </div>
+              <div class="rule-forbidden-item">
+                <svg class="icon rule-forbidden-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="15" y1="9" x2="9" y2="15" />
+                  <line x1="9" y1="9" x2="15" y2="15" />
+                </svg>
+                <div class="rule-forbidden-text">Використання зілля невидимості.</div>
+              </div>
+              <div class="rule-forbidden-item">
+                <svg class="icon rule-forbidden-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="15" y1="9" x2="9" y2="15" />
+                  <line x1="9" y1="9" x2="15" y2="15" />
+                </svg>
+                <div class="rule-forbidden-text">Використання емоцій (з Emotecraft).</div>
+              </div>
+              <div class="rule-forbidden-item">
+                <svg class="icon rule-forbidden-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="15" y1="9" x2="9" y2="15" />
+                  <line x1="9" y1="9" x2="15" y2="15" />
+                </svg>
+                <div class="rule-forbidden-text">Використання багів для миттєвого вбивства (ваншоту).</div>
+              </div>
+              <div class="rule-forbidden-item">
+                <svg class="icon rule-forbidden-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="15" y1="9" x2="9" y2="15" />
+                  <line x1="9" y1="9" x2="15" y2="15" />
+                </svg>
+                <div class="rule-forbidden-text">Повне знищення ландшафту навколо міст (випалена земля — лише з
+                  дозволу).</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUBGROUP 3: RP — Віддалені рудники -->
+          <div id="rp-17" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" fill="currentColor" fill-opacity="0.16"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+              <span>17. Віддалені рудники</span>
+            </h2>
+
+            <div class="rule-intro-card">
+              <p><strong>Віддалений рудник</strong> — це офіційно зареєстрований РП-адміністрацією об'єкт видобутку цінних копалин серед нейтральних земель поза державною юрисдикцією. Захоплення об'єкта та встановлення економічного контролю відбувається через локальну ресурсну битву за системою утримання точок без правил повномасштабної війни.</p>
+            </div>
+
+            <div class="rules-list">
+              <div class="rule-item">
+                <span class="rule-num">17.1</span>
+                <div class="rule-text"><strong>Статус віддаленого рудника:</strong> Віддалений рудник розташований серед нейтральних земель на значній відстані від кордонів будь-якої держави. Оскільки об'єкт перебуває поза державною юрисдикцією, на него не поширюються правила етапів повномасштабної війни. Захоплення та економічний контроль відбуваються через локальну ресурсну битву за системою утримання точок.</div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">17.2</span>
+                <div class="rule-text"><strong>Право на претензію:</strong> Претендувати на віддалений рудник може будь-яка фракція, що має політичні відносини від 0 і нижче з поточним володарем рудника, або якщо рудник на момент початку операції є нічийним. Держава-претендент зобов'язана написати РП-пост і висунути ультиматум щодо рудника.</div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">17.3</span>
+                <div class="rule-text"><strong>Межі бойової зони:</strong> Усі бойові дії, контроль об'єкта та підрахунок часу фіксуються суворо в межах огородження локації видобутку. Ведення вогню або вбивства гравців за межами бойового зіткнення (окрім захисту власних ліній постачання) прирівнюються до навмисного вбивства.</div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">17.4</span>
+                <div class="rule-text"><strong>Часовий регламент та тривалість:</strong> Офіційні штурми рудників можуть проводитися виключно у проміжку від 18:00 до 22:00 за київським часом. Точний час початку бою узгоджується сторонами та затверджується РП-адміністрацією не менш ніж за 3 години до старту. Загальний ліміт часу на штурм становить рівно 1 годину з моменту початку активної фази бою.</div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">17.5</span>
+                <div class="rule-text"><strong>Механіка захоплення та утримання:</strong>
+                  Всередині рудника має бути збудоване Управління рудника з кімнатою управління або центральним прапором фракції (за відсутності будівлі стратегічною спорудою є шахта, фортифікації та флагшток).
+                  <ul class="rule-sub-list" style="margin-top: 0.35rem;">
+                    <li>Щоб захопити рудник, атакуюча сторона повинна повністю вибити захисників зі стратегічних споруд, підняти свій прапор та <strong>безперервно утримувати будівлю протягом 15 хвилин</strong>.</li>
+                    <li>Якщо захисники прориваються всередину і починають бій, таймер захоплення <strong>заморожується</strong>, поки будівля знову не буде повністю зачищена однією зі сторін.</li>
+                    <li>Якщо за 1 годину загального ліміту бою атакуюча сторона не змогла утримати Головну Контору протягом 15 хвилин безперервно — штурм вважається проваленим, а рудник залишається під контролем колишнього власника.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">17.6</span>
+                <div class="rule-text"><strong>Польовий табір та система респавну:</strong> Сторонам дозволено використовувати лише <strong>один тимчасовий польовий табір зі шпиталем</strong> на безпечній відстані поза межами зони бойових дій. Після смерті гравець з'являється у шпиталі прикомандованого табору і відбуває обов'язкове <strong>КД тривалістю 5 хвилин</strong>, після чого має право повернутися в бій.</div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">17.7</span>
+                <div class="rule-text"><strong>Обмеження техніки та озброєння:</strong>
+                  <ul class="rule-sub-list" style="margin-top: 0.35rem;">
+                    <li><strong>Дозволено:</strong> Легка та середня бронетехніка (БТР, бронеавтомобілі), міномети та авіація.</li>
+                    <li><strong>Суворо заборонено:</strong> Використання важкої техніки, РСЗВ, БПЛА тощо. Заборонено завдавати будь-яких ударів ракетами чи артилерією з автоматичним наведенням всередині зони бойових дій.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">17.8</span>
+                <div class="rule-text"><strong>Імунітет та технічна поразка:</strong>
+                  Щойно рудник офіційно захоплено, на нього накладається <strong>імунітет на дві доби (48 годин)</strong>, протягом яких повторні напади заборонені (для налагодження логістики та оборони).
+                  <div style="margin-top: 0.5rem; padding: 0.6rem 0.85rem; background: rgba(239, 68, 68, 0.1); border-left: 3px solid #ef4444; border-radius: 4px; font-size: 0.88rem;">
+                    <strong>Штрафні санкції:</strong> Будь-яке зафіксоване адміністрацією навмисне порушення правил (використання важких танків чи ракет) призводить до <strong>автоматичної технічної поразки</strong> сторони-порушниці. При цьому сторона-переможець автоматично отримує рудник.
+                  </div>
+                </div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">17.9</span>
+                <div class="rule-text"><strong>Домашні рудники:</strong> Під вищеописані правила не підпадають лише домашні рудники, розташовані на території міста/столиці країни. На подібні рудники рейди та напади заборонені, а їх перехід під контроль іншої держави можливий лише як частина капітуляції країни з передачею території (за винятком ситуацій, коли столиця стоїть на руднику або дуже близько до нього).</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CODE OF ADMINISTRATION -->
+          <div id="adm-1" class="rules-section">
+            <h2 class="rules-card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="currentColor" fill-opacity="0.16" />
+                <path d="M12 8v4" />
+                <path d="M12 16h.01" />
+              </svg>
+              <span>Кодекс Адміністрації</span>
+            </h2>
+            <div class="rule-intro-card">
+              <p><strong>Регламент поведінки, конфіденційності та етики представників адміністрації проєкту Cloud
+                  Create.</strong></p>
+            </div>
+            <div class="rules-list">
+
+              <div
+                style="font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--gold-500, #fbbf24); margin: 1.25rem 0 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                📖 РЕГЛАМЕНТ ПОВЕДІНКИ ПРЕДСТАВНИКІВ АДМІНІСТРАЦІЇ
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">1</span>
+                <div class="rule-text">
+                  <div><strong>Недопущення конфліктів:</strong> Представники адміністрації зобов'язані дотримуватися
+                    нейтральної, професійної та стриманої поведінки під час виконання своїх обов'язків.</div>
+                  <div style="margin-top: 0.3rem;">Забороняється вступати у конфлікти між:</div>
+                  <ul class="rule-sub-list">
+                    <li>двома або більше представниками адміністрації</li>
+                    <li>представником адміністрації та гравцем</li>
+                  </ul>
+                  <div style="margin-top: 0.3rem;">У разі якщо конфлікт було завершено, але гравець продовжує навмисно
+                    провокувати адміністратора, ображати його або будь-яким іншим способом намагатися відновити
+                    суперечку, представник адміністрації має право застосувати покарання у вигляді <strong>муту від 3 до
+                      24 годин</strong> відповідно до правил проєкту.</div>
+                  <em class="rule-penalty"
+                    style="display: flex; margin-top: 0.5rem; color: var(--gold-500, #fbbf24); background: rgba(251, 191, 36, 0.08); border-color: rgba(251, 191, 36, 0.2); border-left-color: #fbbf24;">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>
+                    <strong>Примітка:</strong>Якщо представник адміністрації сам підтримує або продовжує конфлікт,
+                    ігноруючи можливість його припинити, йому видається 1 попередження.
+                  </em>
+                </div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">2</span>
+                <div class="rule-text">
+                  <div><strong>Заборона провокацій:</strong> Представникам адміністрації заборонено створювати ситуації,
+                    які можуть спровокувати конфлікт або негативну реакцію з боку гравців.</div>
+                  <div style="margin-top: 0.3rem;">До таких дій належать:</div>
+                  <ul class="rule-sub-list">
+                    <li>провокаційні повідомлення</li>
+                    <li>неоднозначні висловлювання або жарти</li>
+                    <li>використання реакцій із насмішкою чи зневагою</li>
+                    <li>надсилання мемів, GIF-зображень, фотографій, посилань або інших матеріалів із потенційно
+                      образливим чи провокаційним змістом</li>
+                  </ul>
+                  <div style="margin-top: 0.3rem;">У випадках, коли характер повідомлення викликає сумніви, остаточне
+                    рішення приймає <strong>Куратор адміністрації проєкту Cloud Create</strong>.</div>
+                  <em class="rule-penalty" style="display: inline-flex; margin-top: 0.5rem;"><svg class="icon"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Міра покарання визначається індивідуально залежно від тяжкості порушення.</em>
+                </div>
+              </div>
+
+              <div
+                style="font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--gold-500, #fbbf24); margin: 2rem 0 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                🔒 РЕГЛАМЕНТ КОНФІДЕНЦІЙНОСТІ
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">3</span>
+                <div class="rule-text">
+                  <div><strong>Конфіденційність службової інформації:</strong> Будь-яка інформація, отримана під час
+                    виконання адміністративних обов'язків, є службовою та не підлягає розголошенню.</div>
+                  <div style="margin-top: 0.3rem;">Забороняється:</div>
+                  <ul class="rule-sub-list">
+                    <li>передавати скриншоти службових каналів</li>
+                    <li>розголошувати внутрішні обговорення адміністрації</li>
+                    <li>розповсюджувати службові документи, файли чи інші матеріали</li>
+                    <li>повідомляти інформацію, недоступну звичайним гравцям</li>
+                    <li>передавати службову інформацію третім особам без дозволу керівництва</li>
+                  </ul>
+                  <em class="rule-penalty" style="display: inline-flex; margin-top: 0.5rem;"><svg class="icon"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: видається від 1 до 3 попереджень залежно від тяжкості порушення.</em>
+                </div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">4</span>
+                <div class="rule-text">
+                  <div><strong>Заборона зловживання повноваженнями:</strong> Представнику адміністрації забороняється
+                    використовувати свої повноваження в особистих цілях.</div>
+                  <div style="margin-top: 0.3rem;">До зловживань належать:</div>
+                  <ul class="rule-sub-list">
+                    <li>видача покарань через особисту неприязнь</li>
+                    <li>навмисне ігнорування порушень окремих осіб</li>
+                    <li>застосування покарань без достатніх підстав або доказів</li>
+                    <li>використання адміністративних можливостей для отримання особистої вигоди</li>
+                    <li>перевищення службових повноважень</li>
+                    <li>використання адміністративного статусу для тиску або погроз</li>
+                  </ul>
+                  <em class="rule-penalty" style="display: inline-flex; margin-top: 0.5rem;"><svg class="icon"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: видається від 1 до 3 попереджень.</em>
+                </div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">5</span>
+                <div class="rule-text">
+                  <div><strong>Етика та поведінка:</strong> Представник адміністрації є обличчям проєкту <strong>Cloud
+                      Create</strong> та зобов'язаний підтримувати високий рівень культури спілкування.</div>
+                  <div style="margin-top: 0.3rem;">Під час виконання своїх обов'язків забороняється:</div>
+                  <ul class="rule-sub-list">
+                    <li>використовувати образливу або принизливу лексику щодо гравців</li>
+                    <li>висміювати, провокувати чи принижувати будь-кого</li>
+                    <li>демонструвати упереджене ставлення</li>
+                    <li>навмисно створювати токсичну атмосферу в текстових або голосових каналах</li>
+                    <li>дискредитувати адміністрацію або проєкт своєю поведінкою</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">6</span>
+                <div class="rule-text">
+                  <div><strong>Виконання обов'язків:</strong> Представник адміністрації зобов'язаний сумлінно виконувати
+                    покладені на нього обов'язки та підтримувати порядок на сервері.</div>
+                  <div style="margin-top: 0.3rem;">Представник адміністрації має право <strong>не відповідати або
+                      проігнорувати звернення</strong>, якщо:</div>
+                  <ul class="rule-sub-list">
+                    <li>звернення містить образи, провокації, флуд або спам</li>
+                    <li>питання не належить до його компетенції</li>
+                    <li>відповідь уже була надана раніше</li>
+                    <li>звернення порушує правила проєкту або не має конструктивного змісту</li>
+                  </ul>
+                  <div style="margin-top: 0.3rem;">Забороняється:</div>
+                  <ul class="rule-sub-list">
+                    <li>навмисно ухилятися від виконання адміністративних обов'язків</li>
+                    <li>зловживати правом на ігнорування звернень</li>
+                    <li>перешкоджати роботі інших представників адміністрації</li>
+                    <li>безпідставно відмовляти у допомозі гравцям, якщо питання входить до компетенції адміністратора
+                    </li>
+                  </ul>
+                  <em class="rule-penalty" style="display: inline-flex; margin-top: 0.5rem;"><svg class="icon"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      style="width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px;">
+                      <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                      <line x1="12" y1="9" x2="12" y2="13" />
+                      <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>Покарання: за систематичне порушення видається від 1 до 2 попереджень.</em>
+                </div>
+              </div>
+
+              <div class="rule-item">
+                <span class="rule-num">7</span>
+                <div class="rule-text">
+                  <div><strong>Тлумачення регламенту:</strong> Якщо будь-яка ситуація не передбачена цим регламентом або
+                    допускає неоднозначне трактування, остаточне рішення щодо її розгляду приймає <strong>Куратор
+                      адміністрації проєкту Cloud Create</strong>.</div>
+                  <div style="margin-top: 0.3rem;">Рішення Куратора адміністрації є <strong>остаточним</strong> та
+                    обов'язковим до виконання всіма представниками адміністрації.</div>
+                </div>
+              </div>
+
+              <!-- System of 5 Warnings Inset Card -->
+              <div class="rule-intro-card"
+                style="margin-top: 2rem; background: rgba(251, 191, 36, 0.06); border: 1px solid rgba(251, 191, 36, 0.25); border-left: 4px solid #fbbf24; padding: 1.25rem 1.5rem;">
+                <div
+                  style="font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; color: var(--gold-500, #fbbf24); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    style="width: 18px; height: 18px; color: #fbbf24;">
+                    <path
+                      d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                    <line x1="12" y1="9" x2="12" y2="13" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                  </svg>
+                  Система 5 попереджень
+                </div>
+                <div
+                  style="font-size: 0.92rem; line-height: 1.65; color: var(--text-body); display: flex; flex-direction: column; gap: 0.6rem;">
+                  <p style="margin: 0;">
+                    Також на сервері працює <strong>система 5 попереджень</strong>. Попередження видається за порушення
+                    Кодексу Адміністрації або порушення правил серверу. Кодекс Адміністрації ви можете прочитати вище, а
+                    правила серверу — у відповідних розділах правил.
+                  </p>
+                  <p style="margin: 0;">
+                    Попередження у майбутньому можна буде знімати за гарну працю (тобто за бали, які будуть запроваджені
+                    у майбутньому).
+                  </p>
+                  <p style="margin: 0;">
+                    <strong>Наслідки:</strong> При отриманні 5 попереджень особа знімається з посту адміністрації. Також
+                    Власник та Куратор мають право зняти адміністратора <strong>до накопичення 5 попереджень</strong>,
+                    спираючись на ситуацію.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer>
     <div class="footer-socials">
       <a href="#" data-discord-url target="_blank" rel="noopener" title="Discord" aria-label="Discord">
-        <svg class="icon" viewBox="0 0 24 24" style="width:20px; height:20px; stroke:none; fill:currentColor;"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.094 13.094 0 0 1-1.873-.894.077.077 0 0 1-.008-.128c.126-.093.252-.19.372-.287a.075.075 0 0 1 .077-.011c3.92 1.793 8.18 1.793 12.061 0a.073.073 0 0 1 .078.009c.12.099.246.195.373.289a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.156 2.418z"/></svg>
+        <svg class="icon" viewBox="0 0 24 24" style="width:20px; height:20px; stroke:none; fill:currentColor;">
+          <path
+            d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.094 13.094 0 0 1-1.873-.894.077.077 0 0 1-.008-.128c.126-.093.252-.19.372-.287a.075.075 0 0 1 .077-.011c3.92 1.793 8.18 1.793 12.061 0a.073.073 0 0 1 .078.009c.12.099.246.195.373.289a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.156 2.418z" />
+        </svg>
       </a>
       <a href="#" data-tiktok-url target="_blank" rel="noopener" title="TikTok" aria-label="TikTok">
-        <svg class="icon" viewBox="0 0 24 24" style="width:20px; height:20px; stroke:none; fill:currentColor;"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.09-1.47-.77-.56-1.44-1.27-1.9-2.1v9.99c-.06 2.05-.87 4.13-2.5 5.39-1.92 1.52-4.66 1.9-6.96 1.15-2.53-.79-4.51-2.96-5.06-5.56-.63-2.88.58-6.15 3-7.76 1.71-1.15 3.92-1.36 5.86-.78v4.2c-1.2-.44-2.6-.28-3.61.52-.98.74-1.35 2.1-1.04 3.29.32 1.34 1.62 2.29 2.99 2.23 1.52-.01 2.76-1.25 2.77-2.77V.02Z"/></svg>
+        <svg class="icon" viewBox="0 0 24 24" style="width:20px; height:20px; stroke:none; fill:currentColor;">
+          <path
+            d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.09-1.47-.77-.56-1.44-1.27-1.9-2.1v9.99c-.06 2.05-.87 4.13-2.5 5.39-1.92 1.52-4.66 1.9-6.96 1.15-2.53-.79-4.51-2.96-5.06-5.56-.63-2.88.58-6.15 3-7.76 1.71-1.15 3.92-1.36 5.86-.78v4.2c-1.2-.44-2.6-.28-3.61.52-.98.74-1.35 2.1-1.04 3.29.32 1.34 1.62 2.29 2.99 2.23 1.52-.01 2.76-1.25 2.77-2.77V.02Z" />
+        </svg>
       </a>
       <a href="#" data-telegram-url target="_blank" rel="noopener" title="Telegram" aria-label="Telegram">
-        <svg class="icon" viewBox="0 0 24 24" style="width:20px; height:20px; stroke:none; fill:currentColor;"><path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701-.33 4.955c.485 0 .7-.223.971-.485l2.334-2.27 4.857 3.589c.895.493 1.538.239 1.761-.83l3.186-15.01c.326-1.309-.5-1.902-1.357-1.42z"/></svg>
+        <svg class="icon" viewBox="0 0 24 24" style="width:20px; height:20px; stroke:none; fill:currentColor;">
+          <path
+            d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701-.33 4.955c.485 0 .7-.223.971-.485l2.334-2.27 4.857 3.589c.895.493 1.538.239 1.761-.83l3.186-15.01c.326-1.309-.5-1.902-1.357-1.42z" />
+        </svg>
       </a>
     </div>
     <p style="display: flex; align-items: center; justify-content: center; gap: 0.4rem; flex-wrap: wrap;">
       © <span data-year></span> Cloud Create. Всі права захищені.
-      <img src="logo_s.png" alt="" style="width: 1.25rem; height: 1.25rem; object-fit: contain; opacity: 0.8; vertical-align: middle;">
+      <img src="logo_s.png" alt=""
+        style="width: 1.25rem; height: 1.25rem; object-fit: contain; opacity: 0.8; vertical-align: middle;">
     </p>
     <div class="footer-links">
       <a href="updates" class="footer-update-link">
-        <svg class="icon update-btn-icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+        <svg class="icon update-btn-icon" viewBox="0 0 24 24">
+          <polyline points="23 4 23 10 17 10"></polyline>
+          <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+        </svg>
         Оновлення
       </a>
       <a href="privacy-policy">Privacy Policy</a>
     </div>
   </footer>
 
-  <script src="main.js?v=1.3.0"></script>
+  <div class="rules-toast" id="rules-toast">
+    <svg class="icon toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+      style="color: var(--amber-400); width: 1.2rem; height: 1.2rem; flex-shrink: 0;">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+    </svg>
+    <span>Посилання на правило скопійовано!</span>
+  </div>
+
+  <script src="main.js"></script>
 </body>
+
 </html>
