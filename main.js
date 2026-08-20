@@ -9,8 +9,8 @@ const CONFIG = {
   DISCORD_URL: 'https://discord.gg/N54MhNbZEM',
   TIKTOK_URL: 'https://www.tiktok.com/@cloudcreatee',
   TELEGRAM_URL: 'https://t.me/CloudCreatee',
-  MRPACK_URL: 'https://github.com/cloud-create-mc/cloud-create-mc.github.io/releases/download/Modpack/CC.Modpack.v2.mrpack',
-  ZIP_URL: 'https://github.com/cloud-create-mc/cloud-create-mc.github.io/releases/download/Modpack/CC.Modpack.v2.zip',
+  MRPACK_URL: 'https://github.com/cloud-create-mc/cloud-create-mc.github.io/releases/download/Modpack/CC.Modpack.v2.1.mrpack',
+  ZIP_URL: 'https://github.com/cloud-create-mc/cloud-create-mc.github.io/releases/download/Modpack/CC.Modpack.v2.1.zip',
   DONATE_URL: 'https://donatello.to/cloudcreate',
 };
 
